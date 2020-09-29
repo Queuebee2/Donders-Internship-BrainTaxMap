@@ -1,19 +1,21 @@
 from Bio import Entrez, Medline
 
-DEVELOPER_EMAIL = "milain.lambers@gmail.com"
-Entrez.email = DEVELOPER_EMAIL
+from braintaxmap.config import dev_email
+Entrez.email = dev_email
+
+
 # todo use API key, make config file for it
 
 class QueryMachine():
-
     """ 
-    let's store article ID's in one file and then their stuff in another
+    ~~let's store article ID's in one file and then their stuff in another~~
     
     - mesh & fulltext from Entrez using biopython
         https://www.biostars.org/p/308345/  
     """
+
     @staticmethod
-    def queryPMC(query): # rename to get-full-text?
+    def queryPMC(query):  # rename to get-full-text?
         """ PMC
 
         - E-FETCH syntax
@@ -55,10 +57,9 @@ class QueryMachine():
 
         """
         pass
-    
 
     @staticmethod
-    def queryPubMed(query, searchlimit=10000): # rename to searchPubMed?
+    def queryPubMed(query, searchlimit=10000):  # rename to searchPubMed?
         """Search keywords against pubmed and return Bio.Medline records
 
         https://biopython.org/docs/1.75/api/Bio.Medline.html
@@ -66,25 +67,25 @@ class QueryMachine():
         Args:
             query ([type]): [description]
         """
-         # q.queryPubMed(term)
+        # q.queryPubMed(term)
 
         # https://biopython.org/docs/1.75/api/Bio.Entrez.html#Bio.Entrez.esearch
         search_handle = Entrez.esearch(db='pubmed',
-                                sort='relevance',
-                                retmax=str(searchlimit),
-                                retmode='xml',
-                                term=query, email=DEVELOPER_EMAIL)
+                                       sort='relevance',
+                                       retmax=str(searchlimit),
+                                       retmode='xml',
+                                       term=query, email=DEVELOPER_EMAIL)
 
         # https://biopython.org/docs/1.75/api/Bio.Entrez.Parser.html
-        record = Entrez.read(search_handle) # Bio.Entrez.Parser.DictionaryElement
-       
+        record = Entrez.read(search_handle)  # Bio.Entrez.Parser.DictionaryElement
+
         idlist = record["IdList"]
 
         dataList = []
         fetch_handle = Entrez.efetch(db="pubmed",
                                      id=idlist,
                                      rettype="medline",
-                                     retmode="text",email=DEVELOPER_EMAIL)
+                                     retmode="text", email=DEVELOPER_EMAIL)
         records = Medline.parse(fetch_handle)
 
-        return records         # what should come out of here? - > ids or records
+        return records  # what should come out of here? - > ids or records

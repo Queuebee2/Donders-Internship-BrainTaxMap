@@ -1,7 +1,7 @@
 Donders-Internship-BrainTaxMap
 
 # Project description  
-Map brain structure to function based on literature  
+Map the behavioural taxonomy of the brain
   
 # Current features  
 - parse JSON structural hirachry (`root:[{child:[{child}]]`)  
@@ -17,7 +17,8 @@ Map brain structure to function based on literature
         - 45k nodes 
         - 75k relationships  
 
-
+# required
+- login details to a `Neo4j` database, we currently use version `4.1.2`
 # Notes on `Neo4j`, `graphs`, `py2neo`, `gephi`
 work in progress
 
@@ -64,8 +65,10 @@ DELETE old
   in our list we have barrel field, but people will search for barrel cortex
   similarity score is about keywords . When words SEEM similar, collapse them (but, then, still make it checkable..)
 - add out/in/log/error dirs under /data/ and adjust scripts accordingly
+- add more in-between-run saving/backups/checks
+- write actual (unit) tests
 
-### CONNECT GEPHI
+### CONNECT GEPHI    (?)
     https://neo4j.com/labs/apoc/4.1/export/gephi/
 
 ### Bio.Medline.Record issue

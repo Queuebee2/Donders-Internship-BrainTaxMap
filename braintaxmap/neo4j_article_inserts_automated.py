@@ -1,52 +1,26 @@
 # Author    Milain Lambers
 # Github    Queuebee2
 
-from braintaxmap.querymachine import QueryMachine
-from py2neo import Graph, Node, Relationship
-from braintaxmap.extract_nodes_from_json import load_previous
-from braintaxmap.data_processing import getmnemdef
-from braintaxmap.prune_functional_hirarchy import flat_relations_hirarchy
-from braintaxmap.tools import fuzz
-# from recursive_iter_test import unpack3
 import os
 import pickle
 
+from py2neo import Graph, Node, Relationship
+
+from braintaxmap.config import neo4j_URL, neo4j_db_creds
+from braintaxmap.data_prep import flat_relations_hirarchy
+from braintaxmap.data_prep import load_previous
+from braintaxmap.data_processing import getmnemdef
+from braintaxmap.querymachine import QueryMachine
+from braintaxmap.tools import fuzz
+
 DATA_DIR = ".." + os.sep + 'data' + os.sep
+SOUGHT_TERM_FILENAME = DATA_DIR + 'sought_keywords.pickle'
+ERROR_LOG_FILE = DATA_DIR + 'article_insert_error_log.txt'  # todo make error output dir
 
 """ see readme
 this script looks for articles (not checking if they exist, yet) and inserts them into the database
 
 """
-
-
-# def insertNodes():
-#     graph = Graph(password='123')   # more on Graph class ; https://py2neo.org/v5/database.html
-#     # #  # # graph# .delete_all()     # DANGEROUS. ONLY USE WHEN TESTING. DELETES EVERYTHING.
-
-
-#     # transaction = graph.begin()
-
-#     structural_hirarchy = load_previous() # loads previous json
-#     # graph.schema.create_uniqueness_constraint('brainstructure', 'name')
-#     IN_ARTICLE = Relationship.type('IN_ARTICLE')
-
-#     for brainstructure in structural_hirarchy.keys():
-
-#         brainstructure = Node('brainstructure', name=parent_name)
-#         brainstructure.__primarylabel__ = 'brainstructure'
-#         brainstructure.__primarykey__ = 'name'
-
-
-#         this_node = Node('brainstructure', **attributes)
-#         this_node.__primarylabel__ = 'brainstructure'
-#         this_node.__primarykey__ = 'name'
-
-#         graph.merge(IN_ARTICLE(brainstructure, article))
-
-#         print(node_name)
-
-
-#     print('done inserting nodes')
 
 
 def load_sought(filename=SOUGHT_TERM_FILENAME, reset=False):
@@ -111,6 +85,7 @@ def harvest_articles(amt=1, reset=False, searchlimit=10000):
 
             articles_found += 1
 
+            # todo: efficiencize
             # skip articles that are not in pmc
             # set false as default to prevent keyerror ?
             # what would be faster, keyerror > continue
@@ -146,12 +121,8 @@ def harvest_articles(amt=1, reset=False, searchlimit=10000):
     print(f'Total articles found: {articles_found}')
 
 
-# !!TODO move creds
-
-
-
 def harvest_and_insert(amt=5, reset=False, searchlimit=100):
-    graph = Graph(auth=neo4j_db_creds)  # more on Graph class ; https://py2neo.org/v5/database.html
+    graph = Graph(neo4j_URL, auth=neo4j_db_creds)  # more on Graph class ; https://py2neo.org/v5/database.html
 
     # harvester automatically gets non-used terms (if reset=False)
     # and yields new records
@@ -192,8 +163,9 @@ def logerror(e):
 
 if __name__ == '__main__':
     from Bio import Entrez
+    from braintaxmap.config import dev_email
 
-    Entrez.email = "milain.lambers@gmail.com"
+    Entrez.email = dev_email
 
     amount = 10000
     print('starting inserts')
@@ -206,6 +178,4 @@ if __name__ == '__main__':
             runs += 1
             fuzz()
 
-    print('done')
-
-    #
+    print('done running main')

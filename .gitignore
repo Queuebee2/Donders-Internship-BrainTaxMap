@@ -1,2 +1,8 @@
 
+.vscode/
+.idea/
+venv/
 data/
+braintaxmap/config.py
+*tempCodeRunnerFile.py
+__pycache__/
