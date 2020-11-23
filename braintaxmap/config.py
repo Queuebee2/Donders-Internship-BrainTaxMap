@@ -1,7 +1,7 @@
 
 # Set Neo4j username and password here
 # 'neo4j' is the default username.
-neo4j_db_creds = ('neo4j', 'password')
+neo4j_db_creds = ('neo4j', 'braintaxmap')
 
 # (bolt) url to connect to db with
 # to find it in Neo4j desktop go to
@@ -12,7 +12,7 @@ neo4j_db_creds = ('neo4j', 'password')
 neo4j_URL = 'bolt://localhost:7687'
 
 # Used for biopython Entrez (Bio.Entrez.email)
-dev_email = 'your.email@goes.here'
+dev_email = 'milain.lambers@gmail.com'
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 import warnings, os

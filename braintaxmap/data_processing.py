@@ -1,7 +1,7 @@
 import os
 
-from braintaxmap.querymachine import QueryMachine
-from braintaxmap.tools import centr_print, tester, programrunner
+from querymachine import QueryMachine
+from tools import centr_print, tester, programrunner
 
 DATA_DIR = ".." + os.sep + 'data' + os.sep
 TSV_MNEMONICS_FILENAME = DATA_DIR + 'tab_delimited_medline_record_mnemonics.tsv'

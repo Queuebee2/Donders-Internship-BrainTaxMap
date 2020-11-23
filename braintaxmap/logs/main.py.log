@@ -1,0 +1,85 @@
+2020-11-21 02:08:51,388 Acquiring connection from pool <DirectConnectionPool profile=ConnectionProfile('bolt://neo4j@localhost:7687') in_use=0 free=0 spare=100>
+2020-11-21 02:08:51,412 [#0000] C: (Dialing <localhost:7687>)
+2020-11-21 02:08:51,415 [#F8A4] S: (Accepted)
+2020-11-21 02:08:51,415 [#F8A4] C: <BOLT>
+2020-11-21 02:08:51,415 [#F8A4] C: <PROTOCOL> 4.0 | 3.0 | 2.0 | 1.0
+2020-11-21 02:08:51,417 [#F8A4] S: <PROTOCOL> 4.0
+2020-11-21 02:08:51,417 [#F8A4] C: HELLO {'user_agent': 'py2neo/2020.0.0 Python/3.7.8-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+2020-11-21 02:08:51,417 [#F8A4] C: (Sent 117 bytes)
+2020-11-21 02:08:51,419 [#F8A4] S: SUCCESS {'server': 'Neo4j/4.1.2', 'connection_id': 'bolt-5'}
+2020-11-21 02:08:51,419 Releasing connection <py2neo.client.bolt.Bolt4x0 object at 0x000001E23AD52C88>
+2020-11-21 02:08:51,419 Acquiring connection from pool <DirectConnectionPool profile=ConnectionProfile('bolt://neo4j@localhost:7687') in_use=0 free=1 spare=99>
+2020-11-21 02:08:51,419 [#F8A4] C: RUN 'SHOW DATABASES' {} {'db': 'system'}
+2020-11-21 02:08:51,419 [#F8A4] C: PULL {'n': -1}
+2020-11-21 02:08:51,419 [#F8A4] C: (Sent 43 bytes)
+2020-11-21 02:08:51,427 [#F8A4] S: SUCCESS {'t_first': 4, 'fields': ['name', 'address', 'role', 'requestedStatus', 'currentStatus', 'error', 'default']}
+2020-11-21 02:08:51,427 [#F8A4] S: RECORD ['neo4j', 'localhost:7687', 'standalone', 'online', 'online', '', True]
+2020-11-21 02:08:51,427 [#F8A4] S: RECORD ['system', 'localhost:7687', 'standalone', 'online', 'online', '', False]
+2020-11-21 02:08:51,427 [#F8A4] S: SUCCESS {'bookmark': 'FB:kcwQAAAAAAAAAAAAAAAAAAAAAT6Q', 'type': 's', 't_last': 2, 'db': 'system'}
+2020-11-21 02:08:51,427 Releasing connection <py2neo.client.bolt.Bolt4x0 object at 0x000001E23AD52C88>
+2020-11-21 02:08:51,428 File for strorings found ids was was not available
+2020-11-21 02:08:51,428 [Errno 2] No such file or directory: 'data\\ found-pmids.pickle'
+2020-11-21 02:13:25,607 Acquiring connection from pool <DirectConnectionPool profile=ConnectionProfile('bolt://neo4j@localhost:7687') in_use=0 free=0 spare=100>
+2020-11-21 02:13:25,631 [#0000] C: (Dialing <localhost:7687>)
+2020-11-21 02:13:25,635 [#F8F3] S: (Accepted)
+2020-11-21 02:13:25,635 [#F8F3] C: <BOLT>
+2020-11-21 02:13:25,635 [#F8F3] C: <PROTOCOL> 4.0 | 3.0 | 2.0 | 1.0
+2020-11-21 02:13:25,636 [#F8F3] S: <PROTOCOL> 4.0
+2020-11-21 02:13:25,636 [#F8F3] C: HELLO {'user_agent': 'py2neo/2020.0.0 Python/3.7.8-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+2020-11-21 02:13:25,637 [#F8F3] C: (Sent 117 bytes)
+2020-11-21 02:13:25,638 [#F8F3] S: SUCCESS {'server': 'Neo4j/4.1.2', 'connection_id': 'bolt-6'}
+2020-11-21 02:13:25,638 Releasing connection <py2neo.client.bolt.Bolt4x0 object at 0x000002BED5A02C88>
+2020-11-21 02:13:25,638 Acquiring connection from pool <DirectConnectionPool profile=ConnectionProfile('bolt://neo4j@localhost:7687') in_use=0 free=1 spare=99>
+2020-11-21 02:13:25,638 [#F8F3] C: RUN 'SHOW DATABASES' {} {'db': 'system'}
+2020-11-21 02:13:25,639 [#F8F3] C: PULL {'n': -1}
+2020-11-21 02:13:25,639 [#F8F3] C: (Sent 43 bytes)
+2020-11-21 02:13:25,645 [#F8F3] S: SUCCESS {'t_first': 2, 'fields': ['name', 'address', 'role', 'requestedStatus', 'currentStatus', 'error', 'default']}
+2020-11-21 02:13:25,645 [#F8F3] S: RECORD ['neo4j', 'localhost:7687', 'standalone', 'online', 'online', '', True]
+2020-11-21 02:13:25,645 [#F8F3] S: RECORD ['system', 'localhost:7687', 'standalone', 'online', 'online', '', False]
+2020-11-21 02:13:25,645 [#F8F3] S: SUCCESS {'bookmark': 'FB:kcwQAAAAAAAAAAAAAAAAAAAAAT6Q', 'type': 's', 't_last': 2, 'db': 'system'}
+2020-11-21 02:13:25,645 Releasing connection <py2neo.client.bolt.Bolt4x0 object at 0x000002BED5A02C88>
+2020-11-21 02:13:25,646 File for strorings found ids was was not available
+2020-11-21 02:13:25,646 [Errno 2] No such file or directory: 'data\\ found-pmids.pickle'
+2020-11-21 02:13:54,286 Acquiring connection from pool <DirectConnectionPool profile=ConnectionProfile('bolt://neo4j@localhost:7687') in_use=0 free=0 spare=100>
+2020-11-21 02:13:54,313 [#0000] C: (Dialing <localhost:7687>)
+2020-11-21 02:13:54,316 [#F8F9] S: (Accepted)
+2020-11-21 02:13:54,316 [#F8F9] C: <BOLT>
+2020-11-21 02:13:54,317 [#F8F9] C: <PROTOCOL> 4.0 | 3.0 | 2.0 | 1.0
+2020-11-21 02:13:54,319 [#F8F9] S: <PROTOCOL> 4.0
+2020-11-21 02:13:54,319 [#F8F9] C: HELLO {'user_agent': 'py2neo/2020.0.0 Python/3.7.8-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+2020-11-21 02:13:54,319 [#F8F9] C: (Sent 117 bytes)
+2020-11-21 02:13:54,321 [#F8F9] S: SUCCESS {'server': 'Neo4j/4.1.2', 'connection_id': 'bolt-7'}
+2020-11-21 02:13:54,321 Releasing connection <py2neo.client.bolt.Bolt4x0 object at 0x0000016FB1F2A208>
+2020-11-21 02:13:54,321 Acquiring connection from pool <DirectConnectionPool profile=ConnectionProfile('bolt://neo4j@localhost:7687') in_use=0 free=1 spare=99>
+2020-11-21 02:13:54,322 [#F8F9] C: RUN 'SHOW DATABASES' {} {'db': 'system'}
+2020-11-21 02:13:54,322 [#F8F9] C: PULL {'n': -1}
+2020-11-21 02:13:54,322 [#F8F9] C: (Sent 43 bytes)
+2020-11-21 02:13:54,330 [#F8F9] S: SUCCESS {'t_first': 4, 'fields': ['name', 'address', 'role', 'requestedStatus', 'currentStatus', 'error', 'default']}
+2020-11-21 02:13:54,330 [#F8F9] S: RECORD ['neo4j', 'localhost:7687', 'standalone', 'online', 'online', '', True]
+2020-11-21 02:13:54,330 [#F8F9] S: RECORD ['system', 'localhost:7687', 'standalone', 'online', 'online', '', False]
+2020-11-21 02:13:54,330 [#F8F9] S: SUCCESS {'bookmark': 'FB:kcwQAAAAAAAAAAAAAAAAAAAAAT6Q', 'type': 's', 't_last': 2, 'db': 'system'}
+2020-11-21 02:13:54,330 Releasing connection <py2neo.client.bolt.Bolt4x0 object at 0x0000016FB1F2A208>
+2020-11-21 02:13:54,331 File for strorings found ids was was not available
+2020-11-21 02:13:54,331 [Errno 2] No such file or directory: 'data\\found-pmids.pickle'
+2020-11-22 00:40:11,302 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-11-22 00:40:40,404 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-11-22 00:43:07,020 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-11-22 00:47:26,665 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-11-22 00:49:10,173 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-11-22 00:49:10,210 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-11-22 00:49:10,210 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-11-22 00:49:10,210 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'data\\found-pmids.pickle'
+2020-11-22 00:51:47,484 - braintaxmap.main.searchMachine - ERROR - HTTP Error 504: Gateway Timeout
+2020-11-22 00:51:47,517 - braintaxmap.main.searchMachine - ERROR - run ran again for the 0thth time
+2020-11-22 01:01:04,051 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-11-22 01:01:04,088 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-11-22 01:01:04,088 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-11-22 01:01:04,088 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'data\\found-pmids.pickle'
+2020-11-22 01:03:43,238 - braintaxmap.main.searchMachine - ERROR - HTTP Error 504: Gateway Timeout
+2020-11-22 01:03:43,270 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 0thth time
+2020-11-22 01:06:24,045 - braintaxmap.main.searchMachine - ERROR - HTTP Error 504: Gateway Timeout
+2020-11-22 01:06:24,076 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 1stth time
+2020-11-22 01:09:02,698 - braintaxmap.main.searchMachine - ERROR - HTTP Error 504: Gateway Timeout
+2020-11-22 01:09:02,730 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 2ndth time
+2020-11-22 01:11:40,383 - braintaxmap.main.searchMachine - ERROR - HTTP Error 504: Gateway Timeout
+2020-11-22 01:11:40,416 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 3rdth time

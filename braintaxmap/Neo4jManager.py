@@ -1,0 +1,239 @@
+
+from py2neo import Graph, Node, Relationship
+from braintaxmap.config import neo4j_db_creds, neo4j_URL
+from json import dumps
+import traceback
+
+ARTICLE_OF = Relationship.type('ARTICLE_OF')
+CITED_IN = Relationship.type('CITED_IN')  # UNUSED SO FAR.
+MESHTERM_OF = Relationship.type('MESHTERM_OF') # make user decide if it connects to keyword search or only articles
+
+
+import logging
+db_logger = logging.getLogger('braintaxmap.Neo4jManager')
+
+
+def recordsToJSON(records):
+    try:
+        json = dumps(records.data(), indent=4, sort_keys=True)
+    except Exception as e:
+        return {'error':str(e)+" stacktrace: " + traceback.format_exc()}
+    return json
+
+class ArticleNode:
+    def __new__(cls, record):
+        """Create py2neo.Node object and set the attributes
+                the primary label is based on the PMC id. This means it is assumed the record
+                describes an entry with a PMC id, (PMID is not enough)
+        """
+        article = Node('article', PMC_ID=record['PMC'], **record)
+        article.__primarylabel__ = 'article'
+        article.__primarykey__ = 'PMC'
+        return article
+
+class KeywordNode:
+    def __new__(cls, word, label):
+        node = Node(label, name=word)
+        node.__primarylabel__ = label
+        node.__primarykey__ = 'name'
+        return node
+
+class MeshNode:
+    def __new__(cls, meshterm):
+        node = Node('MeSH', name=meshterm)
+        node.__primarylabel__ = 'MeSH'
+        node.__primarykey__ = 'name'
+        return node
+
+def onNodeSelect():
+    """TODO:
+        - what does selecting an already expanded node do?
+        - what do we do with parent/child nodes (if the node is part of a structure of its own <label> kind)
+        - how do we find the node the user selected?
+        - what do we need to expand out from this node?
+            - do we use user-set settings to determine this
+            - get the neighbouring nodes
+            -
+
+    """
+
+    # get selected node, maybe as a param?
+
+    # get settings to determine what to expand on
+
+    pass
+
+
+# def dummifier(func):
+#     def wrapper(self, *args, **kwargs):
+#         if hasattr(self, 'graph') and self.graph is not None:
+#             func(self, *args, **kwargs)
+#         else:
+#             print(f"program tried to call '{func.__name__}({args}, {kwargs})', but there is no connection. Dummydb mode is activated")
+#     return wrapper
+
+# def for_all_methods(decorator):
+#     # thanks stackoverflow
+#     def decorate(cls):
+#         for attr in cls.__dict__: # there's propably a better way to do this
+#             if callable(getattr(cls, attr)):
+#                 setattr(cls, attr, decorator(getattr(cls, attr)))
+#         return cls
+#     return decorate
+
+# @for_all_methods(dummifier)
+
+class Neo4jManager:
+    def __init__(self, uri=neo4j_URL, auth=neo4j_db_creds):
+        self.logger = logging.getLogger('braintaxmap.Neo4jManager.Neo4jManager')
+        self.graph = None
+        self.connect(uri, auth)
+        
+    def websiteTester(self):
+        cypher = """match (n {name:'barrel cortex'})-[r*0..2]-(m) return n,r,m limit 100"""
+        result = self.graph.run(cypher)
+        return result
+
+    def connect(self, uri, auth):
+        self.logger.info('connecting to database')
+        try:
+            self.graph = Graph(uri, auth=auth)
+            print('Neo4jManager initiated and successfully connected')
+        except ConnectionRefusedError:
+            self.logger.warning('connection refused')
+            print('ConnectionRefusedError')
+            print('either something is wrong with the authentication')
+            print('or the database is not online.')
+            self.graph = None
+        except Exception as e:
+            self.logger.error('unexpected error in Neo4jManager.Neo4jManager.connect at line 93')
+            self.logger.exception(e)
+            self.graph = None
+
+    def insert_relation(self, child, relation_to, parent):
+        """[summary]
+
+        Args:
+            child ([Create py2neo.Node]): [description]
+            relation_to ([tyCreate py2neo.Relationship]): [description]
+            parent ([Create py2neo.Node]): [description]
+        """
+        self.graph.merge(relation_to(child, parent))
+        return
+    
+    def insert_node(self, nodename, attributes, labels):
+        node = Node(*labels, name=nodename, **attributes)
+        node.__primarylabel__ = labels[0]
+        node.__primarykey__ = 'name'
+
+        self.graph.merge(node)
+
+    def get_all_related(self, node_name):
+        """WARNING Unsafe cypher (?)"""
+        r = self.graph.run(f"MATCH (director {{ name: '{node_name}' }})--(something)"
+                        "RETURN something")
+        return list(r)
+
+
+    def get_neighbours(self, node_name, amount=25, depth=2):
+        cypher = f"""
+        MATCH (start {{ name: '{node_name}'}})-[r*0..{depth}]-(target) 
+        RETURN start, target limit {amount}"""
+        # TODO security ;/
+        r = self.graph.run(cypher)
+
+        return r
+
+    def amount_of_results(self, word):
+        cypher = f"""
+        MATCH (start)-[rel]-(target) 
+        WHERE any(prop in keys(start) where start[prop] Contains "{word}") 
+        RETURN count(start) 
+        LIMIT {amount}"""
+        r = next(self.graph.run(cypher))['count(start)']
+
+        return r
+
+    def find_anywhere(self, word, amount=25, depth=5):
+        cypher = f"""
+        MATCH (start)-[rel*0..{depth}]-(target) 
+        WHERE any(prop in keys(start) where start[prop] Contains "{word}") 
+        RETURN start, rel, target 
+        LIMIT {amount}"""
+        r = self.graph.run(cypher)
+        return r
+
+    def exists_in_database(self, word, label,field='name'):
+        """[summary]
+
+        Args:
+            word ([str]): [the attribute value of the <field> to search for on nodes in Neo4j]
+            label ([list<str>]): [list of labels, must contain at least 1]
+            field (str, optional): [the field to check for the word]. Defaults to 'name'.
+
+        Returns:
+            [boolean]: [whether a node or multiple nodes exist containing <word> as a value to their
+             <field> attribute]
+        """        
+        cypher = f"""MATCH (n:{label} {{{field}: "{word}"}}) RETURN n;"""
+        r = self.graph.run(cypher)
+        r = list(r)
+        amount = len(r)
+        if amount > 1: print('more than 1 match found for', word, label, field)
+        return amount >= 1
+    
+    def get_MeSH_terms(self):
+        cypher = """Match (n:MeSH) return n"""
+        result = self.graph.run(cypher)
+        return result
+    
+    def insert_new_nodes(self, node_attributes, labels):
+        """insert a bunch of independent nodes with labels
+
+        """
+        for attribtues in node_attributes:
+            node = Node(*labels, **attribtues)
+            if 'name' in attributes:
+                node.__primarykey__ == 'name'
+            else:
+                pass
+                # TODO LOG THIS ERROR because im not sure if the 
+                # set is necessary
+            node.__primarylabel__ = labels[0]
+
+            self.graph.merge(node)
+
+
+
+    def test_random_insert(self):
+        labels = ['test', 'testing', 'nostructure',]
+        attributes = {'type':'testnode','value':404, 'specialPrimaryKeyTest':1337}
+
+        node = Node(*labels, name='THIS IS A TEST NODE', **attributes)
+        node.__primarylabel__ = labels[0]
+        node.__primarykey__ = 'specialPrimaryKeyTest'
+
+        self.graph.merge(node)
+
+        cypher = 'match (n:test) delete n'
+        self.graph.run(cypher)
+
+        any_tests_left = self.exists_in_database('THIS IS A TEST NODE', 'test')
+        print(any_tests_left)
+
+
+if __name__=='__main__':
+
+
+    print('testing neo4jmanager')
+    n = Neo4jManager()
+    meshterms = recordsToJSON(n.get_neighbours('memory'))
+    print(meshterms)
+
+    exists = n.exists_in_database('Somatomotor areas','brainstructure')
+    print('Somatomotor areas','brainstructure', 'exists?', exists)
+
+    exists = n.exists_in_database('brain','MeSH')
+    print('brain','MeSH', 'exists?', exists)
+
+    n.test_random_insert()

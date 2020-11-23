@@ -4,11 +4,11 @@ from time import sleep
 FUZZING = True
 
 
-def fuzz(amt=False):
+def fuzz(amt=False, fuzzing=FUZZING):
     """Inspired by Raymond Hettingers python talks
     https://github.com/rhettinger
     """
-    if FUZZING:
+    if fuzzing:
         if not amt:
             sleep(random())
         else:

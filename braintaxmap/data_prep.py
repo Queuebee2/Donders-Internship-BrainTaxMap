@@ -8,9 +8,8 @@ import sys
 
 from py2neo import Graph, Node, Relationship
 
-from braintaxmap.config import neo4j_db_creds, neo4j_URL
-from braintaxmap.data_prep import load_previous
-from braintaxmap.tools import centr_print, tester, programrunner, fuzz
+from config import neo4j_db_creds, neo4j_URL
+from tools import centr_print, tester, programrunner, fuzz
 
 DATA_DIR = ".." + os.sep + 'data' + os.sep
 IN_FILENAME = DATA_DIR + 'list_of_behaviour_hirarchy.txt'
@@ -29,13 +28,13 @@ class DataPrepper():
 
     def __init__(self):
         name = 'dataprepper'
+        self.graph = Graph(neo4j_URL, auth=neo4j_db_creds)
 
     def run(self, reset_db=False, delete_all=False):
         self.insert_structural_nodes(reset_db=reset_db, delete_all=delete_all)
         self.insert_behavioural_nodes()
 
-    @classmethod
-    def insert_structural_nodes(reset_db=False, delete_all=False):
+    def insert_structural_nodes(self, reset_db=False, delete_all=False):
         """ work in progress
 
         NEO4J Browser commands
@@ -59,7 +58,7 @@ class DataPrepper():
 
         # todo here check if we didn't already insert those
 
-        graph = Graph(neo4j_URL, auth=neo4j_db_creds)  # more on Graph class ; https://py2neo.org/v5/database.html
+        graph = self.graph  # more on Graph class ; https://py2neo.org/v5/database.html
 
         # starting over?
         if reset_db and delete_all:
@@ -99,7 +98,6 @@ class DataPrepper():
 
         print('done inserting nodes')
 
-    @classmethod
     def insert_behavioural_nodes(self):
         """ see readme
         this script looks for articles (not checking if they exist, yet) and inserts them into the database
@@ -108,7 +106,7 @@ class DataPrepper():
 
         # todo here check if we didn't already insert those
 
-        graph = Graph(neo4j_URL, auth=neo4j_db_creds)  # more on Graph class ; https://py2neo.org/v5/database.html
+        graph = self.graph  # more on Graph class ; https://py2neo.org/v5/database.html
 
 
         behavioural_hirarchy = flat_relations_hirarchy()  # loads previous json
@@ -158,7 +156,7 @@ def parse_pruned_behavioural_hirarchy():
     return behaviour
 
 
-def flat_relations_hirarchy():
+def flat_relations_hirarchy(filename=IN_FILENAME):
     """Data from ... https://brainmap.org/taxonomy/behaviors.html
 
         removed all lines with -, weird A and other stuff.
@@ -169,7 +167,7 @@ def flat_relations_hirarchy():
     """
     relations = dict()
 
-    with open(IN_FILENAME, 'r') as file:
+    with open(filename, 'r') as file:
 
         for l in file:
             line = l.split('Â')[0] if 'Â' in l else l
@@ -303,11 +301,16 @@ def test_pruner():
         else:
             print(k)
 
+def insert_first_nodes():
+    d = DataPrepper()
+    d.run()
 
-TESTS = {"pruning behavioural hirarchy": (0, test_pruner),
-         "extract leafnodes from json": (0, test_json_extractor),
+TESTS = {"pruning behavioural hirarchy": (1, test_pruner),
+         "extract leafnodes from json": (1, test_json_extractor),
          }
-PROGRAMS = {}
+PROGRAMS = {"Insert first nodes from initial files":(1, insert_first_nodes)}
+
+
 if __name__ == '__main__':
     tester(TESTS)
     centr_print()
