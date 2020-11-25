@@ -89,8 +89,8 @@ class Neo4jManager:
         self.graph = None
         self.connect(uri, auth)
         
-    def websiteTester(self):
-        cypher = """match (n {name:'barrel cortex'})-[r*0..2]-(m) return n,r,m limit 100"""
+    def websiteTester(self, amount):
+        cypher = f"""match (n {{name:'barrel cortex'}})-[r*0..5]-(m) return n,r,m limit {amount}"""
         result = self.graph.run(cypher)
         return result
 
