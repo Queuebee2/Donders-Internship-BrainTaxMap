@@ -10,7 +10,7 @@ import dash_core_components as dcc
 from dash_html_components.Button import Button
 import dash_table
 import pandas as pd
-from dash_network import Network
+
 import dash_cytoscape as cyto
 import plotly.graph_objects as go
 import squarify
@@ -203,67 +203,8 @@ def cyto_data(selected, amount):
     return elements
 
 def treemap():
-    
-    # x = 0.
-    # y = 0.
-    # width = 100.
-    # height = 100.
-    
-    # values = [500, 433, 78, 25, 25, 7]
-
-    # normed = squarify.normalize_sizes(values, width, height)
-    # rects = squarify.squarify(normed, x, y, width, height)
-
-    # # Choose colors from http://colorbrewer2.org/ under "Export"
-    # color_brewer = ['rgb(166,206,227)','rgb(31,120,180)','rgb(178,223,138)',
-    #                 'rgb(51,160,44)','rgb(251,154,153)','rgb(227,26,28)']
-    # shapes = []
-    # annotations = []
-    # counter = 0
-
-    # for r in rects:
-    #     shapes.append( 
-    #         dict(
-    #             type = 'rect', 
-    #             x0 = r['x'], 
-    #             y0 = r['y'], 
-    #             x1 = r['x']+r['dx'], 
-    #             y1 = r['y']+r['dy'],
-    #             line = dict( width = 2 ),
-    #             fillcolor = color_brewer[counter]
-    #         ) 
-    #     )
-    #     annotations.append(
-    #         dict(
-    #             x = r['x']+(r['dx']/2),
-    #             y = r['y']+(r['dy']/2),
-    #             text = values[counter],
-    #             showarrow = False
-    #         )
-    #     )
-    #     counter = counter + 1
-    #     if counter >= len(color_brewer):
-    #         counter = 0
-
-    # figure = {
-    # 'data': [go.Scatter(
-    #     x = [ r['x']+(r['dx']/2) for r in rects ], 
-    #     y = [ r['y']+(r['dy']/2) for r in rects ],
-    #     text = [ str(v) for v in values ], 
-    #     mode = 'text',
-    #     )
-    # ],
-    # 'layout': go.Layout(
-    #     height=700, 
-    #     width=700,
-    #     xaxis={'showgrid':False, 'zeroline':False, 'showticklabels': False},
-    #     yaxis={'showgrid':False, 'zeroline':False, 'showticklabels': False},
-    #     shapes=shapes,
-    #     annotations=annotations,
-    #     hovermode='closest',
-    #     )
-    # }
-    # return figure
+    """ previous commented out code was from ock at https://community.plotly.com/t/dash-treemap-implementation/11198 
+    """
 
     df = pd.DataFrame(
         {'searchword':{x:'barrel cortex' for x in range(10)},
@@ -304,44 +245,7 @@ ALLOWED_TYPES = (
     "tel", "url", "range", "hidden",
 )
 
-app.layout = html.Div([
-    html.H2('Click a node to expand it, or the background to return'),
-
-    #############################################################################
-    # network div
-    #############################################################################
-    html.Div([
-        # slider to decide amount of nodes available, see update_data callback
-        dcc.Slider(
-            id='input_amountOfNodesSlider',
-            min=1,
-            max=250,
-            marks={10: '10', 50: '50', 100: '100'},
-            step=1,
-            value=15,
-        ),
-        # network (within loading)
-        dcc.Loading(
-            id="loading-network-dash",
-            type="default",
-            children=Network(
-                # Allowed arguments: data, dataVersion, height, id, linkWidth,
-                # maxLinkWidth, maxRadius, nodeRadius, selectedId, width
-                id='net',
-                data=net_data(f'{GRAPH_START_TERM}', 100)
-
-            )
-        ),
-        # output information on network
-        html.Div(id='dash-selected-node-output', children=[])
-    ],
-
-        style={'width': '75%', 'height': '700px', 'border': '3px solid grey'}
-    ),
-
-    #############################################################################
-    #############################################################################
-    #############################################################################
+app.layout = html.Div(id='top-div', children=[
     # playing around with CYTOSCAPE
     html.Div(
         id='cytoscape-container',
@@ -444,8 +348,8 @@ app.layout = html.Div([
             ]
         ),
 
-    ], style={'width': '50%'})
-], style={'width': '50%'})
+    ], style={'width': '50%'})],
+ style={'width': '50%'})
 
 
 """
@@ -706,20 +610,6 @@ def cb_render(*vals, verbose=False):
     if verbose:
         print('the values in cb_render are:', vals)
     return " | ".join((str(val) for val in vals if val))
-
-
-@app.callback(Output('net', 'data'),
-              [Input('net', 'selectedId'),
-               Input("input_amountOfNodesSlider", "value")])
-def update_data(selected_id, range_value):
-    return net_data(selected_id, range_value)
-
-
-@app.callback(Output('dash-selected-node-output', 'children'),
-              [Input('net', 'selectedId'), Input('net', 'data')])
-def list_connections(selected_id, data):
-    return dcc.Markdown('# You selected node __"`{}`"__ on a graph with `{}` nodes and `{}` links'.format(
-        selected_id, len(data['nodes']), len(data['links'])))
 
 
 if __name__ == '__main__':
