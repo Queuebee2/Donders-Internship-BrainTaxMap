@@ -6,3 +6,4 @@ data/
 braintaxmap/config.py
 *tempCodeRunnerFile.py
 __pycache__/
+braintaxmap/logs/
