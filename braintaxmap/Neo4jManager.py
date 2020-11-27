@@ -91,7 +91,7 @@ class Neo4jManager:
         
     def websiteTester(self, amount):
         cypher = f"""match (n {{name:'barrel cortex'}})-[r*0..5]-(m) return n,r,m limit {amount}"""
-        result = self.graph.run(cypher)
+        result = self.run_query(cypher)
         return result
 
     def connect(self, uri, auth):
@@ -109,6 +109,14 @@ class Neo4jManager:
             self.logger.error('unexpected error in Neo4jManager.Neo4jManager.connect at line 93')
             self.logger.exception(e)
             self.graph = None
+
+    def run_query(self, query):
+        try:
+            results = self.graph.run(query)
+        except Exception as e:
+            self.logger.error(e)
+            results = []
+        return results
 
     def insert_relation(self, child, relation_to, parent):
         """[summary]
@@ -128,10 +136,10 @@ class Neo4jManager:
 
         self.graph.merge(node)
 
-    def get_all_related(self, node_name):
+    def get_all_related(self, node_name, amount=25):
         """WARNING Unsafe cypher (?)"""
-        r = self.graph.run(f"MATCH (director {{ name: '{node_name}' }})--(something)"
-                        "RETURN something")
+        r = self.run_query(f"MATCH (start) {{ name: '{node_name}' }})--(target)"
+                        f"RETURN something limit {amount}")
         return list(r)
 
 
@@ -140,27 +148,27 @@ class Neo4jManager:
         MATCH (start {{ name: '{node_name}'}})-[r*0..{depth}]-(target) 
         RETURN start, target limit {amount}"""
         # TODO security ;/
-        r = self.graph.run(cypher)
+        r = self.run_query(cypher)
 
         return r
 
     def amount_of_results(self, word):
         cypher = f"""
-        MATCH (start)-[rel]-(target) 
+        MATCH (start)-[r]-(target) 
         WHERE any(prop in keys(start) where start[prop] Contains "{word}") 
         RETURN count(start) 
         LIMIT {amount}"""
-        r = next(self.graph.run(cypher))['count(start)']
+        r = next(self.run_query(cypher))['count(start)']
 
         return r
 
     def find_anywhere(self, word, amount=25, depth=5):
         cypher = f"""
-        MATCH (start)-[rel*0..{depth}]-(target) 
+        MATCH (start)-[r*0..{depth}]-(target) 
         WHERE any(prop in keys(start) where start[prop] Contains "{word}") 
-        RETURN start, rel, target 
+        RETURN start, r, target 
         LIMIT {amount}"""
-        r = self.graph.run(cypher)
+        r = self.run_query(cypher)
         return r
 
     def exists_in_database(self, word, label,field='name'):
@@ -175,8 +183,8 @@ class Neo4jManager:
             [boolean]: [whether a node or multiple nodes exist containing <word> as a value to their
              <field> attribute]
         """        
-        cypher = f"""MATCH (n:{label} {{{field}: "{word}"}}) RETURN n;"""
-        r = self.graph.run(cypher)
+        cypher = f"""MATCH (start:{label} {{{field}: "{word}"}}) RETURN target;"""
+        r = self.run_query(cypher)
         r = list(r)
         amount = len(r)
         if amount > 1: print('more than 1 match found for', word, label, field)
@@ -184,7 +192,7 @@ class Neo4jManager:
     
     def get_MeSH_terms(self):
         cypher = """Match (n:MeSH) return n"""
-        result = self.graph.run(cypher)
+        result = self.run_query(cypher)
         return result
     
     def insert_new_nodes(self, node_attributes, labels):
@@ -216,7 +224,7 @@ class Neo4jManager:
         self.graph.merge(node)
 
         cypher = 'match (n:test) delete n'
-        self.graph.run(cypher)
+        self.run_query(cypher)
 
         any_tests_left = self.exists_in_database('THIS IS A TEST NODE', 'test')
         print(any_tests_left)

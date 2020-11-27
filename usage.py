@@ -3,14 +3,17 @@ import logging
 import os
 import json
 import dash
+import plotly.express as px 
 from dash.dependencies import Input, Output, State
 import dash_html_components as html
 import dash_core_components as dcc
+from dash_html_components.Button import Button
 import dash_table
 import pandas as pd
 from dash_network import Network
 import dash_cytoscape as cyto
 import plotly.graph_objects as go
+import squarify
 
 from dateutil import parser
 
@@ -136,14 +139,10 @@ def net_data(selected, range_value, verbose=False):
         else:
             return node['name'], 0
 
-    for index, record in enumerate(records):
+    for index, (startnode, relation, targetnode) in enumerate(records):
         if index > range_value:
             break
-
-        startnode = record['n']
-        relations = record['r']
-        targetnode = record['m']
-
+        
         startnode, color1 = create_id(startnode)
         targetnode, color2 = create_id(targetnode)
 
@@ -203,6 +202,81 @@ def cyto_data(selected, amount):
     print(f'found {len(elements)} nodes for <websiteTester>')
     return elements
 
+def treemap():
+    
+    # x = 0.
+    # y = 0.
+    # width = 100.
+    # height = 100.
+    
+    # values = [500, 433, 78, 25, 25, 7]
+
+    # normed = squarify.normalize_sizes(values, width, height)
+    # rects = squarify.squarify(normed, x, y, width, height)
+
+    # # Choose colors from http://colorbrewer2.org/ under "Export"
+    # color_brewer = ['rgb(166,206,227)','rgb(31,120,180)','rgb(178,223,138)',
+    #                 'rgb(51,160,44)','rgb(251,154,153)','rgb(227,26,28)']
+    # shapes = []
+    # annotations = []
+    # counter = 0
+
+    # for r in rects:
+    #     shapes.append( 
+    #         dict(
+    #             type = 'rect', 
+    #             x0 = r['x'], 
+    #             y0 = r['y'], 
+    #             x1 = r['x']+r['dx'], 
+    #             y1 = r['y']+r['dy'],
+    #             line = dict( width = 2 ),
+    #             fillcolor = color_brewer[counter]
+    #         ) 
+    #     )
+    #     annotations.append(
+    #         dict(
+    #             x = r['x']+(r['dx']/2),
+    #             y = r['y']+(r['dy']/2),
+    #             text = values[counter],
+    #             showarrow = False
+    #         )
+    #     )
+    #     counter = counter + 1
+    #     if counter >= len(color_brewer):
+    #         counter = 0
+
+    # figure = {
+    # 'data': [go.Scatter(
+    #     x = [ r['x']+(r['dx']/2) for r in rects ], 
+    #     y = [ r['y']+(r['dy']/2) for r in rects ],
+    #     text = [ str(v) for v in values ], 
+    #     mode = 'text',
+    #     )
+    # ],
+    # 'layout': go.Layout(
+    #     height=700, 
+    #     width=700,
+    #     xaxis={'showgrid':False, 'zeroline':False, 'showticklabels': False},
+    #     yaxis={'showgrid':False, 'zeroline':False, 'showticklabels': False},
+    #     shapes=shapes,
+    #     annotations=annotations,
+    #     hovermode='closest',
+    #     )
+    # }
+    # return figure
+
+    df = pd.DataFrame(
+        {'searchword':{x:'barrel cortex' for x in range(10)},
+         'word':{x:f'word-{x}' for x in range(10)},
+         'count':{x:x*x for x in range(10)}
+        }
+)
+    figure = px.treemap(
+       df, path=['searchword', 'word'], values='count'
+    )
+    return figure
+
+
 
 #############################################################################
 #############################################################################
@@ -259,7 +333,7 @@ app.layout = html.Div([
             )
         ),
         # output information on network
-        html.Div(id='output', children=[])
+        html.Div(id='dash-selected-node-output', children=[])
     ],
 
         style={'width': '75%', 'height': '700px', 'border': '3px solid grey'}
@@ -322,7 +396,16 @@ app.layout = html.Div([
     # playing around more div
     #############################################################################
     html.Div([
+        # treemap
+        dcc.Loading(id='loading-treemap-results', type='circle',
+        children=[dcc.Graph(id='treemap-container', figure=treemap()),
+                html.Button('print treemap', id='btn-treemap', n_clicks=0),
+                html.Div(id='treemap-selected-node-output', children=[])
+                ],
+                style={'width': '75%'}
+        ),
         html.Div(id='hidden-article-storage', style={'display': 'none'}),
+
         # todo load from article
         dcc.Markdown(
             ['# Perform a search', 'Here you can query the pubmed database']),
@@ -364,12 +447,31 @@ app.layout = html.Div([
     ], style={'width': '50%'})
 ], style={'width': '50%'})
 
+
+"""
+notes
+The dcc.Graph component has four attributes that can change through user-interaction: 
+ hoverData, clickData, selectedData, relayoutData. 
+ These properties update when you hover over points, 
+ click on points, or select regions of points in a graph.
+"""
+@app.callback(Output('treemap-selected-node-output', 'children'),
+        Input('treemap-container', 'hoverData'))
+def treemap_selected(treemap_figure):
+    # https://community.plotly.com/t/treemap-click-events/31337
+    # Input( .. plotly_treemapclick?
+    print(treemap_figure)
+    print(dir(treemap_figure))
+    return dcc.Markdown(str(treemap_figure))
+
+
 """
     
     'dropdown-select-result' -> 'value' -> callback -> update something ->
     requires staets?
     'dropdown-select-result'
 """
+
 
 
 @app.callback(
@@ -485,7 +587,7 @@ def present_selected_articles(selected, jsonified_article_data):
                     children=[
                         dcc.Markdown([
                             # TITLE
-                            f"# {i}. {r['TI']} <sub>[PMID]({r['PMID']})</sub>",
+                            f"# {i}. {r['TI']} PMID:{r['PMID']}",
                             f"##### this is an article test",
                             f"##### Abstract",
                             f"{r['AB']}",
@@ -613,7 +715,7 @@ def update_data(selected_id, range_value):
     return net_data(selected_id, range_value)
 
 
-@app.callback(Output('output', 'children'),
+@app.callback(Output('dash-selected-node-output', 'children'),
               [Input('net', 'selectedId'), Input('net', 'data')])
 def list_connections(selected_id, data):
     return dcc.Markdown('# You selected node __"`{}`"__ on a graph with `{}` nodes and `{}` links'.format(
