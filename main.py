@@ -2,26 +2,27 @@
 # Github        Queuebee2
 # Date          8-9-2020
 
+""" ongrowing TODO list
+https://stackoverflow.com/questions/1092531/event-system-in-python
 
-""" Restructuring in progress
-
+more noteworthy
+ The main difference is that spaCy is integrated and opinionated. 
+ spaCy tries to avoid asking the user to choose between multiple algorithms that deliver equivalent functionality.
 """
-
+import collections
 import traceback
 import logging
 import pickle
 import os
 from urllib.error import HTTPError
+import dotenv
+from braintaxmap.config import dev_email
+from urllib.error import HTTPError
 
-from braintaxmap.querymachine import QueryMachine
-from braintaxmap.Neo4jManager import Neo4jManager
+import nltk
 
 
-# turns a number like 2 into  2nd
-ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
-
-ERROR_LOG_FILE = 'braintaxmap' + os.sep+ 'logs' + os.sep+ 'main.py.log'
-
+ERROR_LOG_FILE = 'braintaxmap' + os.sep+ 'logs' + os.sep+ 'new_main.py.log'
 # create logger
 logger = logging.getLogger('braintaxmap.main')
 logger.setLevel(logging.INFO)
@@ -40,189 +41,229 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 
 
+from braintaxmap.querymachine import QueryMachine
+from braintaxmap.Neo4jManager import Neo4jManager
+from braintaxmap.stat_tracker import StatTracker
+from braintaxmap.tools import fuzz
+
+MAX_SEARCH_LIMIT = 100000   #TODO move to new env!
 
 
 
-class searchMachine():
-    # TODO fix this file mess
-    id_filename = "." + os.sep+ 'data' + os.sep +'found-pmids.pickle'
-    search_limit = 1000000
-
-    def __init__(self, verbose=False):
-
-        self.logger = logging.getLogger('braintaxmap.main.searchMachine')
-        
-        self.db = Neo4jManager()
-        self.q = QueryMachine()
-        self.setup_counters()
-
-        self.current_query = ''
-
-        self.searches_performed = 0
-        self.unique_articles_found = 0
-
-        self.load_stored_pmids()
-        self.load_MeSH_terms()
-    
-    def setup_counters(self):
-        self.logger.info('setting all counters to 0')
-        self.total_matches_found=0
-        
-    def load_MeSH_terms(self):
-        try:
-            mesh_terms = list(self.db.get_MeSH_terms())
-        except Exception as e:
-            self.logger.error(e)
-            self.logger.error('Could not load mesh terms from database MeSH terms-> new empty set')
-            mesh_terms = set()
-
-        finally:
-            self.mesh_terms = mesh_terms
-
-    def load_stored_pmids(self):
-        """ TODO replace with get all pmids from database
-        """
-        try:
-            with open(self.id_filename, 'rb') as infile:
-                ids = pickle.load(infile)
-                if len(ids) == 0:
-                    self.logger.warning("WARNING: no pmids were previously saved")
-                self.logger.info(f'loaded {len(ids)} pmids from {self.id_filename}')
-        except FileNotFoundError as e:
-            self.logger.warning('File for strorings found ids was was not available')
-            self.logger.exception(e)
-            with open(self.id_filename, 'wb+') as infile:
-                pickle.dump(set(), infile)
-            ids = set()
-        finally:
-            self.stored_ids = ids
-
-    def save_stored_pmids(self):
-        with open(self.id_filename, 'wb+') as outfile:
-            pickle.dump(self.stored_ids, outfile)
-            self.logger.info(f'saved {len(self.stored_ids)} pmids to {self.id_filename}')
 
 
-    def get_next_word(self):
-        pass
+def ordinal(n): 
+    # turns a number like 2 into 2nd
+    return "%d%s" % (n,"tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
 
-    def get_unique_ids(self):
-        return self.stored_ids
-
-    def search_for_ids(self, query):
-        self.logger.info(f'using querymachine to search for ids for {query}')
-        id_list = self.q.search_pubmed_ids(query, searchlim=self.search_limit)
-        self.logger.info(f'found {len(id_list)} ids at searchlim {self.search_limit}')
-        self.searches_performed += 1
-        self.total_matches_found += len(id_list)
-        return id_list
-
-    def filter_for_new_ids(self, id_list):
-
-        unique_ids = set(id_list).difference(self.stored_ids)
-        self.logger.info(f'filtered out {len(id_list)-len(unique_ids)} ids leaving {len(unique_ids)} unique items')
-        return unique_ids
-
-    def search_records_by_id(self, id_list):
-        try:
-            records = self.q.get_pubmed_by_pmids(list(id_list))
-        except HTTPError:
-            raise
+def scan_meshterms(record, includelist, excludelist): # or just one record?
+    included, excluded = list(), list()
+    if 'MH' in record.keys():
+        for m in record['MH']:
+            meshterm = m.lower()
+            for incl in includelist:
+                if incl.lower() in meshterm:
+                    included.append(meshterm)
             
-    def log(self):
-        if self.verbose:
-            print(f'running query: {self.current_query}')
-    
-    def upload_MeSH_terms(self, new_mesh_terms):
-        
-        meshterms = {'name': term for term in new_mesh_terms}
+            for excl in excludelist:
+                if excl.lower() in meshterm:
+                    excluded.append(meshterm)
 
-        self.db.insert_new_nodes(meshterms, ['MeSH'])
-    
-    def scan_MeSH_terms(self, record):
-        print(f"scanning mesh terms for {record['TI']}")
-        self.logger.info(f"scanning mesh terms for {record['TI']}")
-        try:
-            mesh_terms = record['MH']
+    return included, excluded
 
-            # wonderfully analytic answer https://stackoverflow.com/a/17735466
-            # TODO: consider generator expression
-            # check if there are any new MeSH terms
-            if not self.mesh_terms.isdisjoint(set(mesh_terms)):
-                
-                new_mesh_terms = set(mesh_terms).difference(self.mesh_terms)
-
-                self.mesh_terms.update(new_mesh_terms)
-                self.upload_MeSH_terms(new_mesh_terms)
-
-            # are mesh terms relevant?
-                return True
-            return False
-
-        except Exception as e:
-            try:
-                pub_date = record['DP']
-            except Exception as err:
-                pub_date = '[no publication date]'
-            
-            self.logger.warning(f"{record['PMID']}, from {pub_date} has no MeSH terms")
-            self.logger.exception(e)
-            
-            return False
-    
-
-    def filter_records(self, records):
-        
-        for rec in records:
-            
-            relevant = False
-            self.scan_MeSH_terms(rec)
-            
-
-    def search(self, query):
-        self.logger.info(f"doing a search for '{query}'")
-        self.current_query = query
-        # get next query
-        # query pubmed for ids & retrieve
-        id_list = self.search_for_ids(query)
-
-        # check which ids are new
-        new_ids = self.filter_for_new_ids(id_list)
-        # retrieve articles for each new i
-        
-        # medline records generator
-        records = self.search_records_by_id(list(new_ids))
-
-        self.scan_MeSH_terms(re)
-
-        self.filter_records(records)
-    
-
-    def run(self, runs=25):
-
-        # threading warning (for later): this would block the program until its finished
-        # but we can't do multiple searches at once!!
-
-        done = []
-        for i in range(runs):
-            try:
-                for query in ['brain', 'neuro', 'barrel cortex']:
-                    if query not in done:
-                        self.search(query)
-                        done.append(query)
-                    else:
-                        continue
-            except Exception as e:
-                self.logger.exception(e)
-            
-            self.logger.error(f'main.sarchmachine.run ran again for the {ordinal(i)} time')
-            
-
+def is_relevant_abstract(abstract, keywords):
+    """checks if any words from the abstracts are contained in the set of keywords"""
+    for word in abstract.split(' '):
+        if word in keywords:
+            return True
+    else:
+        return False
 
 if __name__ == '__main__':
 
-    logger.info('Starting braintaxmap main')
 
-    s = searchMachine()
+    ## inputs
+    customkeywords = [] 
+    queries_to_search = [
+        'barrel cortex', 
+        '(brain) AND (amygdala) AND (depression)',
+        '(barrel cortex) AND (depression)',
+        '(heartbreak)'
+    ]
 
-    s.run()
+
+
+    ## preparations
+    ## if dotenv.get_key('NLTK_ISDOWNLOADED') else  download & dotenv.setkey....
+
+    db = Neo4jManager()
+    q = QueryMachine()
+    if db.graph == None:
+        logger.warning("Database is not on")
+        print("Database is not on")
+        exit()
+    
+
+    brainstructures = [item['node']['name'] for item in db.get_brainstructures()]
+    logger.info(f"retrieved {len(brainstructures)} structures")
+    brainfunctions = [item['node']['name'] for item in db.get_functions()]
+    logger.info(f"retrieved {len(brainfunctions)} functions")
+
+    relevant_terms = set(brainstructures+brainfunctions)
+
+    # https://www.ncbi.nlm.nih.gov/mesh/68009115 Muridae
+    include_MESH = ['Rats', 'Rodent', 'Mice', 'Muridae' ] # 'Brain', 'Amygdala', 'Depression'
+    exclude_MESH = ['Humans' ]
+
+
+
+    for index_status, query in enumerate(queries_to_search):
+        queryIsStructure =  query in brainstructures
+        queryIsFunction = query in brainfunctions
+        meshterm_occurences = collections.Counter()
+
+        query_stats = StatTracker()
+        # search pubmed and retrieve all ids for relevant articles
+        query_pmids = q.search_pubmed_ids(query)
+
+        query_stats.add(**{f'found {len(query_pmids)} articles for query':f'{query}' })
+        
+        # TODO merge with StatTracker aka find better way to do stats
+        filtered_pmids = dict(
+            excluded_by_no_abstract = list(),
+            excluded_by_irrelevant_abstract = list(),
+            excluded_by_mesh = list(),
+        )
+
+        # filter known pmids
+        # (dont forget that at the end we still need to update the database
+        #  so all found pmids link to the search-term)
+        leftover_pmids = list()
+        in_database_pmids = list()
+        for pmid in query_pmids:
+            if not db.pmid_in_database(pmid):
+                leftover_pmids.append(pmid)
+            else:
+                in_database_pmids.append(pmid)
+
+        if len(leftover_pmids) == 0:
+            # no new pmids, skip query -- ? or retreive from database..? 
+            logger.info(f'no new articles for {query}' )
+            continue
+
+
+
+        records = q.get_pubmed_by_pmids(leftover_pmids)
+        # TODO: records should be a queue of items and the items should be removed
+        # when done....
+        # problem: records is a generator object, can't append.
+        # un-generatoring it could mean thousands of articles in memory
+        # this could be replaced by using a loop that calls next() on the generator and adding items from it
+        # to a deque/queue. this way we could add items from within the loop as well
+        # finding = True
+        # counter=0
+        # while finding:
+        #     record = None
+        #     try:
+        #         record = next(records):
+        #     except StopIteration:
+        #         pass
+        #     if not record:
+        #         try:
+        #             record = . . . next(record from linked records collection generator:?)
+        #         except StopIteration:
+        #             finding= False
+        #      do stuff
+        # annoying.
+        for record in records:
+            
+            if queryIsFunction and queryIsStructure:
+                # is there something TODO here?
+                pass
+            
+            # scan MeSHterms
+            # if only exclude-words in mesh-list, skip article
+            included_mh, excluded_mh = scan_meshterms(record, include_MESH, exclude_MESH)
+            if len(included_mh) == 0 and len(excluded_mh) > 0:
+                # skip when only excluded words exist in meshterm
+                filtered_pmids['excluded_by_mesh'].append(record['PMID'])
+                if not record['PMID'] in in_database_pmids: 
+                    db.insert_article(record['PMID'], record, ['IRRELEVANT_MESH'])
+                continue
+
+            if 'MH' in record.keys():
+                # this updates the current MeSHterm counter
+                meshterm_occurences.update(record['MH'])
+                                                
+            # HARD FILTERS
+            # no abstract -> out
+            if 'AB' not in record.keys():
+                filtered_pmids['excluded_by_no_abstract'].append(record['PMID'])
+                if not record['PMID'] in in_database_pmids: 
+                    db.insert_article(record['PMID'], record, ['ABSTRACTLESS'])
+                continue
+            
+            # exclude irrelevant abstracts
+            if not is_relevant_abstract(record['AB'], relevant_terms):
+                filtered_pmids['excluded_by_irrelevant_abstract'].append(record['PMID'])
+                if not record['PMID'] in in_database_pmids: 
+                    db.insert_article(record['PMID'], record, ['IRRELEVANT_ABSTRACT'])
+                continue
+            
+            if 'RF' in (record.keys()):
+                query_stats.add(**{f"number of linked articles":len(record['RF'])})
+                
+            # LINKED ARTICLES
+            ## If the article is relevant... continue searching their linked articles?
+            # that is a form of recursion... how to implement?
+            # grab the record objects of each PMID we dont have yet and add it to the queue
+            # (removes recursion aspect and ensures we don't get stuck in a loop)
+            
+            # linked_articles_pmids = q.get_pubmed_linked_pmids(record['PMID'])
+            # additional_articles_to_retrieve=list()
+            # for pmid in linked_articles_pmids:
+            #     if not db.pmid_in_database(pmid): # AND NOT IN ADDITIONALLY_RETRIEVED GLobally # TODO
+            #         additional_articles_to_retrieve.append(pmid)
+            
+            # linked_records = q.get_pubmed_by_pmids(additional_articles_to_retrieve)
+            # for r in linked_records:
+            #     records.append(r)
+            # TODO: AttributeError 'generator' object has no attribute 'append'
+
+            # https://pubmed.ncbi.nlm.nih.gov/24811994/ part of speech tagger for biomedical application
+            abstract_tokens = nltk.word_tokenize(record['AB'])
+            tagged = nltk.pos_tag(abstract_tokens)
+
+            # we want to strip adjectives (tagged with 'JJ.')
+            filtered_by_adjectives = [(token,tag) for token,tag in tagged if 'JJ' not in tag]
+
+            ## TODO : short
+            # add word frequency dist
+
+            # we want to find
+            # a list of meanings for each abstract for each word
+            # then derive the actual relation that meaning indicates
+
+            """
+            Part-of-speech (POS) Tagging	Assigning word types to tokens, like verb or noun.
+            Dependency Parsing
+            Entity Linking (EL)
+            """
+            #
+            # update this record in database
+            if not record['PMID'] in in_database_pmids:
+                db.insert_article(record['PMID'], record, ['RELEVANT'])    
+
+        query_stats.add(**{"articles already in dtabase for {query}":len(in_database_pmids)})
+        query_stats.add(**{reason:len(value) for reason,value in filtered_pmids.items()})
+        query_stats.add(**{f"MeSH term top 10 for {query}":meshterm_occurences.most_common(10)})
+        query_stats.add(**{f"total # of MeSH terms for {query}":len(meshterm_occurences)})
+                
+        print(query_stats)
+    
+    print('done')
+
+    
+
+
+

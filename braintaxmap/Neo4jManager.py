@@ -4,6 +4,7 @@ from braintaxmap.config import neo4j_db_creds, neo4j_URL
 from json import dumps
 import traceback
 
+
 ARTICLE_OF = Relationship.type('ARTICLE_OF')
 CITED_IN = Relationship.type('CITED_IN')  # UNUSED SO FAR.
 MESHTERM_OF = Relationship.type('MESHTERM_OF') # make user decide if it connects to keyword search or only articles
@@ -94,6 +95,28 @@ class Neo4jManager:
         result = self.run_query(cypher)
         return result
 
+    def get_brainstructures(self):
+        cypher = """Match (node:brainstructure) return node"""
+        result = self.run_query(cypher)
+        return result
+    
+    def get_behaviours(self):
+        cypher = """Match (node:behaviour) return node"""
+        result = self.run_query(cypher)
+        return result
+    
+    def get_articlePMIDS(self):
+        cypher = """match (node:article) return node.PMID"""
+        result = self.run_query(cypher)
+        return result
+
+        
+    def get_functions(self):
+        cypher = """Match (node:function) return node"""
+        result = self.run_query(cypher)
+        return result
+
+
     def connect(self, uri, auth):
         self.logger.info('connecting to database')
         try:
@@ -114,7 +137,7 @@ class Neo4jManager:
         try:
             results = self.graph.run(query)
         except Exception as e:
-            self.logger.error(e)
+            self.logger.exception(e)
             results = []
         return results
 
@@ -128,6 +151,24 @@ class Neo4jManager:
         """
         self.graph.merge(relation_to(child, parent))
         return
+
+    
+    def insert_article(self, pmid, record, labels=['article']):
+        """ Insert/merge an article into the neo4j database.
+        Args:
+            pmid : pubmed identifier, the primary key in the database
+            record : a Bio.Medline.Record object containing article info
+            labels : a list of labels for this node. Defaults to ['article']
+                all labels will be changed to LOWER case and if the 'article'
+                label is not present, it will be put in front of any other labels
+                to serve as primary label
+        """
+        labels = [label.lower() for label in labels]
+        labels = ["lower"] + labels if "lower" not in labels else labels
+        node = Node(*labels, pmid=pmid, **record)
+        node.__primarylabel__= labels[0]
+        node.__primarykey__ = 'PMID'
+        self.graph.merge(node)
     
     def insert_node(self, nodename, attributes, labels):
         node = Node(*labels, name=nodename, **attributes)
@@ -170,6 +211,14 @@ class Neo4jManager:
         LIMIT {amount}"""
         r = self.run_query(cypher)
         return r
+        
+    def pmid_in_database(self, pmid):
+        cypher = f"""MATCH (node:article) WHERE node.PMID = "{pmid}" RETURN node"""
+        r = self.run_query(cypher)
+        r = list(r)
+        amount = len(r)
+        if amount > 1: self.logger.warning(f'more than 1 match found for pmid {pmid}')
+        return amount >= 1
 
     def exists_in_database(self, word, label,field='name'):
         """[summary]

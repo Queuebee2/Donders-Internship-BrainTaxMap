@@ -121,6 +121,27 @@ class QueryMachine():
 
         return record["IdList"]
     
+    def get_pubmed_linked_pmids(self, pmid, mail_adress=dev_email):
+        """Looks up the articles that are linked to another article, by pmid
+        ' pubmed_pubmed ' linktype,
+        thanks to gist.github.com/mcfrank/pubmed.py
+        """
+
+        self.logger.info(f"Looking for linked articles for {pmid}")
+        found_linked=list()
+        fetch_handle = Entrez.elink(
+            db="pubmed",
+            id=pmid,
+            linkname='pubmed_pubmed',
+            email=mail_adress
+         )
+        record = Entrez.read(fetch_handle)
+        records = record[0][u'LinkSetDb'][0][u'Link']
+        for link in records:
+            found_linked.append(link[u'Id'])
+        self.logger.info(f"found {len(found_linked)} articles linked to {pmid}")
+        return found_linked
+
     def get_pubmed_by_pmids(self, pmids, mail_adress=dev_email):
         self.logger.info(f'doing a query for articles with {len(pmids)} ids')
         try:

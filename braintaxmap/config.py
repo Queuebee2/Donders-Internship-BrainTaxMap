@@ -1,20 +1,16 @@
+import os
+from dotenv import load_dotenv, find_dotenv
 
-# Set Neo4j username and password here
-# 'neo4j' is the default username.
-neo4j_db_creds = ('neo4j', 'braintaxmap')
 
-# (bolt) url to connect to db with
-# to find it in Neo4j desktop go to
-# your_db>manage>settings and find
-# dbms.connector.bolt.listen_address=:xxxx
-# put numbers xxxx in the link like so 'bolt://localhost:xxxx'
-# default is 7687
-neo4j_URL = 'bolt://localhost:7687'
+load_dotenv(find_dotenv())
 
-# Used for biopython Entrez (Bio.Entrez.email)
-dev_email = 'milain.lambers@gmail.com'
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+neo4j_db_id = os.getenv('NEO4J_DB_ID')
+neo4j_db_pw = os.getenv('NEO4J_DB_PW')
+neo4j_db_creds = (neo4j_db_id, neo4j_db_pw)
+neo4j_URL = os.getenv('NEO4J_URL')
+dev_email = os.getenv("DEV_EMAIL")
+
+
 import warnings, os
 
 DATA_DIR = ".." + os.sep + 'data' + os.sep
