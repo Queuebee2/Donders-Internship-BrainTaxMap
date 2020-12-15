@@ -2,11 +2,15 @@
 from Bio import Entrez, Medline
 
 from braintaxmap.config import dev_email
+from urllib.error import HTTPError
+from braintaxmap.tools import fuzz
 Entrez.email = dev_email
 
 MAX_SEARCH_LIMIT = 100000
 
 # todo use API key, make config file for it
+import logging
+module_logger = logging.getLogger('braintaxmap.querymachine')
 
 class QueryMachine():
     """ 
@@ -18,7 +22,8 @@ class QueryMachine():
     - mesh & fulltext from Entrez using biopython
         https://www.biostars.org/p/308345/  
     """
-
+    def __init__(self):
+        self.logger = logging.getLogger('braintaxmap.querymachine.Querymachine')
 
     def queryPMC(self, query):  # rename to get-full-text?
         """ PMC
@@ -100,7 +105,7 @@ class QueryMachine():
         return records  # what should come out of here? - > ids or records
 
     def search_pubmed_ids(self, query, searchlim=1000000, mail_adress=dev_email):
-        
+        self.logger.info('doing a query for ids %s %s %s'%(query, searchlim, mail_adress))
         # todo: make more sophisticated way to check if a query is pre-formatted
         if '"' not in query:
             query = f'"{query}"'
@@ -117,11 +122,19 @@ class QueryMachine():
         return record["IdList"]
     
     def get_pubmed_by_pmids(self, pmids, mail_adress=dev_email):
-        fetch_handle = Entrez.efetch(db="pubmed",
-                                     id=pmids,
-                                     rettype="medline",
-                                     retmode="text", 
-                                     email=mail_adress)
+        self.logger.info(f'doing a query for articles with {len(pmids)} ids')
+        try:
+            fetch_handle = Entrez.efetch(db="pubmed",
+                                        id=pmids,
+                                        rettype="medline",
+                                        retmode="text", 
+                                        email=mail_adress)
+        except HTTPError as e:
+            self.logger.error(e)
+            self.logger.error('HTTPError, timing out for 5 seconds')
+            fuzz(5)
+            self.logger.error('finished timeout')
+            raise HTTPError
 
         # returns generator object with Bio.Medline.Record in it
         return Medline.parse(fetch_handle)

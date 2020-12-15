@@ -83,3 +83,569 @@
 2020-11-22 01:09:02,730 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 2ndth time
 2020-11-22 01:11:40,383 - braintaxmap.main.searchMachine - ERROR - HTTP Error 504: Gateway Timeout
 2020-11-22 01:11:40,416 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 3rdth time
+2020-12-03 21:32:42,523 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:32:44,585 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:32:44,585 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:32:44,585 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 84, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'data\\found-pmids.pickle'
+2020-12-03 21:33:44,297 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:33:46,361 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:33:46,361 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:33:46,362 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:34:41,731 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:34:43,786 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:34:43,786 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:34:43,786 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:35:11,807 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:35:13,865 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:35:13,865 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:35:13,865 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:35:13,873 - braintaxmap.main.searchMachine - INFO - doing a search for brain
+2020-12-03 21:36:51,377 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:36:53,444 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:36:53,445 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:36:53,445 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:36:53,450 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,450 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,452 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 0th time
+2020-12-03 21:36:53,452 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,452 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,453 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 1st time
+2020-12-03 21:36:53,453 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,453 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,454 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 2nd time
+2020-12-03 21:36:53,454 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,454 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,455 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 3rd time
+2020-12-03 21:36:53,455 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,455 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,466 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 4th time
+2020-12-03 21:36:53,466 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,466 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,467 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 5th time
+2020-12-03 21:36:53,467 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,467 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,468 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 6th time
+2020-12-03 21:36:53,468 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,468 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,469 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 7th time
+2020-12-03 21:36:53,469 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,469 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,482 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 8th time
+2020-12-03 21:36:53,482 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,483 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,490 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 9th time
+2020-12-03 21:36:53,490 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,490 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,497 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 10th time
+2020-12-03 21:36:53,504 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,504 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,510 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 11th time
+2020-12-03 21:36:53,510 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,510 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,517 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 12th time
+2020-12-03 21:36:53,518 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,518 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,524 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 13th time
+2020-12-03 21:36:53,524 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,524 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,531 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 14th time
+2020-12-03 21:36:53,531 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,531 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,538 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 15th time
+2020-12-03 21:36:53,539 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,539 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,540 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 16th time
+2020-12-03 21:36:53,541 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,541 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,541 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 17th time
+2020-12-03 21:36:53,541 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,541 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,542 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 18th time
+2020-12-03 21:36:53,543 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,543 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,543 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 19th time
+2020-12-03 21:36:53,544 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,544 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,544 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 20th time
+2020-12-03 21:36:53,545 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,545 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,551 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 21st time
+2020-12-03 21:36:53,551 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,551 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,586 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 22nd time
+2020-12-03 21:36:53,596 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,596 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,597 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 23rd time
+2020-12-03 21:36:53,597 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:36:53,597 - braintaxmap.main.searchMachine - ERROR - name 'Entrez' is not defined
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 171, in search
+    self.logger.info(f'email set: {Entrez.email}')
+NameError: name 'Entrez' is not defined
+2020-12-03 21:36:53,598 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 24th time
+2020-12-03 21:39:41,509 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:39:43,564 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:39:43,564 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:39:43,564 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:39:43,572 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:40:33,478 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:40:35,538 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:40:35,538 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:40:35,538 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:40:35,550 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:43:03,488 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:43:05,537 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:43:05,538 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:43:05,538 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:43:05,543 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:43:05,543 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 21:43:13,227 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 21:45:43,489 - braintaxmap.main.searchMachine - ERROR - HTTP Error 504: Gateway Timeout
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    for query in ['brain', 'neuro', 'barrel cortex']:
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 182, in search
+    # medline records generator
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\braintaxmap\querymachine.py", line 127, in get_pubmed_by_pmids
+    retmode="text",
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\site-packages\Bio\Entrez\__init__.py", line 207, in efetch
+    return _open(cgi, variables, post=post)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\site-packages\Bio\Entrez\__init__.py", line 604, in _open
+    handle = urlopen(cgi, data=options.encode("utf8"))
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 222, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 531, in open
+    response = meth(req, response)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 641, in http_response
+    'http', request, response, code, msg, hdrs)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 569, in error
+    return self._call_chain(*args)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 503, in _call_chain
+    result = func(*args)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 649, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 504: Gateway Timeout
+2020-12-03 21:45:43,530 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 0th time
+2020-12-03 21:45:43,530 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:45:43,530 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 21:45:51,413 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 21:48:22,148 - braintaxmap.main.searchMachine - ERROR - HTTP Error 504: Gateway Timeout
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 198, in run
+    for query in ['brain', 'neuro', 'barrel cortex']:
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 182, in search
+    # medline records generator
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\braintaxmap\querymachine.py", line 127, in get_pubmed_by_pmids
+    fetch_handle = Entrez.efetch(db="pubmed",
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\site-packages\Bio\Entrez\__init__.py", line 207, in efetch
+    return _open(cgi, variables, post=post)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\site-packages\Bio\Entrez\__init__.py", line 604, in _open
+    handle = urlopen(cgi, data=options.encode("utf8"))
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 222, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 531, in open
+    response = meth(req, response)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 641, in http_response
+    'http', request, response, code, msg, hdrs)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 569, in error
+    return self._call_chain(*args)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 503, in _call_chain
+    result = func(*args)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 649, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 504: Gateway Timeout
+2020-12-03 21:48:22,192 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 1st time
+2020-12-03 21:48:22,193 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:48:22,193 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 21:48:30,322 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 21:49:31,063 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:49:33,141 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:49:33,142 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:49:33,142 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:49:33,143 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:49:33,143 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 21:49:40,840 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 21:49:40,978 - braintaxmap.main.searchMachine - INFO - filtered out 0 ids leaving 1000000 unique items
+2020-12-03 21:51:22,702 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:51:24,764 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:51:24,765 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:51:24,765 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:51:24,770 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:51:24,770 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 21:51:32,116 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 21:51:32,256 - braintaxmap.main.searchMachine - INFO - filtered out 0 ids leaving 1000000 unique items
+2020-12-03 21:51:40,214 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:51:42,252 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:51:42,253 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:51:42,253 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:51:42,258 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:51:42,258 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 21:51:49,480 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 21:51:49,620 - braintaxmap.main.searchMachine - INFO - filtered out 0 ids leaving 1000000 unique items
+2020-12-03 21:52:43,918 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:52:45,974 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:52:45,974 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:52:45,975 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:53:48,778 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:53:50,835 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:53:50,835 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:53:50,835 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:54:25,033 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:54:27,099 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:54:27,099 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:54:27,099 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'braintaxmap\\data\\found-pmids.pickle'
+2020-12-03 21:55:07,372 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:55:09,430 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:55:09,430 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:55:09,430 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: 'data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: 'data\\found-pmids.pickle'
+2020-12-03 21:55:09,438 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:55:09,438 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 21:55:17,250 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 21:55:17,392 - braintaxmap.main.searchMachine - INFO - filtered out 0 ids leaving 1000000 unique items
+2020-12-03 21:55:24,177 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:55:26,239 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:55:26,239 - braintaxmap.main.searchMachine - WARNING - File for strorings found ids was was not available
+2020-12-03 21:55:26,239 - braintaxmap.main.searchMachine - ERROR - [Errno 2] No such file or directory: '\\data\\found-pmids.pickle'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 85, in load_stored_pmids
+    with open(self.id_filename, 'rb') as infile:
+FileNotFoundError: [Errno 2] No such file or directory: '\\data\\found-pmids.pickle'
+2020-12-03 21:56:28,384 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 21:56:30,434 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 21:56:30,438 - braintaxmap.main.searchMachine - WARNING - WARNING: no pmids were previously saved
+2020-12-03 21:56:30,438 - braintaxmap.main.searchMachine - INFO - loaded 0 pmids from .\data\found-pmids.pickle
+2020-12-03 21:56:30,438 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 21:56:30,438 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 21:56:38,045 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 21:56:38,183 - braintaxmap.main.searchMachine - INFO - filtered out 0 ids leaving 1000000 unique items
+2020-12-03 22:05:50,930 - braintaxmap.main - INFO - Starting braintaxmap main
+2020-12-03 22:05:52,993 - braintaxmap.main.searchMachine - INFO - setting all counters to 0
+2020-12-03 22:05:52,994 - braintaxmap.main.searchMachine - WARNING - WARNING: no pmids were previously saved
+2020-12-03 22:05:52,994 - braintaxmap.main.searchMachine - INFO - loaded 0 pmids from .\data\found-pmids.pickle
+2020-12-03 22:05:52,994 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 22:05:52,995 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 22:06:00,445 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 22:06:00,584 - braintaxmap.main.searchMachine - INFO - filtered out 0 ids leaving 1000000 unique items
+2020-12-03 22:08:34,080 - braintaxmap.main.searchMachine - ERROR - __init__() missing 5 required positional arguments: 'url', 'code', 'msg', 'hdrs', and 'fp'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\braintaxmap\querymachine.py", line 131, in get_pubmed_by_pmids
+    email=mail_adress)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\site-packages\Bio\Entrez\__init__.py", line 207, in efetch
+    return _open(cgi, variables, post=post)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\site-packages\Bio\Entrez\__init__.py", line 604, in _open
+    handle = urlopen(cgi, data=options.encode("utf8"))
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 222, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 531, in open
+    response = meth(req, response)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 641, in http_response
+    'http', request, response, code, msg, hdrs)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 569, in error
+    return self._call_chain(*args)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 503, in _call_chain
+    result = func(*args)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 649, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 504: Gateway Timeout
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 211, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 194, in search
+    records = self.search_records_by_id(list(new_ids))
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 128, in search_records_by_id
+    records = self.q.get_pubmed_by_pmids(list(id_list))
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\braintaxmap\querymachine.py", line 137, in get_pubmed_by_pmids
+    raise HTTPError
+TypeError: __init__() missing 5 required positional arguments: 'url', 'code', 'msg', 'hdrs', and 'fp'
+2020-12-03 22:08:34,135 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 0th time
+2020-12-03 22:08:34,135 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 22:08:34,135 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 22:08:42,289 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 22:08:42,431 - braintaxmap.main.searchMachine - INFO - filtered out 0 ids leaving 1000000 unique items
+2020-12-03 22:11:16,956 - braintaxmap.main.searchMachine - ERROR - __init__() missing 5 required positional arguments: 'url', 'code', 'msg', 'hdrs', and 'fp'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\braintaxmap\querymachine.py", line 131, in get_pubmed_by_pmids
+    email=mail_adress)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\site-packages\Bio\Entrez\__init__.py", line 207, in efetch
+    return _open(cgi, variables, post=post)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\site-packages\Bio\Entrez\__init__.py", line 604, in _open
+    handle = urlopen(cgi, data=options.encode("utf8"))
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 222, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 531, in open
+    response = meth(req, response)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 641, in http_response
+    'http', request, response, code, msg, hdrs)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 569, in error
+    return self._call_chain(*args)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 503, in _call_chain
+    result = func(*args)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 649, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 504: Gateway Timeout
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 211, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 194, in search
+    records = self.search_records_by_id(list(new_ids))
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 128, in search_records_by_id
+    records = self.q.get_pubmed_by_pmids(list(id_list))
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\braintaxmap\querymachine.py", line 137, in get_pubmed_by_pmids
+    raise HTTPError
+TypeError: __init__() missing 5 required positional arguments: 'url', 'code', 'msg', 'hdrs', and 'fp'
+2020-12-03 22:11:17,022 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 1st time
+2020-12-03 22:11:17,023 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 22:11:17,023 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 22:11:25,344 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 22:11:25,493 - braintaxmap.main.searchMachine - INFO - filtered out 0 ids leaving 1000000 unique items
+2020-12-03 22:14:00,387 - braintaxmap.main.searchMachine - ERROR - __init__() missing 5 required positional arguments: 'url', 'code', 'msg', 'hdrs', and 'fp'
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\braintaxmap\querymachine.py", line 131, in get_pubmed_by_pmids
+    email=mail_adress)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\site-packages\Bio\Entrez\__init__.py", line 207, in efetch
+    return _open(cgi, variables, post=post)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\site-packages\Bio\Entrez\__init__.py", line 604, in _open
+    handle = urlopen(cgi, data=options.encode("utf8"))
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 222, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 531, in open
+    response = meth(req, response)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 641, in http_response
+    'http', request, response, code, msg, hdrs)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 569, in error
+    return self._call_chain(*args)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 503, in _call_chain
+    result = func(*args)
+  File "C:\Users\Milai\AppData\Local\Programs\Python\Python37\lib\urllib\request.py", line 649, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 504: Gateway Timeout
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 211, in run
+    self.search(query)
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 194, in search
+    records = self.search_records_by_id(list(new_ids))
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\main.py", line 128, in search_records_by_id
+    records = self.q.get_pubmed_by_pmids(list(id_list))
+  File "d:\GitHub\Donders-Internship-BrainTaxMap\braintaxmap\querymachine.py", line 137, in get_pubmed_by_pmids
+    raise HTTPError
+TypeError: __init__() missing 5 required positional arguments: 'url', 'code', 'msg', 'hdrs', and 'fp'
+2020-12-03 22:14:00,459 - braintaxmap.main.searchMachine - ERROR - main.sarchmachine.run ran again for the 2nd time
+2020-12-03 22:14:00,459 - braintaxmap.main.searchMachine - INFO - doing a search for 'brain'
+2020-12-03 22:14:00,459 - braintaxmap.main.searchMachine - INFO - using querymachine to search for ids for brain
+2020-12-03 22:14:08,538 - braintaxmap.main.searchMachine - INFO - found 1000000 ids at searchlim 1000000
+2020-12-03 22:14:08,676 - braintaxmap.main.searchMachine - INFO - filtered out 0 ids leaving 1000000 unique items

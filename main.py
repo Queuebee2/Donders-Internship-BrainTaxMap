@@ -11,14 +11,16 @@ import traceback
 import logging
 import pickle
 import os
+from urllib.error import HTTPError
 
-from querymachine import QueryMachine
-from Neo4jManager import Neo4jManager
+from braintaxmap.querymachine import QueryMachine
+from braintaxmap.Neo4jManager import Neo4jManager
+
 
 # turns a number like 2 into  2nd
 ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
 
-ERROR_LOG_FILE = 'logs' + os.sep+ 'main.py.log'
+ERROR_LOG_FILE = 'braintaxmap' + os.sep+ 'logs' + os.sep+ 'main.py.log'
 
 # create logger
 logger = logging.getLogger('braintaxmap.main')
@@ -42,7 +44,8 @@ logger.addHandler(ch)
 
 
 class searchMachine():
-    id_filename = 'data' + os.sep +'found-pmids.pickle'
+    # TODO fix this file mess
+    id_filename = "." + os.sep+ 'data' + os.sep +'found-pmids.pickle'
     search_limit = 1000000
 
     def __init__(self, verbose=False):
@@ -69,8 +72,8 @@ class searchMachine():
         try:
             mesh_terms = list(self.db.get_MeSH_terms())
         except Exception as e:
-            self.logger.warning('Could not load mesh terms from database')
             self.logger.error(e)
+            self.logger.error('Could not load mesh terms from database MeSH terms-> new empty set')
             mesh_terms = set()
 
         finally:
@@ -82,10 +85,14 @@ class searchMachine():
         try:
             with open(self.id_filename, 'rb') as infile:
                 ids = pickle.load(infile)
+                if len(ids) == 0:
+                    self.logger.warning("WARNING: no pmids were previously saved")
                 self.logger.info(f'loaded {len(ids)} pmids from {self.id_filename}')
         except FileNotFoundError as e:
             self.logger.warning('File for strorings found ids was was not available')
             self.logger.exception(e)
+            with open(self.id_filename, 'wb+') as infile:
+                pickle.dump(set(), infile)
             ids = set()
         finally:
             self.stored_ids = ids
@@ -103,8 +110,9 @@ class searchMachine():
         return self.stored_ids
 
     def search_for_ids(self, query):
-
+        self.logger.info(f'using querymachine to search for ids for {query}')
         id_list = self.q.search_pubmed_ids(query, searchlim=self.search_limit)
+        self.logger.info(f'found {len(id_list)} ids at searchlim {self.search_limit}')
         self.searches_performed += 1
         self.total_matches_found += len(id_list)
         return id_list
@@ -112,8 +120,15 @@ class searchMachine():
     def filter_for_new_ids(self, id_list):
 
         unique_ids = set(id_list).difference(self.stored_ids)
+        self.logger.info(f'filtered out {len(id_list)-len(unique_ids)} ids leaving {len(unique_ids)} unique items')
         return unique_ids
 
+    def search_records_by_id(self, id_list):
+        try:
+            records = self.q.get_pubmed_by_pmids(list(id_list))
+        except HTTPError:
+            raise
+            
     def log(self):
         if self.verbose:
             print(f'running query: {self.current_query}')
@@ -165,6 +180,7 @@ class searchMachine():
             
 
     def search(self, query):
+        self.logger.info(f"doing a search for '{query}'")
         self.current_query = query
         # get next query
         # query pubmed for ids & retrieve
@@ -175,7 +191,7 @@ class searchMachine():
         # retrieve articles for each new i
         
         # medline records generator
-        records = self.q.get_pubmed_by_pmids(list(new_ids))
+        records = self.search_records_by_id(list(new_ids))
 
         self.scan_MeSH_terms(re)
 
@@ -187,12 +203,15 @@ class searchMachine():
         # threading warning (for later): this would block the program until its finished
         # but we can't do multiple searches at once!!
 
-
+        done = []
         for i in range(runs):
             try:
                 for query in ['brain', 'neuro', 'barrel cortex']:
-                    self.search(query)
-                    
+                    if query not in done:
+                        self.search(query)
+                        done.append(query)
+                    else:
+                        continue
             except Exception as e:
                 self.logger.exception(e)
             

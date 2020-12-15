@@ -3,7 +3,8 @@ import logging
 import os
 import json
 import dash
-import plotly.express as px 
+from dash_html_components.Form import Form
+import plotly.express as px
 from dash.dependencies import Input, Output, State
 import dash_html_components as html
 import dash_core_components as dcc
@@ -11,6 +12,7 @@ from dash_html_components.Button import Button
 import dash_table
 import pandas as pd
 
+from webtesttools.placeholders import lorem
 import dash_cytoscape as cyto
 import plotly.graph_objects as go
 import squarify
@@ -69,7 +71,10 @@ STOPWORDS = STOPWORDS_EN
         - this would be insanely useful aswell (collapse nodes into one node) https://github.com/iVis-at-Bilkent/cytoscape.js-expand-collapse
         - build again from https://github.com/ned2/slapdash
         - CAN IT ACTUALLY SUPPORT NETWORKX? AS OF 2019 IT COULDNT YET
-    
+        - better styling https://dash-bootstrap-components.opensource.faculty.ai/docs/
+        - DISCUSS: multiple users could get the server IP blocked from pubmed
+                   because parallel queries are not allowed (3 request/second max, 10 per api key with api keys)
+                    
     Loose ideas
         # ADD PUBMED TO GRAPH - BUTTON
         - live pubmed search, user can add entries to the graph. Clicking them would start expanding the nodes, maybe even something that searches for a shortest path between two loose nodes by
@@ -81,16 +86,16 @@ STOPWORDS = STOPWORDS_EN
     HARD ISSUES
         can't have multiple callbacks edit the same output
         https://community.plotly.com/t/duplicate-callback-outputs-issue/43017
+
+    OPTIMIZATION
+        https://dash.plotly.com/advanced-callbacks
+        look at 'memoization'
+
 """
 
 # for testing...
 db = Neo4jManager()
 qm = QueryMachine()
-
-app = dash.Dash(__name__)
-
-app.scripts.config.serve_locally = True
-app.css.config.serve_locally = True
 
 
 selected_colors = ['#006', '#060', '#600', '#A80', '#A08']
@@ -142,7 +147,7 @@ def net_data(selected, range_value, verbose=False):
     for index, (startnode, relation, targetnode) in enumerate(records):
         if index > range_value:
             break
-        
+
         startnode, color1 = create_id(startnode)
         targetnode, color2 = create_id(targetnode)
 
@@ -202,86 +207,145 @@ def cyto_data(selected, amount):
     print(f'found {len(elements)} nodes for <websiteTester>')
     return elements
 
+
 def treemap():
     """ previous commented out code was from ock at https://community.plotly.com/t/dash-treemap-implementation/11198 
     """
 
     df = pd.DataFrame(
-        {'searchword':{x:'barrel cortex' for x in range(10)},
-         'word':{x:f'word-{x}' for x in range(10)},
-         'count':{x:x*x for x in range(10)}
-        }
-)
+        {'searchword': {x: 'barrel cortex' for x in range(10)},
+         'word': {x: f'word-{x}' for x in range(10)},
+         'count': {x: x*x for x in range(10)}
+         }
+    )
     figure = px.treemap(
-       df, path=['searchword', 'word'], values='count'
+        df, path=['searchword', 'word'], values='count'
     )
     return figure
 
 
-
 #############################################################################
 #############################################################################
 #############################################################################
-
-default_stylesheet = [
-    {
-        'selector': 'node',
-        'style': {
-            'background-color': '#BFD7B5',
-            'label': 'data(label)'
-        }
-    }
-]
-
-styles = {
-    'pre': {
-        'border': 'thin lightgrey solid',
-        'overflowX': 'scroll'
-    }
-}
 
 ALLOWED_TYPES = (
     "text", "number", "password", "email", "search",
     "tel", "url", "range", "hidden",
 )
 
-app.layout = html.Div(id='top-div', children=[
-    # playing around with CYTOSCAPE
-    html.Div(
-        id='cytoscape-container',
-        children=[
-            dcc.Dropdown(
-                id='dropdown-update-layout-cyto',
-                value='circle',
-                clearable=False,
-                options=[
-                    {'label': name.capitalize(), 'value': name}
-                    for name in ['grid', 'random', 'circle', 'cose', 'concentric']
-                ],
-                style={'width': '75%'}),
-            dcc.Input(id="searchterm-cyto-input", type='text', value=f'{GRAPH_START_TERM}',
-                      placeholder='type a query here', debounce=True),
-            html.Button('test add elem', id='btn-add-test', n_clicks=0),
-            html.Button('test remove elem', id='btn-remove-test', n_clicks=0),
-            dcc.Loading(
-                id="loading-network-cyto",
-                type="default",
-                children=cyto.Cytoscape(
-                    id='cytoscape-network',
-                    layout={'name': 'circle'},
-                    stylesheet=default_stylesheet,
-                    style={'width': '75%', 'height': '700px',
-                           'border': '3px solid grey'},
-                    elements=[]
-                )
-            ),
-            # Information on the node you selected
-            dcc.Loading(
-                id="loading-cyto-selected",
-                type="default",
-                children=html.Pre(id='cyto-selected-json', style=styles['pre'])
-            ),
-        ], style={'border': '3px solid grey'}),
+app = dash.Dash(__name__)
+
+#
+# CSS stylesheet from the dash community
+# app.css.append_css({
+#     "external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
+# })
+
+# app.scripts.config.serve_locally = True
+app.css.config.serve_locally = True
+
+
+app.layout = html.Div(id='top-div', className='container', children=[
+
+
+    # First ROW
+    html.Div(id='first-row', className="row", children=[
+        html.H1("Graphmed"),
+        dcc.Markdown("**This web page is under construction.**  \n" + \
+         "The goal is to create an app that lets users efficiently explore data through interactive graphs such as network graphs, treegraphs"),
+        html.Div(id='main-cell', className='container', children=[
+            html.Div(id='main-cell-content', className='eleven columns', children=[
+                html.H3("Cytoscape network"),
+                html.Div(
+                    id='cytoscape-container',
+                    children=[
+                        html.Div(id='cytoscape-layout-config', className='row', children=[
+                                html.Form(children=[
+                                html.Label("predefined layouts:"),
+                                dcc.Dropdown(
+                                    id='dropdown-update-layout-cyto',
+                                    value='circle',
+                                    clearable=False,
+                                    options=[
+                                        {'label': name.capitalize(), 'value': name}
+                                        for name in ['grid', 'random', 'circle', 'cose', 'concentric', 'force']
+                                    ])
+                                ])
+                            ]),
+                        dcc.Input(id="searchterm-cyto-input", type='text', value=f'',
+                                  placeholder='type a query here', debounce=True),
+                        html.Button('test add elem',
+                                    id='btn-add-test', n_clicks=0),
+                        html.Button('test remove elem',
+                                    id='btn-remove-test', n_clicks=0),
+                        dcc.Loading(
+                            id="loading-network-cyto",
+                            type="default",
+                            children=cyto.Cytoscape(
+                                id='cytoscape-network',
+                                layout={'name': 'circle'},
+                                # stylesheet=default_stylesheet,
+                                style={'width': '75%', 'height': '700px',
+                                       'border': '3px solid grey'},
+                                elements=[]
+                            ),
+                            className='container'),
+                        # Information on the node you selected
+                        dcc.Loading(
+                            id="loading-cyto-selected",
+                            type="default",
+                            children=html.Pre(id='cyto-selected-json',
+                                              # style=styles['pre']
+                                              )
+                        ),
+                    ], className='row'),
+
+                html.Div(id='main-cell-buttons-row',
+                         className='row', children=[
+                             html.Button('dummy 1', id='btn-dummy1'),
+                             html.Button('dummy 2', id='btn-dummy2'),
+                             html.Button('dummy 3', id='btn-dummy3'),
+                         ]),
+
+                html.Div(id='main-cell-inputs-row', className='row', children=[
+                    dcc.Input(id="input-dummy1", type='text',
+                              placeholder='type a query here', debounce=True),
+                    dcc.Input(id="input-dummy2", type='text',
+                                 placeholder='type a query here', debounce=True),
+                    dcc.Input(id="input-dummy3", type='text',
+                                 placeholder='type a query here', debounce=True),
+                ])
+
+            ]) 
+        ]),
+        # ~~~~~~~~~~~~~
+        # TREEMAP ROW
+        # ~~~~~~~~~~~~~
+        html.Div(id='second-row',  className='row', children=[
+            html.H3("Top 100 word occurences"),
+            html.Div(className='seven columns', children=[
+                dcc.Loading(id='loading-treemap-results', type='circle', children=[
+                    dcc.Graph(id='treemap-container', figure=treemap())
+                ])
+            ]),
+            html.Div(className='three columns', children=[
+                html.Button('do something <out of use>', id='btn-treemap',
+                            n_clicks=0, style={'margin-top': '25px'}),
+                html.H3("Selected :"),
+                html.Div(id='treemap-selected-node-output', children=[])
+            ])
+        ]),
+    ]),
+    html.Div(id='third-row', className="row", children=[
+        html.H3("third-row"),
+        html.Div(id='third-column',  className='five columns', children=[
+            html.H3("third column")
+        ]),
+        html.Div(id='fourth-column', className='five columns', children=[
+            html.H3("fourth column")
+        ])
+    ]),
+
     html.Div(
         [   # random inputfields
             dcc.Input(
@@ -300,14 +364,6 @@ app.layout = html.Div(id='top-div', children=[
     # playing around more div
     #############################################################################
     html.Div([
-        # treemap
-        dcc.Loading(id='loading-treemap-results', type='circle',
-        children=[dcc.Graph(id='treemap-container', figure=treemap()),
-                html.Button('print treemap', id='btn-treemap', n_clicks=0),
-                html.Div(id='treemap-selected-node-output', children=[])
-                ],
-                style={'width': '75%'}
-        ),
         html.Div(id='hidden-article-storage', style={'display': 'none'}),
 
         # todo load from article
@@ -318,9 +374,11 @@ app.layout = html.Div(id='top-div', children=[
         dcc.Checklist(id='query-checklist',
                       options=[
                           {'label': 'Filter Stopwords',
-                              'value': 'filter-stopwords'},
+                              'value': 'filter-stopwords',
+                              },
                           {'label': 'placeholder', 'value': 'placeholder'}
-                      ]),
+                      ],
+                      value=['filter-stopwords']), # filter-stopwords is on by default
         dcc.Dropdown(
             id='dropdown-select-result',  multi=True),
         dcc.Slider(
@@ -344,12 +402,11 @@ app.layout = html.Div(id='top-div', children=[
                                                   "rule": 'max-height: "calc(100vh - 226px)"'}
                                      ),
                 html.Div(id='dropdown-selected-articles',
-                         children=[], style={'width': '75%'})
+                         children=[])
             ]
         ),
 
-    ], style={'width': '50%'})],
- style={'width': '50%'})
+    ])])
 
 
 """
@@ -359,14 +416,20 @@ The dcc.Graph component has four attributes that can change through user-interac
  These properties update when you hover over points, 
  click on points, or select regions of points in a graph.
 """
+
+import flask
 @app.callback(Output('treemap-selected-node-output', 'children'),
-        Input('treemap-container', 'hoverData'))
+              Input('treemap-container', 'clickData'))
 def treemap_selected(treemap_figure):
+    changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
+    print(changed_id)
+
     # https://community.plotly.com/t/treemap-click-events/31337
     # Input( .. plotly_treemapclick?
-    print(treemap_figure)
-    print(dir(treemap_figure))
-    return dcc.Markdown(str(treemap_figure))
+    print('treemap figure:', treemap_figure)
+    print('treemap figure dir:', (dir(treemap_figure))
+
+    return dcc.Markdown("*YOU SELECTED:*" + str(treemap_figure))
 
 
 """
@@ -375,7 +438,6 @@ def treemap_selected(treemap_figure):
     requires staets?
     'dropdown-select-result'
 """
-
 
 
 @app.callback(
@@ -519,7 +581,8 @@ def present_selected_articles(selected, jsonified_article_data):
                Output("dropdown-select-result", "options"),
                Output("output-table", "columns"),
                Output("output-table", "data"),
-               Output('hidden-article-storage', 'children')],
+               Output('hidden-article-storage', 'children'),
+               Output('treemap-container', 'figure')],
               [Input('query-input', "value"),
                Input('max-results-slider', 'value'),
                Input('query-checklist', 'value')])
@@ -597,7 +660,26 @@ def query_from_input(query, max_results, checklist):
     # should have a temp storage in db but that will break with multiple users (this is cached in client browser)
     jsonified_articles = json.dumps(first50)
 
-    return md, options, [{"name": i, "id": i} for i in df.columns], df.to_dict('records'), jsonified_articles
+    ## Creating treemap figure of word occurences
+    maxrange = 100 if len(words) > 100 else len(words)
+    dataprep = {'searchword': {x: query for x in range(maxrange)},
+                'word':{},
+                'count':{}
+            }
+    for i , (word, count)  in enumerate(words.items()):
+        if i == maxrange:
+            break
+        dataprep['word'].update({i:word})
+        dataprep['count'].update({i:count})
+    
+    df = pd.DataFrame(dataprep)
+
+    figure = px.treemap(
+        df, path=['searchword', 'word'], values='count'
+    )
+
+
+    return md, options, [{"name": i, "id": i} for i in df.columns], df.to_dict('records'), jsonified_articles, figure
 
 
 @app.callback(
