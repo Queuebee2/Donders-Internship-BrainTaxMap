@@ -18,6 +18,8 @@ from urllib.error import HTTPError
 import dotenv
 from braintaxmap.config import dev_email
 from urllib.error import HTTPError
+import textacy
+import spacy
 
 import nltk
 
@@ -48,9 +50,13 @@ from braintaxmap.tools import fuzz
 
 MAX_SEARCH_LIMIT = 100000   #TODO move to new env!
 
+nlp = spacy.load("en_core_web_sm")
 
-
-
+def findSVOs(sentence):
+    """Try to extract SVO from sentence and return SVO triples (s,v,o)"""
+    doc = nlp(sentence)
+    svo_triples = textacy.extract.subject_verb_object_triples(doc)
+    svo_triples = list(svo_triples)
 
 def ordinal(n): 
     # turns a number like 2 into 2nd
@@ -202,6 +208,7 @@ if __name__ == '__main__':
                 if not record['PMID'] in in_database_pmids: 
                     db.insert_article(record['PMID'], record, ['ABSTRACTLESS'])
                 continue
+
             
             # exclude irrelevant abstracts
             if not is_relevant_abstract(record['AB'], relevant_terms):
@@ -209,7 +216,24 @@ if __name__ == '__main__':
                 if not record['PMID'] in in_database_pmids: 
                     db.insert_article(record['PMID'], record, ['IRRELEVANT_ABSTRACT'])
                 continue
-            
+            else:
+                # with open('abstractdump.txt', 'a+') as abdump:
+                #     abdump.write(record['AB'])
+                #     abdump.write('\n-=-=\n')
+                
+                for sentence in nltk.sent_tokenize(record['AB']):
+
+                    svo_triples = findSVOs(sentence)
+                    
+                    if len(svo_triples) > 0:
+                        print(svo_triples)
+
+                    for triplet in svo_triples:
+                        # TODO add more filters?
+                        if 'we' not in [str(s).lower() for s in triplet]:
+                            db.insert_svo(triplet, record['PMID'])
+                        logger.debug(f'added to database triplet svo: {triplet}')
+
             if 'RF' in (record.keys()):
                 query_stats.add(**{f"number of linked articles":len(record['RF'])})
                 

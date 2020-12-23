@@ -152,7 +152,39 @@ class Neo4jManager:
         self.graph.merge(relation_to(child, parent))
         return
 
-    
+    def insert_svo(self, svo_triples, from_pmid):
+        """ 
+        insert subject verbs object into the db as nodes with 
+        the verb connecting the two, attached to the article they 
+        come from
+        TODO; keep track of pmid in a list as attribute on node...
+        at this point pmids are overwritten?
+        """
+
+        subject, verb, object = [str(s).lower() for s in svo_triples]
+        verbs_relation = Relationship.type(verb.upper())
+
+
+        subj_node = Node('subject', name=subject, pmid=from_pmid)
+        subj_node.__primarylabel__= 'subject'
+        subj_node.__primarykey__ = 'name'
+
+        obj_node = Node('object', name=object, pmid=from_pmid)
+        obj_node.__primarylabel__= 'object'
+        obj_node.__primarykey__ = 'name'
+        
+
+        self.graph.merge(verbs_relation(subj_node, obj_node))
+
+    def insert_meshterm(self, meshterm):
+        """ Insert/merge meshterms into the neo4j database.
+
+        """
+        node = Node('meshterm', name=meshterm)
+        node.__primarylabel__= 'meshterm'
+        node.__primarykey__ = 'name'
+        self.graph.merge(node)
+
     def insert_article(self, pmid, record, labels=['article']):
         """ Insert/merge an article into the neo4j database.
         Args:
@@ -164,7 +196,7 @@ class Neo4jManager:
                 to serve as primary label
         """
         labels = [label.lower() for label in labels]
-        labels = ["lower"] + labels if "lower" not in labels else labels
+        labels = ['article'] + labels if 'article' not in labels else labels
         node = Node(*labels, pmid=pmid, **record)
         node.__primarylabel__= labels[0]
         node.__primarykey__ = 'PMID'
