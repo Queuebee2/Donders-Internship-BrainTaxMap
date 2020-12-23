@@ -77,13 +77,27 @@ def scan_meshterms(record, includelist, excludelist): # or just one record?
 
     return included, excluded
 
-def is_relevant_abstract(abstract, keywords):
-    """checks if any words from the abstracts are contained in the set of keywords"""
+def is_relevant_abstract(abstract, sets_with_relevant_terms, force_one_of_each=True):
+    """within a string of text, checks whether a word from a list/set exists in it.
+    can be given multiple lists. If the force_one_of_each parameter is True,
+    one word from each list has to be included in the text to return True
+    """
+    
+    checks = [0 for list in sets_with_relevant_terms]
+
     for word in abstract.split(' '):
-        if word in keywords:
-            return True
+        for i, s in enumerate(sets_with_relevant_terms):
+            for keyword in s:
+                if force_one_of_each:
+                    checks[i]=1
+                    break # this set is now included, skip to next
+                else:
+                    return True
     else:
-        return False
+        if force_one_of_each and all(checks):
+            return True
+        else:
+            return False
 
 if __name__ == '__main__':
 
@@ -94,7 +108,6 @@ if __name__ == '__main__':
         'barrel cortex', 
         '(brain) AND (amygdala) AND (depression)',
         '(barrel cortex) AND (depression)',
-        '(heartbreak)'
     ]
 
 
@@ -104,6 +117,7 @@ if __name__ == '__main__':
 
     db = Neo4jManager()
     q = QueryMachine()
+
     if db.graph == None:
         logger.warning("Database is not on")
         print("Database is not on")
@@ -115,7 +129,15 @@ if __name__ == '__main__':
     brainfunctions = [item['node']['name'] for item in db.get_functions()]
     logger.info(f"retrieved {len(brainfunctions)} functions")
 
-    relevant_terms = set(brainstructures+brainfunctions)
+    brainfunctions.remove('ROOT')
+
+    queries_to_search = [
+        'barrel cortex', 
+        '(brain) AND (amygdala) AND (depression)',
+        '(barrel cortex) AND (depression)',
+    ] + brainstructures 
+
+    relevant_terms = [set(brainstructures), set(brainfunctions)]
 
     # https://www.ncbi.nlm.nih.gov/mesh/68009115 Muridae
     include_MESH = ['Rats', 'Rodent', 'Mice', 'Muridae' ] # 'Brain', 'Amygdala', 'Depression'
@@ -158,7 +180,7 @@ if __name__ == '__main__':
             continue
 
 
-
+        # loop over the length of leftover_pmids TODO
         records = q.get_pubmed_by_pmids(leftover_pmids)
         # TODO: records should be a queue of items and the items should be removed
         # when done....
@@ -255,12 +277,16 @@ if __name__ == '__main__':
             # TODO: AttributeError 'generator' object has no attribute 'append'
 
             # https://pubmed.ncbi.nlm.nih.gov/24811994/ part of speech tagger for biomedical application
-            abstract_tokens = nltk.word_tokenize(record['AB'])
-            tagged = nltk.pos_tag(abstract_tokens)
+            # abstract_tokens = nltk.word_tokenize(record['AB'])
+            # tagged = nltk.pos_tag(abstract_tokens)
 
             # we want to strip adjectives (tagged with 'JJ.')
-            filtered_by_adjectives = [(token,tag) for token,tag in tagged if 'JJ' not in tag]
+            # filtered_by_adjectives = [(token,tag) for token,tag in tagged if 'JJ' not in tag]
+            # - (try to) stem the key words
+            # - store in neo4j as is, with the verb being the relation so we get (node:<SUBJECT>)-[VERBS]-(target:<OBJECT>)
+            # For example (node:brainstructure {name: "amygdala"}) - [rel:AMELIORATES] - (target:function {name: "depression"})
 
+            # Later on, we can query the database to retrieve all different relations between nodes.
             ## TODO : short
             # add word frequency dist
 
@@ -280,8 +306,13 @@ if __name__ == '__main__':
 
         query_stats.add(**{"articles already in dtabase for {query}":len(in_database_pmids)})
         query_stats.add(**{reason:len(value) for reason,value in filtered_pmids.items()})
-        query_stats.add(**{f"MeSH term top 10 for {query}":meshterm_occurences.most_common(10)})
+        query_stats.add(**{f"MeSH term top 15 for {query}":meshterm_occurences.most_common(15)})
         query_stats.add(**{f"total # of MeSH terms for {query}":len(meshterm_occurences)})
+
+        
+        for mesh_term in meshterm_occurences:
+            db.insert_meshterm(mesh_term)
+
                 
         print(query_stats)
     
