@@ -48,21 +48,111 @@ from braintaxmap.Neo4jManager import Neo4jManager
 from braintaxmap.stat_tracker import StatTracker
 from braintaxmap.tools import fuzz
 
-MAX_SEARCH_LIMIT = 100000   #TODO move to new env!
+MAX_SEARCH_LIMIT = 1000000   #TODO move to new env!
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_lg")
 
 def findSVOs(sentence):
-    """Try to extract SVO from sentence and return SVO triples (s,v,o)"""
+    """Try to extract SVO from a sentence and return a list of found SVO triples (s,v,o)"""
     doc = nlp(sentence)
     svo_triples = textacy.extract.subject_verb_object_triples(doc)
     svo_triples = list(svo_triples)
+    return svo_triples
+
+def output_query_stats(query, stats_current, abstracts_for_output,  outfile='sample-SVO-distribution.txt'):
+    """
+    write stats about one query to a file
+    """
+    with open(outfile, 'a+') as f:
+        f.write(f'-=-=-= STATS FOR {query} =-=-=-=-\n')
+
+        f.write(f'\n-=-=-= TOP 10 MeSH FOR {query} =-=-=-=-\n')
+        for term, count in stats_current['meshterm_occurences'].most_common(10):
+            f.write(f'{term}, {count}\n')
+        
+        f.write(f'\n-=-=-= LAST 10 MeSH FOR {query} =-=-=-=-\n')
+        for term, count in stats_current['meshterm_occurences'].most_common()[:-11:-1]:
+            f.write(f'{term}, {count}\n')
+
+        f.write(f'\n-=-=-= pmid and SVOs found for {query} =-=-=-=-\n')
+        for pmid, svos in stats_current['svo_pmids'].items():
+            f.write(f"{pmid}, {svos}\n")
+
+        for rec in abstracts_for_output:
+            f.write(f"\n---------")
+            f.write(f"\npmid {rec['PMID']}\n")
+            f.write(f"title {rec['TI']}\n")
+            f.write(f"{rec['AB']}\n")
+
+            f.write("\nMeshTerms\n")
+            if 'MH' in rec.keys():
+                for m in rec['MH']:
+                    f.write(f'mesh: {m}\n')
+
+            f.write("\nFound SVOs:\n")
+            for i, svo in enumerate(rec['SVOs']):
+                f.write(f" - {i+1}. {svo}\n")
+
+
+def output_all_stats(all_stats,  outfile='sample-SVO-distribution.txt' ):
+    """ write stats about all queries of a run to a file
+    """
+    with open(outfile, 'a+') as f:
+        f.write('\n-=-=-= TOTAL STATS -=-=-=\n')
+
+        # prepare SVO stats
+        svo_pmids = dict()
+        for query, stats in all_stats['queries'].items():
+            for pmid, svos in stats['svo_pmids'].items():
+                for svo in svos:
+                    if svo in svo_pmids:
+                        svo_pmids[svo]+=[pmid]
+                    else:
+                        svo_pmids[svo]=[pmid]
+
+            svo_pmids.update()
+
+        f.write('\n-=-=-= MeSHterm occurences -=-=-=\n')
+        for term, count in all_stats['allMeshtermCounts'].most_common():
+            f.write(f'{term}, {count}\n')
+
+        # TODO show all pmids after svo
+        # but just storing the svopmids in a db would be easier
+        f.write('\n-=-=-= SVO occurences -=-=-=\n')
+        for svo, count in all_stats['allSVOs'].most_common():
+            f.write(f"{svo[1:-1]}  {count}\n")
+
+def create_datafile(outfile='sample-SVO-distribution.txt'):
+    """
+    ALL QUERIES
+    TOP 10 ALL mesh
+    TOP 10 ALL SVO
+
+    QUERY_KEYWORD
+    TOP 5 MESH
+    TOP 5 SVO
+
+    PMID
+    TITLE
+    ABSTRACT
+    from-keywords: recorstats[pmid][found_by_keywords]
+    for svo in record[SVO's]:
+
+
+    SVO : [Pmids]
+    
+    """
+    with open(outfile, 'w+') as f:
+        f.write('top and lowest 5 abstracts per query\n\n')
 
 def ordinal(n): 
     # turns a number like 2 into 2nd
     return "%d%s" % (n,"tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
 
 def scan_meshterms(record, includelist, excludelist): # or just one record?
+    """ find excluded/included mesh terms in the meshterm list
+     and return those lists
+    """
     included, excluded = list(), list()
     if 'MH' in record.keys():
         for m in record['MH']:
@@ -100,8 +190,10 @@ def is_relevant_abstract(abstract, sets_with_relevant_terms, force_one_of_each=T
             return False
 
 if __name__ == '__main__':
-
-
+    
+    DATABASE_USAGE = 'IGNORE' # 'IGNORE', 'RETRIEVE_STORED', 'NEW_ONLY'
+    
+    create_datafile()
     ## inputs
     customkeywords = [] 
     queries_to_search = [
@@ -109,8 +201,6 @@ if __name__ == '__main__':
         '(brain) AND (amygdala) AND (depression)',
         '(barrel cortex) AND (depression)',
     ]
-
-
 
     ## preparations
     ## if dotenv.get_key('NLTK_ISDOWNLOADED') else  download & dotenv.setkey....
@@ -128,14 +218,18 @@ if __name__ == '__main__':
     logger.info(f"retrieved {len(brainstructures)} structures")
     brainfunctions = [item['node']['name'] for item in db.get_functions()]
     logger.info(f"retrieved {len(brainfunctions)} functions")
-
-    brainfunctions.remove('ROOT')
+    
+    try:
+        brainfunctions.remove('ROOT')
+    except:
+        print('no ROOT in brainfunctions?')
+        pass
 
     queries_to_search = [
         'barrel cortex', 
         '(brain) AND (amygdala) AND (depression)',
         '(barrel cortex) AND (depression)',
-    ] + brainstructures 
+    ] 
 
     relevant_terms = [set(brainstructures), set(brainfunctions)]
 
@@ -144,44 +238,209 @@ if __name__ == '__main__':
     exclude_MESH = ['Humans' ]
 
 
+    stats_all = dict(
+        queries=dict(),
+        allMeshtermCounts = collections.Counter(),
+        allSVOs = collections.Counter(),
+        svo_pmids = dict()
+
+    )
 
     for index_status, query in enumerate(queries_to_search):
-        queryIsStructure =  query in brainstructures
-        queryIsFunction = query in brainfunctions
+        
         meshterm_occurences = collections.Counter()
 
-        query_stats = StatTracker()
-        # search pubmed and retrieve all ids for relevant articles
-        query_pmids = q.search_pubmed_ids(query)
-
-        query_stats.add(**{f'found {len(query_pmids)} articles for query':f'{query}' })
-        
-        # TODO merge with StatTracker aka find better way to do stats
         filtered_pmids = dict(
             excluded_by_no_abstract = list(),
             excluded_by_irrelevant_abstract = list(),
             excluded_by_mesh = list(),
         )
 
+
+        stats_current = dict(
+            query=query,
+            index=index_status,
+            meshterm_occurences=meshterm_occurences,
+            pmids=[],
+            svo_pmids=dict(),
+            filtered_out=filtered_pmids
+        )
+        
+        
+        query_stats = StatTracker()
+        
+        queryIsStructure =  query in brainstructures
+        queryIsFunction = query in brainfunctions
+        # search pubmed and retrieve all ids for relevant articles
+        query_pmids = q.search_pubmed_ids(query, searchlim=MAX_SEARCH_LIMIT)
+
+        query_stats.add(**{f'found {len(query_pmids)} articles for query':f'{query}' })
+        
+        # TODO merge with StatTracker aka find better way to do stats
+
+
         # filter known pmids
         # (dont forget that at the end we still need to update the database
         #  so all found pmids link to the search-term)
         leftover_pmids = list()
         in_database_pmids = list()
-        for pmid in query_pmids:
-            if not db.pmid_in_database(pmid):
-                leftover_pmids.append(pmid)
-            else:
-                in_database_pmids.append(pmid)
+        
+        if DATABASE_USAGE == 'IGNORE':
+            leftover_pmids = query_pmids
+            records = q.get_pubmed_by_pmids(leftover_pmids)
+        elif DATABASE_USAGE == 'NEW_ONLY' or 'RETRIEVE_STORED':
 
-        if len(leftover_pmids) == 0:
-            # no new pmids, skip query -- ? or retreive from database..? 
-            logger.info(f'no new articles for {query}' )
-            continue
+            for pmid in query_pmids:
+                if not db.pmid_in_database(pmid):
+                    leftover_pmids.append(pmid)
+                else:
+                    in_database_pmids.append(pmid)
 
+            if len(leftover_pmids) == 0:
+                # no new pmids, skip query -- ? or retreive from database..? 
+                logger.info(f'no new articles for {query}' )
+                continue
+            
+            records = q.get_pubmed_by_pmids(leftover_pmids)
 
+            if DATABASE_USAGE == 'RETRIEVE_STORED':
+                logger.warning('retrieving abstracts not implemented')
+                print('retrieving abstracts from db not implemented')
+                pass
+                # add records from our database to the records 
+                
+        else:
+            print('DATABASE_USAGE not set to valid value:')
+            print('IGNORE', 'NEW_ONLY', 'RETRIEVE_STORED')
+            quit()
+        
         # loop over the length of leftover_pmids TODO
-        records = q.get_pubmed_by_pmids(leftover_pmids)
+
+        # TODO See note 1 at end of file for main loop 
+        # has to be adapted
+        
+        abstracts_for_output = []
+
+        for rec_index, record in enumerate(records):
+
+            if 'PMID' not in record.keys():
+                for k,v in record.items():
+                    print(k, v)
+                print('a  record did not have PMID?')
+                quit()
+
+            if queryIsFunction and queryIsStructure:
+                # is there something TODO here?
+                pass
+            
+            # scan MeSHterms
+            # if only exclude-words in mesh-list, skip article
+            included_mh, excluded_mh = scan_meshterms(record, include_MESH, exclude_MESH)
+            if len(included_mh) == 0 and len(excluded_mh) > 0:
+                # skip when only excluded words exist in meshterm
+                filtered_pmids['excluded_by_mesh'].append(record['PMID'])
+                if not record['PMID'] in in_database_pmids and not (DATABASE_USAGE == 'IGNORE'): 
+                    db.insert_article(record['PMID'], record, ['IRRELEVANT_MESH'])
+                continue
+
+            if 'MH' in record.keys():
+                # this updates the current MeSHterm counter
+                meshterm_occurences.update(record['MH'])
+                stats_all['allMeshtermCounts'].update(record['MH'])
+                                                
+            # HARD FILTERS
+            # no abstract -> out
+            if 'AB' not in record.keys():
+                filtered_pmids['excluded_by_no_abstract'].append(record['PMID'])
+                if not record['PMID'] in in_database_pmids and not (DATABASE_USAGE == 'IGNORE'): 
+                    db.insert_article(record['PMID'], record, ['ABSTRACTLESS'])
+                continue
+
+            
+            # exclude irrelevant abstracts
+            if not is_relevant_abstract(record['AB'], relevant_terms):
+                record['isRelevant'] = '0'
+                filtered_pmids['excluded_by_irrelevant_abstract'].append(record['PMID'])
+                if not record['PMID'] in in_database_pmids and not (DATABASE_USAGE == 'IGNORE'): 
+                    db.insert_article(record['PMID'], record, ['IRRELEVANT_ABSTRACT'])
+                continue
+            else:
+                # with open('abstractdump.txt', 'a+') as abdump:
+                #     abdump.write(record['AB'])
+                #     abdump.write('\n-=-=\n')
+                record['isRelevant'] = '1'
+                for sentence in nltk.sent_tokenize(record['AB']):
+                    # TODO DISCUSS LOWER() ABSTRACT?
+                    svo_triples = findSVOs(sentence)
+                    last_svo_id = record['PMID']
+                    if len(svo_triples) > 0:
+                        # print(svo_triples)
+                        pass
+
+                    for triplet in svo_triples:
+                        # TODO add more filters?
+                        if 'we' not in [str(s).lower() for s in triplet] and not (DATABASE_USAGE == 'IGNORE'):
+                            db.insert_svo(triplet, record['PMID'])
+                        logger.debug(f'added to database triplet svo: {triplet}')
+                    
+                    stats_current['svo_pmids'][record['PMID']]=[str(svo) for svo in svo_triples]
+                    for svo in svo_triples:
+                        keysvo = str(svo)
+                        if keysvo in stats_all['allSVOs']:
+                            stats_all['allSVOs'][keysvo]+=1
+                        else:
+                            stats_all['allSVOs'][keysvo]=1
+                        
+
+            # top 5 and lowest 5
+            topsizes=5
+            pick_this_record = ((len(leftover_pmids) - rec_index) < topsizes or \
+                (len(leftover_pmids) + rec_index) < (len(leftover_pmids) + topsizes)
+            )
+	
+            if pick_this_record:
+                if record['PMID'] == last_svo_id:
+                    record['SVOs'] = [str(svo) for svo in svo_triples]
+                else:
+                    record['SVOs'] = ['abstract not relevant, no abstract']
+                abstracts_for_output.append(record)
+
+            # TODO : linked articles
+            # see note 2 about handling LINKED ARTICLES at the end of file
+
+            # update this record in database
+            if not record['PMID'] in in_database_pmids and not (DATABASE_USAGE == 'IGNORE'):
+                db.insert_article(record['PMID'], record, ['RELEVANT'])    
+
+        query_stats.add(**{"articles already in dtabase for {query}":len(in_database_pmids)})
+        query_stats.add(**{reason:len(value) for reason,value in filtered_pmids.items()})
+        query_stats.add(**{f"MeSH term top 15 for {query}":meshterm_occurences.most_common(15)})
+        query_stats.add(**{f"total # of MeSH terms for {query}":len(meshterm_occurences)})
+
+        stats_all['queries'].update({f'query':stats_current})
+
+        # add stats for this query and 10 abstracts from the query top 5 and lowest 5
+        output_query_stats(query, stats_current, abstracts_for_output)
+        
+        if not (DATABASE_USAGE == 'IGNORE'):
+            for mesh_term in meshterm_occurences:
+                
+                db.insert_meshterm(mesh_term)
+
+                    
+        print(query_stats)
+    
+    # add total stats 
+    output_all_stats(stats_all)
+
+    print('done')
+
+    
+"""Restructuring notes....
+
+
+1 dealing with generators and a main loop
+
         # TODO: records should be a queue of items and the items should be removed
         # when done....
         # problem: records is a generator object, can't append.
@@ -203,61 +462,10 @@ if __name__ == '__main__':
         #             finding= False
         #      do stuff
         # annoying.
-        for record in records:
-            
-            if queryIsFunction and queryIsStructure:
-                # is there something TODO here?
-                pass
-            
-            # scan MeSHterms
-            # if only exclude-words in mesh-list, skip article
-            included_mh, excluded_mh = scan_meshterms(record, include_MESH, exclude_MESH)
-            if len(included_mh) == 0 and len(excluded_mh) > 0:
-                # skip when only excluded words exist in meshterm
-                filtered_pmids['excluded_by_mesh'].append(record['PMID'])
-                if not record['PMID'] in in_database_pmids: 
-                    db.insert_article(record['PMID'], record, ['IRRELEVANT_MESH'])
-                continue
 
-            if 'MH' in record.keys():
-                # this updates the current MeSHterm counter
-                meshterm_occurences.update(record['MH'])
-                                                
-            # HARD FILTERS
-            # no abstract -> out
-            if 'AB' not in record.keys():
-                filtered_pmids['excluded_by_no_abstract'].append(record['PMID'])
-                if not record['PMID'] in in_database_pmids: 
-                    db.insert_article(record['PMID'], record, ['ABSTRACTLESS'])
-                continue
-
-            
-            # exclude irrelevant abstracts
-            if not is_relevant_abstract(record['AB'], relevant_terms):
-                filtered_pmids['excluded_by_irrelevant_abstract'].append(record['PMID'])
-                if not record['PMID'] in in_database_pmids: 
-                    db.insert_article(record['PMID'], record, ['IRRELEVANT_ABSTRACT'])
-                continue
-            else:
-                # with open('abstractdump.txt', 'a+') as abdump:
-                #     abdump.write(record['AB'])
-                #     abdump.write('\n-=-=\n')
-                
-                for sentence in nltk.sent_tokenize(record['AB']):
-
-                    svo_triples = findSVOs(sentence)
-                    
-                    if len(svo_triples) > 0:
-                        print(svo_triples)
-
-                    for triplet in svo_triples:
-                        # TODO add more filters?
-                        if 'we' not in [str(s).lower() for s in triplet]:
-                            db.insert_svo(triplet, record['PMID'])
-                        logger.debug(f'added to database triplet svo: {triplet}')
-
-            if 'RF' in (record.keys()):
-                query_stats.add(**{f"number of linked articles":len(record['RF'])})
+2 LINKED ARTICLES
+            # if 'RF' in (record.keys()):
+            #     query_stats.add(**{f"number of linked articles":len(record['RF'])})
                 
             # LINKED ARTICLES
             ## If the article is relevant... continue searching their linked articles?
@@ -294,31 +502,12 @@ if __name__ == '__main__':
             # a list of meanings for each abstract for each word
             # then derive the actual relation that meaning indicates
 
-            """
+            
             Part-of-speech (POS) Tagging	Assigning word types to tokens, like verb or noun.
             Dependency Parsing
-            Entity Linking (EL)
-            """
-            #
-            # update this record in database
-            if not record['PMID'] in in_database_pmids:
-                db.insert_article(record['PMID'], record, ['RELEVANT'])    
-
-        query_stats.add(**{"articles already in dtabase for {query}":len(in_database_pmids)})
-        query_stats.add(**{reason:len(value) for reason,value in filtered_pmids.items()})
-        query_stats.add(**{f"MeSH term top 15 for {query}":meshterm_occurences.most_common(15)})
-        query_stats.add(**{f"total # of MeSH terms for {query}":len(meshterm_occurences)})
-
-        
-        for mesh_term in meshterm_occurences:
-            db.insert_meshterm(mesh_term)
-
-                
-        print(query_stats)
-    
-    print('done')
-
-    
-
+            Entit Linking (EL)
+            
+            
+"""
 
 

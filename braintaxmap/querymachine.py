@@ -4,7 +4,11 @@ from Bio import Entrez, Medline
 from braintaxmap.config import dev_email
 from urllib.error import HTTPError
 from braintaxmap.tools import fuzz
+
+print('initial email:',Entrez.email,'initial max tries:',Entrez.max_tries)
 Entrez.email = dev_email
+Entrez.max_tries = 15
+print('email set to',Entrez.email,'max tries set to',Entrez.max_tries)
 
 MAX_SEARCH_LIMIT = 100000
 
