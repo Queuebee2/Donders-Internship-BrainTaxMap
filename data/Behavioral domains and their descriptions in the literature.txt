@@ -1,0 +1,126 @@
+Behavioral domain	Definition	Source	Notes
+Action	The mental faculty associated with overt movements of the body	BrainMap.org 	Both citations are from human
+		Laird et al (2011)	
+Execution	The state or process of executing an overt movement of the body(other than sepeech)	BrainMap.org 	
+		Laird et al (2011)	
+Execution. Speech	The state or process of overtly speaking	BrainMap.org 	
+		Laird et al (2011)	
+Imagination	The state or process of imagining an overt movement of the body.	BrainMap.org	
+		Laird et al (2011)	
+Inhibition	The state or process of inhibiting an overt movement of the body	BrainMap.org	
+		Laird et al (2011)	
+Motor Learning	The state or process of learning how to execute an overt movement of the body.	BrainMap.org	
+		Laird et al (2011)	
+Observation	The state or process of observing an overt movement of the body.	BrainMap.org	
+		Laird et al (2011)	
+Preparation	The state or process of preparing for an overt movement of the body. 	BrainMap.org	
+		Laird et al (2011)	
+Rest	The state or process of resting from overt movements of the body.	BrainMap.org	
+		Laird et al (2011)	
+Cognition	The mental process of knowing, including the integration of awareness, perception, reasoning, and judgment.	BrainMap.org	
+		Laird et al (2011)	
+Attention	The act or state of attending by applying the mind to any object of sense or thought.	BrainMap.org	
+		Laird et al (2011)	
+Language	The mental faculty associated with knowledge of a system of objects or symbols, such as sounds or character sequences, that can be combined in various ways following a set of rules, especially to communicate thoughts, feelings, or instructions.	BrainMap.org	
+	(Only used for experiments which do not fall into one of the following Language categories.)	Laird et al (2011)	
+Language Orthography	The mental faculty associated with the part of language study concerned with letters and spelling.	BrainMap.org	
+		Laird et al (2011)	
+Language Phonology	The mental faculty associated with knowledge of the distribution and patterning of speech sounds in a language and of the tacit rules governing pronunciation.	BrainMap.org	
+		Laird et al (2011)	
+Language Semantics	The mental faculty associated with knowledge of meaning in language forms.	BrainMap.org	
+		Laird et al (2011)	
+Language. Speech	The mental faculty associated with knowledge of overtly or covertly speaking.	BrainMap.org	
+		Laird et al (2011)	
+Language.Syntax	The mental faculty associated with knowledge of the rules for the formation of grammatical sentences in a language	BrainMap.org	
+		Laird et al (2011)	
+Memory	The mental faculty of retaining and reviving facts, events, or impressions, or of recalling or recognizing previous experiences.	BrainMap.org	
+	(Only used for memory experiments which do not fall into Implicit, Explicit or Working.)	Laird et al (2011)	
+Memory. Explicit	The memory that consists of information stored and retrieved explicitly from the external world. This information is about a specific event that has occurred at a specific time and place. Associations are done with previously related stimuli or experiences in the formation, storage and subsequent retrieval of these memories.	BrainMap.org	
+		Laird et al (2011)	
+Memory. Implicit	"The long-term memory of skills and procedures; is often not easily verbalized, but can be used without consciously thinking about it."	BrainMap.org	
+		Laird et al (2011)	
+Memory. Working	The memory for intermediate results that must be held during thinking.	BrainMap.org	
+		Laird et al (2011)	
+Music	The mental faculty associated with the art of sound in time that expresses ideas and emotions in significant forms through the elements of rhythm, melody, harmony, and color.	BrainMap.org	
+		Laird et al (2011)	
+Reasoning	The mental faculty of forming conclusions, judgments, or inferences from facts or premises.	BrainMap.org	
+		Laird et al (2011)	
+Social Cognition	The mental faculty associated with how people process social information, especially its encoding, storage, retrieval, and application to social situations.	BrainMap.org	
+		Laird et al (2011)	
+Somatic	The mental faculty associated with knowledge of one's body.	BrainMap.org	
+		Laird et al (2011)	
+Spatial	The mental faculty associated with awareness of the three-dimensional expanse in which all material objects are located and all events occur.	BrainMap.org	
+		Laird et al (2011)	
+Temporal	The mental faculty associated with the system of sequential relations that any event has to any other as past, present, or future.	BrainMap.org	
+		Laird et al (2011)	
+Other	Any mental processes that qualify as Cognition, but do not fit into any of the other Cognition sub-domains.	BrainMap.org	
+		Laird et al (2011)	
+Emotion	The mental faculty of experiencing an affective state of consciousness such as joy, sorrow, fear, hate, etc.	BrainMap.org	
+		Laird et al (2011)	
+Anger	An emotion of wrath or ire characterized by displeasure and belligerence aroused by a wrong.	BrainMap.org	
+		Laird et al (2011)	
+Anxiety	An emotion characterized by distress or uneasiness of mind caused by fear of danger or misfortune.	BrainMap.org	
+		Laird et al (2011)	
+Disgust	An emotion characterized by a strong distaste, nausea, or loathing.	BrainMap.org	
+		Laird et al (2011)	
+Fear	An emotion of being afraid aroused by distress, impending danger, evil, pain, etc.	BrainMap.org	
+		Laird et al (2011)	
+Happiness	An emotion of well-being ranging from contentment to intense joy (excluding humor	BrainMap.org	
+		Laird et al (2011)	
+Happiness. Humor	An emotion of characterized by a comic, absurd, or incongruous quality causing amusement.	BrainMap.org	
+		Laird et al (2011)	
+Sadness	An emotion of sorrow or mourning characterized by unhappiness or grief.	BrainMap.org	
+		Laird et al (2011)	
+Other	Any affective processes that qualify as Emotion, but do not fit into any of the other Emotion sub-domains.	BrainMap.org	
+		Laird et al (2011)	
+Interoception	The mental faculty associated with sensitivity to stimuli originating inside of the body.	BrainMap.org	
+		Laird et al (2011)	
+Baroregulation	The need to regulate blood pressure.	BrainMap.org	
+		Laird et al (2011)	
+Gastrointestinal/	Awareness of pressure or distension in gastrointestinal or genitourinary systems, including the mouth, esophagus, stomach, bladder, anus, rectum	BrainMap.org	
+Genitourinary (GI/GU)		Laird et al (2011)	
+Heartbeat Detection	Awareness of one's heartbeat or a sensitivity of accurately detecting its pace or speed.	BrainMap.org	
+		Laird et al (2011)	
+Hunger	The need for food.	BrainMap.org	
+		Laird et al (2011)	
+Osmoregulation	The need for the body's cells to maintain fluid and electrolyte balance with their surroundings.	BrainMap.org	
+		Laird et al (2011)	
+Respiration Regulation	The need for respiration	BrainMap.org	
+		Laird et al (2011)	
+Sexuality	The need for sexual activity	BrainMap.org	
+		Laird et al (2011)	
+Sleep	The need for the natural suspension, complete or partial, of consciousness.	BrainMap.org	
+		Laird et al (2011)	
+Thermoregulation	The need for the maintenance of a constant internal body temperature independent of the environmental temperature.	BrainMap.org	
+		Laird et al (2011)	
+Thirst	The need for liquid that causes a sensation of dryness in the mouth and throat.	BrainMap.org	
+		Laird et al (2011)	
+Vestibular	Awareness of pressure or fullness within the ear.	BrainMap.org	
+		Laird et al (2011)	
+Perception	The mental faculty of apprehending knowledge by means of the senses.	BrainMap.org	
+		Laird et al (2011)	
+Audition	The sense of hearing.	BrainMap.org	
+		Laird et al (2011)	
+Gustation	The sense of tasting.	BrainMap.org	
+		Laird et al (2011)	
+Olfaction	The sense of smelling.	BrainMap.org	
+		Laird et al (2011)	
+Somesthesis	The sensory systems associated with the skin, including touch, pressure, temperature and position. (Excluding sensing pain, which should be explicitly coded as Somesthesis.Pain).	BrainMap.org	
+		Laird et al (2011)	
+Somesthesis. Pain	The senses of bodily perception associated with an unpleasant sensation occurring in varying degrees of severity as a consequence of injury, disease, or emotional disorder	BrainMap.org	
+		Laird et al (2011)	
+Vision	The sense of sight.	BrainMap.org	
+	(Only used for vision experiments which do not fall into Color, Motion or Shape.	Laird et al (2011)	
+Vision. Color	The visual perception of the quality of an object or substance with respect to light reflected by the object, usually determined visually by measurement of hue, saturation, and brightness of the reflected light.	BrainMap.org	
+		Laird et al (2011)	
+Vision. Motion	The visual perception of the action or process of moving or of changing place or position.	BrainMap.org	
+		Laird et al (2011)	
+Vision. Shape	The visual perception of the quality of a distinct object in having an external surface or outline of specific form or figure.	BrainMap.org	
+		Laird et al (2011)	
+Vision. Remapping	The presaccadic change in visual sensitivity	Rao et al. (2016)	
+Vision. Saccade	The rapid eye movements used to redirect gaze	Aizawa et al. (1998)	
+Fingerprint	Distribution of cell density across cortical layers in the human primary visual cortex	Hudspeth et al.(1976)	
+Hub	Network nodes with high functional connectivity	Tomasi et al.(2011)	
+Central executive	An emergent property of multiple domain-specific processors operating interactively	Goldman-Rakic PS. (1996)	
+Declarative memory	Conscious memory for events and facts	Kahn et al. (2008)	
+Semantic memory	Refers to general world knowledge about objects, words, people, and facts 	Zhao et al.(2017)	

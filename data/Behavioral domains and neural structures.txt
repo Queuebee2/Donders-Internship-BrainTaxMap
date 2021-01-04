@@ -1,0 +1,36 @@
+Behavioral domain	Neural structure	Citation	Species	Notes
+	(According to outputs of the basolateral nucleus of amygdala)			
+Choice behavior	Orbital frontal cortex	Davis and Whalen, 2001		
+Memory of emotional events	Orbital frontal cortex	Davis and Whalen, 2001		
+Memory consolidation of emotional events	Hippocampus	Davis and Whalen, 2001		
+Spatial learning	Hippocampus	Davis and Whalen, 2001		
+Instrumental approach (learning) 	Dorsal and Ventral Striatum	Davis and Whalen, 2001		
+Avoidance behavior	Dorsal and Ventral Striatum	Davis and Whalen, 2001		
+Autonomic/somatic signs of fear	Central amygdala	Davis and Whalen, 2001		BNST: Bed Nucleus of Stria Terminalis
+	Lateral BNST			
+Attention	Central amygdala	Davis and Whalen, 2001		
+	Lateral BNST			
+Autonomic/somatic signs of anxiety 	Lateral BNST	Davis and Whalen, 2001		
+Behavioral Domain	Neural structure (According to outputs of the central nucleus or BNST)	Citation	Species	Notes
+Tachycardia	Lateral hypothalamus	Davis and Whalen, 2001		
+Galvanic skin response	Lateral hypothalamus	Davis and Whalen, 2001		
+Paleness	Lateral hypothalamus	Davis and Whalen, 2001		
+Pupil dilation	Lateral hypothalamus	Davis and Whalen, 2001		
+Blood Pressure elevation	Lateral hypothalamus	Davis and Whalen, 2001		
+Ulcers	Dorsal motor nucleus of vagus and nucleus ambiguus	Davis and Whalen, 2001		
+Urination	Dorsal motor nucleus of vagus and nucleus ambiguus	Davis and Whalen, 2001		
+Defecation	Dorsal motor nucleus of vagus and nucleus ambiguus	Davis and Whalen, 2001		
+Bradycardia	Dorsal motor nucleus of vagus and nucleus ambiguus	Davis and Whalen, 2001		
+Panting	Parabrachial Nucleus	Davis and Whalen, 2001		
+Respiratory Distress	Parabrachial Nucleus	Davis and Whalen, 2001		
+Behavioral and EEG arousal	Ventral tegmental area,Locus coeruleus, Lateral dorsal tegmental N., Basal forebrain	Davis and Whalen, 2001		
+Increased vigilance	Ventral tegmental area,Locus coeruleus, Lateral dorsal tegmental N., Basal forebrain	Davis and Whalen, 2001		
+Increased attention	Ventral tegmental area,Locus coeruleus, Lateral dorsal tegmental N., Basal forebrain	Davis and Whalen, 2001		
+Increased startle	N. reticularis pontis caudalis	Davis and Whalen, 2001		
+Freezing	Central grey	Davis and Whalen, 2001		
+Conflict test	Central grey	Davis and Whalen, 2001		
+CER	Central grey	Davis and Whalen, 2001		
+Social interaction	Central grey	Davis and Whalen, 2001		
+Hypoalgesia	Central grey	Davis and Whalen, 2001		
+Facial expression of fear 	Trigeminal and Facial motor n.	Davis and Whalen, 2001		
+Corticosteroid release “Stress response”	Paraventricular nucleus (via BNST)	Davis and Whalen, 2001		
