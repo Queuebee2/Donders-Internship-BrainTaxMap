@@ -1,29 +1,34 @@
 
-from pickle import load
-from Bio import Entrez, Medline
-from braintaxmap.config import dev_email
-import time
-import nltk
-import sys
-import os
 import gzip
-from bulkconstants import DATA_DIR, MEDLINE_RESULTS_FILE
+import os
+import sys
+import time
+from pickle import load
+from urllib.error import HTTPError
 
+import nltk
+from Bio import Entrez, Medline
 
-
+from braintaxmap.config import dev_email
 # structures and behaviour funcs
-from braintaxmap.data_prep import load_brainstructures, load_behaviours
-structures_pickle_path = r'data\\extracted-json-nodes.pickle'
-behaviours_path = r'data\\list_of_behaviour_hirarchy.txt'
-brainstructures = [n.lower() for n in  load_brainstructures(structures_pickle_path)]
-# brainbehaviours = [n.lower() for n in load_behaviours(behaviours_path)]
-brainstructures.remove('root')
+from bulkconstants import (BRAIN_FUNCTIONS, BRAIN_STRUCTURES, DATA_DIR,
+                           MEDLINE_RESULTS_FILE)
+
+print(
+    f'loaded {len(BRAIN_STRUCTURES)} structures and {len(BRAIN_FUNCTIONS)} behaviours')
+
+# script has been used, using this to prevent accidentally overwriting stuff.
+print(' OR '.join(
+    [f'({query})' for query in BRAIN_STRUCTURES+BRAIN_FUNCTIONS]).replace('\n', ' '))
+DONE = True
+if DONE:
+    print('line 23, its done so i quit')
+    quit()
 
 # Entrez settings
 
-## private API KEY
+# private API KEY
 API_KEY = open(r"..\\NCBI-API-KEY.txt").read()[:-1]
-
 
 print('initial email:', Entrez.email, 'initial max tries:', Entrez.max_tries)
 Entrez.email = dev_email
@@ -32,105 +37,124 @@ Entrez.sleep_between_tries = 20
 Entrez.api_key = API_KEY
 print('email set to', Entrez.email, 'max tries set to', Entrez.max_tries)
 
-
-retmax=10**7
-QUERY_INTERVAL = 2 #seconds
-CONTINUE_FROM_PREV=True
+retmax = 10**7
+EXTRA_QUERY_SLEEP_TIME = 2  # seconds
+CONTINUE_FROM_PREV = True
 
 queries = [
-    'barrel cortex', 
+    'barrel cortex',
     '(amygdala) AND (depression)',
     '(barrel cortex) AND (depression)',
     '(uncertainty) and (brain) and (behaviour)',
-    '(language) and (brain)' ,
+    '(language) and (brain)',
     '(EEG) and (behaviour)',
     '(Brain) and (disease) and (behaviour)'
-    ] + brainstructures 
+]
 
-def update_ids(all_ids):
-    ids_in_storage = set()
-    with open(MEDLINE_RESULTS_FILE, 'rt') as fh:
-        for line in fh:
-            # example line PMID- 20033235
-            if line.startswith("PMID-"):
-                pmid = int(line.strip().split(' ')[1])
-                ids_in_storage.add(pmid)
-    
-    return all_ids - ids_in_storage
 
 def get_all_ids(queries):
-    
-    chunksize=100
+
+    chunksize = 100
     ids = set()
     for qstart in range(0, len(queries), chunksize):
+
+        print(
+            f'Looking for ids for queries {qstart} to {qstart+chunksize} . . ', end=' ')
         chunk = queries[qstart:qstart+chunksize]
-        query=' OR '.join([f'({query})' for query in chunk]).replace('\n', ' ')
+        query = ' OR '.join(
+            [f'({query})' for query in chunk]).replace('\n', ' ')
 
         handle = Entrez.esearch(
-                db='pubmed',
-                term=query,
-                email=dev_email,
-                mindate='1500/01/01',
-                retmax=retmax,
-                usehistory='y',
-                api_key=API_KEY)
-            
+            db='pubmed',
+            term=query,
+            email=dev_email,
+            mindate='1500/01/01',
+            retmax=retmax,
+            usehistory='y',
+            api_key=API_KEY)
+
         result = Entrez.read(handle)
-        count = int(results['Count'])
-        webenv = results["WebEnv"]
-        query_key = results["QueryKey"]
-    
-    return result
+        handle.close()
+        ids_found = result['IdList']
+        ids = ids | set(ids_found)
+        print(f'Found {len(ids_found)} ids')
+        time.sleep(EXTRA_QUERY_SLEEP_TIME)
+
+    return list(ids)
+
 
 # timing
 tstart = time.perf_counter()
 
 # get ids
-print(f"Looking for {len(queries)} queries might take approx. {QUERY_INTERVAL*len(queries) + len(queries)*2} seconds")
-results = get_all_ids(queries)
-count = int(results['Count'])
-webenv = results["WebEnv"]
-query_key = results["QueryKey"]
+print(f"Looking for {len(queries)} queries might take approx. {EXTRA_QUERY_SLEEP_TIME*len(queries) + len(queries)} seconds")
+ids = get_all_ids(queries)
 
-ids = set(results['IdList'])
-print(f'count == len(ids-list)? {len(ids) == count}')
-print('max size =',sys.maxsize)
-print('size of ids set =',sys.getsizeof(ids))
+print('max size =', sys.maxsize)
+print('size of ids-set =', sys.getsizeof(ids))
 print(f'found {len(ids)} ids for {len(queries)} different queries')
 
 # timing
 tend = time.perf_counter()
-duration = tend-tstart
-print(f'That took {duration} s')
-tstart = time.perf_counter() # timing next 
+duration = time.strftime('%M minutes %S seconds', time.gmtime(tend-tstart))
+print(f'That took {duration}')
+tstart = time.perf_counter()  # timing next
 
 # download medline records as text
-print('Starting downloading items...')
+print(f'Starting to download {len(ids)} items...')
 
 failed_records = []
-batch_size = 500
-
+batch_size = 5000
+print(f'Batch size is {batch_size}')
+TOTAL_IDS = len(ids)
 with gzip.open(MEDLINE_RESULTS_FILE, "wb") as gzipfh:
-    for start in range(0, 500, batch_size):
-        end = min(count, start + batch_size)
-        print(f"Downloading records {start+1} to {end} out of {count}")
-        fetch_handle = Entrez.efetch(
-            db="pubmed",
-            rettype="medline",
-            retmode="text",
-            retstart=start,
-            retmax=batch_size,
-            webenv=webenv,
-            query_key=query_key
-        )
+
+    for start in range(0, len(ids)+1, batch_size):
+
+        ids_chunk = ids[start:start+batch_size]
+        query = ",".join([str(i) for i in ids_chunk])
+
+        chunk_time_start = time.perf_counter()
+
+        print(
+            f"Downloading records {start+1} to {start+batch_size} out of {TOTAL_IDS}")
+
+        tries = 0
+        fetch_handle = None
+        while tries < 5:
+            tries += 1
+            try:
+                fetch_handle = Entrez.efetch(
+                    db="pubmed",
+                    id=query,
+                    rettype="medline",
+                    retmode="text",
+                    retmax=batch_size*2,
+                    api_key=API_KEY,
+                    email=dev_email
+                )
+                if fetch_handle:
+                    break
+            except HTTPError as e:
+                print(f'HTTPError {e.code}, Waiting a little extra...')
+                time.sleep(15)
+
+        # retrieve and write data
         data = fetch_handle.read()
+        fetch_handle.close()
         gzipfh.write(data.encode())
+
+        # time and stats
+        chunk_time_end = time.perf_counter()
+        duration = time.strftime('%M minutes %S seconds', time.gmtime(
+            chunk_time_end-chunk_time_start))
+        print(f'. . . took {duration}. {TOTAL_IDS-start} ids left to go!')
+
+        time.sleep(EXTRA_QUERY_SLEEP_TIME)
 
 
 # timing
 tend = time.perf_counter()
-print(f'That took {duration} seconds for {count} records')
-
-
+print(f'That took {duration} seconds for {TOTAL_IDS} records')
 
 print('done')

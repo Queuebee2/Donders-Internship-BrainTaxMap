@@ -44,3 +44,7 @@ Call stack:
     logger.exception(f'error for query "{query}"" at rec_index "{rec_index}"', e)
 Message: 'error for query "barrel cortex"" at rec_index "1507"'
 Arguments: (ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None),)
+
+-----------------------------------------------------------------
+
+RuntimeError: Search Backend failed: read request has timed out. peer: 

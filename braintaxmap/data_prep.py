@@ -8,8 +8,8 @@ import sys
 
 from py2neo import Graph, Node, Relationship
 
-from config import neo4j_db_creds, neo4j_URL
-from tools import centr_print, tester, programrunner, fuzz
+from braintaxmap.config import neo4j_db_creds, neo4j_URL
+from braintaxmap.tools import centr_print, fuzz, programrunner, tester
 
 DATA_DIR = ".." + os.sep + 'data' + os.sep
 IN_FILENAME = DATA_DIR + 'list_of_behaviour_hirarchy.txt'
@@ -79,7 +79,8 @@ class DataPrepper():
 
             attributes = node_attributes
 
-            del attributes['children']  # children will be put into db relations
+            # children will be put into db relations
+            del attributes['children']
             del attributes['parent']  # parent will be put in through relation
 
             parent = Node('brainstructure', name=parent_name)
@@ -95,7 +96,6 @@ class DataPrepper():
             print(node_name)
             print(children)
 
-
         print('done inserting nodes')
 
     def insert_behavioural_nodes(self):
@@ -107,7 +107,6 @@ class DataPrepper():
         # todo here check if we didn't already insert those
 
         graph = self.graph  # more on Graph class ; https://py2neo.org/v5/database.html
-
 
         behavioural_hirarchy = flat_relations_hirarchy()  # loads previous json
 
@@ -154,6 +153,10 @@ def parse_pruned_behavioural_hirarchy():
                 behaviour = dot_notation_to_dict(behaviour, nodes)
 
     return behaviour
+
+
+def load_behaviours(filename=IN_FILENAME):
+    return [b for b, p in flat_relations_hirarchy(filename).items()]
 
 
 def flat_relations_hirarchy(filename=IN_FILENAME):
@@ -219,7 +222,8 @@ def json_extract_leaf_nodes(json):
                 # copy this node as the new parent for the next node
                 parent = json.copy()
                 # remove children from this copy
-                parent['children'] = [(child['name'], child['id']) for child in json['children']]
+                parent['children'] = [(child['name'], child['id'])
+                                      for child in json['children']]
                 # set the previous parent as parent for this parent
                 parent['parent'] = p
                 if parent['name'] not in intermediate.keys():
@@ -231,6 +235,10 @@ def json_extract_leaf_nodes(json):
         result.update(intermediate)
 
     return result
+
+
+def load_brainstructures(filename=OUTPUT_JSON_FILENAME):
+    return [name for name, attr in load_previous(filename).items()]
 
 
 def load_previous(filename=OUTPUT_JSON_FILENAME):
@@ -301,14 +309,16 @@ def test_pruner():
         else:
             print(k)
 
+
 def insert_first_nodes():
     d = DataPrepper()
     d.run()
 
+
 TESTS = {"pruning behavioural hirarchy": (1, test_pruner),
          "extract leafnodes from json": (1, test_json_extractor),
          }
-PROGRAMS = {"Insert first nodes from initial files":(1, insert_first_nodes)}
+PROGRAMS = {"Insert first nodes from initial files": (1, insert_first_nodes)}
 
 
 if __name__ == '__main__':
