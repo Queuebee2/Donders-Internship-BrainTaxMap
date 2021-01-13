@@ -34,4 +34,6 @@ Medline-results.gzip
 data/stats/query used.txt
 the-query.txt
 
+# .environment variables 
+.env
 
