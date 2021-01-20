@@ -4,10 +4,143 @@ import time
 from os import path, stat
 from random import random
 from time import sleep
+import re 
+import pandas
+import requests 
+import zipfile
+from collections import defaultdict
 
 FUZZING = True
-DATA_DIR = ".." + os.sep + 'data' + os.sep
+DATA_DIR = os.getcwd() + os.sep + 'data'  
 
+
+
+def download_andunzipcd11(
+    cd11link="https://icd.who.int/browse11/Downloads/Download?fileName=simpletabulation.zip",
+    temploc=os.sep.join([DATA_DIR,'cd11 archive.zip']),
+    finalloc=os.sep.join([DATA_DIR,'lists-other'])):
+    
+    r = requests.get(cd11link, stream=True)
+
+    with open(temploc, 'wb') as fh:
+        for chunk in r.iter_content(chunk_size=128):
+            fh.write(chunk)
+    
+    with zipfile.ZipFile(temploc, 'r') as zf:
+        zf.extract('simpleTabulation.xlsx', path=finalloc)
+    
+
+def readcd11simpleTabulation(
+    items_of_interest=[
+        "Mental, behavioural or neurodevelopmental disorders",
+        "Sleep-wake disorders"
+        ],
+    path=DATA_DIR+os.sep+"lists-other\simpleTabulation.xlsx",
+    retry=False):
+    try:
+        df = pandas.read_excel(path)
+    except FileNotFoundError as e:
+        if retry:
+            raise e
+        download_andunzipcd11()
+        return readcd11simpleTabulation(retry=True)
+
+    read_state = 0
+    current = None
+    current_Main = None
+    termsFound = defaultdict(set)
+    for i, l in enumerate(df['Title']):
+        line = l.strip()
+
+        if l.startswith('-') or l.startswith(' ') and read_state:
+            # strip nonalphanumeric characters from start of line
+            if current is not None:
+                while len(line) > 0 and not line[0].isalnum():
+                    line = line[1:]
+                termsFound[current].add(line)
+        else:
+            if current:
+                 print(f"final item from' {current} at row {i-1}")
+            if line in items_of_interest:         
+                print(f"in icd-11 tabulation xslsx: At row {i}, found '{line}' ")
+                read_state=1
+                current = line
+ 
+            else:
+
+                read_state=0
+                current = None
+
+    return termsFound
+           
+
+
+
+def readlistfile(filepath, lower=True, verbose=False):
+    """arg: filepath: str filepath for a file with two columns CSV
+    word, count
+    word2, count
+
+    lines that start with # are treated as comments and are ignored
+
+    """
+    words=set()
+    with open(filepath, 'r') as fh:
+        for l in fh:
+            line=l.strip()
+            if verbose: print(line,' -> ',end='')
+            if line.startswith("#"):
+                continue
+            else:
+                item = line.split(',')[0]
+                words.add(item.lower() if lower else item)
+                if verbose: print(item)
+    return words
+
+def read_included(*args, p=os.sep.join([DATA_DIR,'lists-to-include','included-custom-words.txt']), **kwargs):
+    return readlistfile(p, *args,**kwargs)
+
+def read_excluded(*args,p=os.sep.join([DATA_DIR,'lists-to-exclude','excluded-custom-words.txt']),**kwargs):
+    return readlistfile(p,*args, **kwargs)
+
+def dsm5parse(filepath=os.sep.join([DATA_DIR,'lists-other','DSM-5.txt']),verbose=False):
+    print("Parsing list of DSM-5 disorders")
+    slashreg = re.compile(r'\S+/\S+')
+
+    disorder_list = set()
+    def handle(line):
+
+        if "/" in line:
+            items = line.split("/")
+            special = slashreg.findall(line)[0]
+            a, b = special.split('/')
+            a1 = line.replace(f"{a}/", '')
+            b1 = line.replace(f"/{b}", '')
+            return [line,a1,b1]
+            
+        if "(" in line:
+            if line.endswith(")"):
+                items = line.split("(")
+                item = items[1][:-1]
+                return [items[0], item]
+            else:
+                item = line[line.find("(")+1:line.find(")")]
+                without = line.replace(f"({item}) ", "")
+                return [line, without]
+
+        else:
+            return [line]
+
+    with open(filepath) as f:
+        for l in f:
+            
+            line = l.strip()
+            items = handle(line)
+            for i in items:
+                disorder_list.add(i)
+                if verbose: print(i)
+
+    return disorder_list
 
 class DataLoggerHelper():
     threshold = 2
@@ -161,7 +294,7 @@ def timethisfunc(func):
         ts = time.perf_counter()
         result = func(*args, **kwargs)
         te = time.perf_counter()
-        duration = time.strftime('%Mm%Ss', time.gmtime(te-ts))
+        duration = time.strftime('%Hh%Mm%Ss', time.gmtime(te-ts))
         print(f"{func.__name__!r} ran for {duration}")
         return result
     return wrapper

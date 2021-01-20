@@ -2,6 +2,7 @@
 import collections
 import gzip
 import logging
+import shutil
 import os
 import pickle
 import sys
@@ -19,8 +20,8 @@ from Bio import Entrez, Medline
 import bulkanalyser as ba
 import bulkfilters as bf
 from braintaxmap.config import dev_email
-from braintaxmap.tools import load_verbs, timethisfunc
-from bulkconstants import (BRAIN_FUNCTIONS, BRAIN_STRUCTURES, DATA_DIR,
+from braintaxmap.tools import load_verbs, timethisfunc, dsm5parse, readcd11simpleTabulation
+from bulkconstants import (BRAIN_FUNCTIONS, BRAIN_STRUCTURES, STATS_OUT_DIR,
                            MEDLINE_RESULTS_FILE)
 
 
@@ -33,6 +34,12 @@ def _medlineResultFhandle():
 def stored_records():
     return Medline.parse(_medlineResultFhandle())
 
+def read_pmids_stored():
+    records = stored_records()
+    pmids=set()
+    for r in records:
+        pmids.add(r['PMID'])
+    return pmids
 
 def _read_amt_stored():
     records = stored_records()
@@ -48,11 +55,25 @@ class MedlineAnalyser(object):
 
     # python -m spacy download en_core_web_lg 750Mb
     nlp = spacy.load("en_core_web_lg")
+    # custom set of verbs
     verbs = load_verbs('data' + os.sep + '1000-verbs-set.txt')
+    # brainstructures of mouse http://help.brain-map.org/display/api/Downloading+an+Ontology%27s+Structure+Graph
+    BRAIN_STRUCTURES = set(BRAIN_STRUCTURES)
 
-    # 'Brain', 'Amygdala', 'Depression'
+    # https://brainmap.org/taxonomy/behaviors.html
+    # (to be expanded, also look for 'disorders')
+    BRAIN_FUNCTIONS = set(BRAIN_FUNCTIONS)
+    
+    # https://www.psychiatry.org/File%20Library/Psychiatrists/Practice/DSM/APA_DSM-5-Contents.pdf
+    DISORDERS_DSM5 = dsm5parse()
+    # cd11 https://icd.who.int/en
+    DISORDERS_CD11 = readcd11simpleTabulation()
+    
+
+    
     mesh_include_list = ['Rats', 'Rodent', 'Mice', 'Muridae']
     mesh_exclude_list = ['Humans']
+    # 'Brain', 'Amygdala', 'Depression' etc
     relevant_terms = [set(BRAIN_FUNCTIONS), set(BRAIN_STRUCTURES)]
 
     def __init__(self):
@@ -73,9 +94,20 @@ class MedlineAnalyser(object):
         for k, v in self.initial_stats.items():
             print(f'{k}:{v}')
         print(28*'-')
+    
+    def _set_main_lists(self):
+        self.DISORDERS = set()
+        self.DISORDERS.update(self.DISORDERS_DSM5)
+        for main_d, sub_d in self.DISORDERS_CD11.items():
+            self.DISORDERS.update(sub_d)
+            self.DISORDERS.update({main_d})
+        print(f'Merged disorders into one set. Length: {len(self.DISORDERS)}')
+
 
     def _startup(self):
         self._set_initial_stats()
+        self._set_main_lists()
+        self._refresh_output()
         self._print_initial_stats()
 
     def _finish(self, reason='finished'):
@@ -135,6 +167,8 @@ class MedlineAnalyser(object):
             bf.NoAbstract(record, 1),
             bf.HasRelevantMeshterms(
                 record, 0, self.mesh_include_list, self.mesh_exclude_list),
+            
+            # relevant abstract currently disabled in bulkfilters.py -> always returns True
             bf.RelevantAbstract(
                 record, 0, self.relevant_terms, force_one_of_each=False)
         ]
@@ -152,11 +186,11 @@ class MedlineAnalyser(object):
         for reason in reasons:
             self.excluded_by[reason] += 1
 
-    def _analyse_abstract(self, record):
-
-        for sentence in nltk.sent_tokenize(record['AB']):
+    def __previous_methods(self, sentence):
+        
             doc = self.nlp(sentence)
-
+            ba.contains_cd11(sentence, doc, self.histogram_dicts)
+            ba.contains_dsm5(sentence, doc, self.histogram_dicts)
             for nounphrase in doc.noun_chunks:
                 self.histogram_dicts['NOUNPHRASES'][nounphrase.text.lower(
                 )] += 1
@@ -169,18 +203,84 @@ class MedlineAnalyser(object):
             for word in nltk.word_tokenize(sentence):
                 ba.is_verb_fromListNLTK(word, self.verbs, self.histogram_dicts)
 
-            ba.find_SVOs(sentence, self.nlp, self.histogram_dicts)
+            ba.find_SVOs(doc, self.histogram_dicts)
+
+    def _current_methods(self, pmid, sentence):
+
+        doc = self.nlp(sentence)
+        
+        hitstrings = ba.new_method(
+            pmid,
+            sentence, 
+            doc, 
+            self.BRAIN_STRUCTURES, 
+            self.verbs, 
+            self.BRAIN_FUNCTIONS, 
+            self.DISORDERS, 
+            self.histogram_dicts)
+            
+        for hit in hitstrings:
+            self.output_one_pmid_hit(hit)
+
+
+    def _analyse_abstract(self, record):
+        """Any functions here come from bulkanalyser.py
+        toggle them off manually there
+        """
+        for sentence in nltk.sent_tokenize(record['AB']):
+
+            self._current_methods(record['PMID'], sentence)
+
+    def _refresh_output(self):
+        try:
+            shutil.copyfile(STATS_OUT_DIR+f'pmid hits.txt', STATS_OUT_DIR+f'pmid hits - BACKUP.txt')
+        except:
+            print('no backup made as no previous stats were stored')
+        with open(STATS_OUT_DIR+f'pmid hits.txt', 'w+'): pass
+    
+    def output_one_pmid_hit(self, hit):
+        with open(STATS_OUT_DIR+f'pmid hits.txt' ,'a+') as fh:
+            fh.write(f'hit\n')
 
     def output_stats(self):
+        print('outputting stats . . .')
 
+        self._output_histograms()
+
+        self._output_exclude_reasons()
+
+        print('done outputting stats')
+
+    def _output_exclude_reasons(self):
+        stats_title_string = f"## STATS EXCLUDE REASONS!"
+        headers_string = 'reason, count'
+        total_records_string = f"## records analysed for this data: {self.global_stats['records analysed']}"
+        total_excluded = sum(val for val in self.excluded_by.values())
+        total_excluded_string = f"## records excluded for this data: {total_excluded}"
+        print(stats_title_string)
+        print(total_records_string)
+        with open(STATS_OUT_DIR+f'Exclude reasons counts', 'w+') as fh:
+            fh.write(f"{stats_title_string}\n\n")
+            fh.write(f"{total_records_string}\n")
+            fh.write(f"{total_excluded_string}\n\n")
+            fh.write(f"{headers_string}\n")
+            for reason, count in self.excluded_by.items():
+                fh.write(f'{reason}, {count}\n')
+                
+    def _output_histograms(self):
         for name, counter in self.histogram_dicts.items():
-            with open(DATA_DIR+f'stats_{name}.txt', 'w+') as fh:
-                fh.write(f"# STATS FOR {name.upper()} !\n\n")
-                fh.write(
-                    f"records analysed for this data: {self.global_stats['records analysed']} \n")
+            stats_title_string = f"## STATS FOR {name.upper()} !"
+            headers_string = 'item, occurences'
+            total_records_string = f"## records analysed for this data: {self.global_stats['records analysed']}"
+            print(stats_title_string)
+            print(total_records_string)
+            
+            with open(STATS_OUT_DIR+f'stats_{name}.txt', 'w+') as fh:
+                fh.write(f"{stats_title_string}\n\n")
+                fh.write(f"{total_records_string}\n\n")
+                fh.write(f"{headers_string}\n")
                 for item, count in counter.most_common():
                     fh.write(f'{item}, {count}\n')
-
 
 if __name__ == '__main__':
     m = MedlineAnalyser()

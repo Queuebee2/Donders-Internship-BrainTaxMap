@@ -35,7 +35,9 @@ class HasRelevantMeshterms(RecordFilter):
                     if excl.lower() in meshterm:
                         excluded.append(meshterm)
 
-        return included, excluded
+        if len(included) == 0 and len(excluded) >1:
+            return False
+        return True
 
 class RelevantAbstract(RecordFilter):
 
@@ -44,6 +46,7 @@ class RelevantAbstract(RecordFilter):
         can be given multiple lists. If the force_one_of_each parameter is True,
         one word from each list has to be included in the text to return True
         """
+        return True
         if 'AB' not in record.keys():
             return None
         

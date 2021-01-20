@@ -36,3 +36,11 @@ the-query.txt
 
 # .environment variables 
 .env
+
+*.gzip
+
+data/stats/
+
+*.zip
+
+data/lists-other/simpleTabulation.xlsx

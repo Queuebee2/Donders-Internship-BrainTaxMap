@@ -1,8 +1,8 @@
 from braintaxmap.data_prep import load_behaviours, load_brainstructures
 import os
 
-MEDLINE_RESULTS_FILE = "Medline-results.gzip"
-DATA_DIR = 'data' + os.sep + 'stats' + os.sep
+MEDLINE_RESULTS_FILE = "Medline-results" + ".gzip"
+STATS_OUT_DIR = 'data' + os.sep + 'stats' + os.sep
 
 
 # shared in multiple files

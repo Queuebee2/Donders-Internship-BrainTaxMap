@@ -1,4 +1,5 @@
 
+from braintaxmap.data_prep import load_previous
 import gzip
 import os
 import sys
@@ -11,8 +12,9 @@ from Bio import Entrez, Medline
 
 from braintaxmap.config import dev_email
 # structures and behaviour funcs
-from bulkconstants import (BRAIN_FUNCTIONS, BRAIN_STRUCTURES, DATA_DIR,
+from bulkconstants import (BRAIN_FUNCTIONS, BRAIN_STRUCTURES, STATS_OUT_DIR,
                            MEDLINE_RESULTS_FILE)
+from bulkprocess import read_pmids_stored
 
 print(
     f'loaded {len(BRAIN_STRUCTURES)} structures and {len(BRAIN_FUNCTIONS)} behaviours')
@@ -20,10 +22,7 @@ print(
 # script has been used, using this to prevent accidentally overwriting stuff.
 print(' OR '.join(
     [f'({query})' for query in BRAIN_STRUCTURES+BRAIN_FUNCTIONS]).replace('\n', ' '))
-DONE = True
-if DONE:
-    print('line 23, its done so i quit')
-    quit()
+
 
 # Entrez settings
 
@@ -49,11 +48,19 @@ queries = [
     '(language) and (brain)',
     '(EEG) and (behaviour)',
     '(Brain) and (disease) and (behaviour)'
-]
+] + BRAIN_STRUCTURES
 
+def _save_last_pmid(pmid):
+    with open('last-pmid.txt', 'w+') as fh:
+        fh.write(f'{pmid}')
+
+def _get_last_pmid():
+    with open('last-pmid.txt', 'r+') as fh:
+        pmid = fh.read()
+        return pmid
 
 def get_all_ids(queries):
-
+    
     chunksize = 100
     ids = set()
     for qstart in range(0, len(queries), chunksize):
@@ -89,6 +96,15 @@ tstart = time.perf_counter()
 # get ids
 print(f"Looking for {len(queries)} queries might take approx. {EXTRA_QUERY_SLEEP_TIME*len(queries) + len(queries)} seconds")
 ids = get_all_ids(queries)
+
+prev_ids = read_pmids_stored()
+print(f"Ids currently already stored: {len(prev_ids)} of which {len(prev_ids.intersection(ids))} overlap")
+# TODO, previously stored does not matter unless the records are
+# stored apart. All other IDs should be removed from the file or stored somewhere else ?
+
+ids = set(ids) - prev_ids
+print('quitting..')
+quit()
 
 print('max size =', sys.maxsize)
 print('size of ids-set =', sys.getsizeof(ids))
