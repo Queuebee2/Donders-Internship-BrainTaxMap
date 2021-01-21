@@ -98,11 +98,6 @@ def prev_method(sentence, doc, structures, verbs, functions, disorders, stats_di
             for hit in v:
                 stats_dict[f'{k} found'][hit]+=1
 
-        # stats_dict[f'{structure} {verb} {found_item}']
-        # stats_dict['verbs found']
-        # stats_dict['structure found']
-        # stats_dict['function found']
-        # stats_dict['disorder found']
     else:   
         # keep track of items we found, but arent used
         for k, v in hits.items():
@@ -112,6 +107,8 @@ def prev_method(sentence, doc, structures, verbs, functions, disorders, stats_di
 def new_method(pmid, sentence, doc, structures, verbs, functions, disorders, stats_dict):
     hitstrings= []
     hits=defaultdict(list)
+
+    # run all regexes against the sentence. This takes a ridiculous amount of time.
     for name, l in zip(['structures','verbs','functions','disorders'],
                           [structures, verbs, functions, disorders]):
         for word in l:
@@ -119,24 +116,25 @@ def new_method(pmid, sentence, doc, structures, verbs, functions, disorders, sta
             if match:
                 hits[name].append(match.group(0))
 
+    # check if at least a structure and verb an one of disorder/function is present
     if len(hits['structures']) > 0 and  len(hits['verbs']) > 0 and (
         len(hits['functions']) > 0 or len(hits['disorders']) > 0):
 
+        # this creates all combinations of found items for this sentence
+        # its because the SVO detector does not work. Hits should be manually reviewed
         for s in hits['structures']:
             for v in hits['verbs']:
-                for i in zip(hits['disorders'], hits['functions']):
-                    hitstrings.append(f'{pmid};;; {s};;; {v};;; {i}')
-    
+                for a, b in zip(hits['disorders'], hits['functions']):
+                    # hitstrings will be returned and immediately stored to a file
+                    # todo: just keep them in class? because they are very few.
+                    if a:
+                        hitstrings.append(f'{pmid};;; {s};;; {v};;; {a}')
+                    if b:
+                        hitstrings.append(f'{pmid};;; {s};;; {v};;; {b}')
         # keep track of items we found
         for k, v in hits.items():
             for hit in v:
                 stats_dict[f'{k} found'][hit]+=1
-
-        # stats_dict[f'{structure} {verb} {found_item}']
-        # stats_dict['verbs found']
-        # stats_dict['structure found']
-        # stats_dict['function found']
-        # stats_dict['disorder found']
     else:   
         # keep track of items we found, but arent used
         for k, v in hits.items():

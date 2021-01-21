@@ -20,7 +20,7 @@ from Bio import Entrez, Medline
 import bulkanalyser as ba
 import bulkfilters as bf
 from braintaxmap.config import dev_email
-from braintaxmap.tools import load_verbs, timethisfunc, dsm5parse, readcd11simpleTabulation
+from braintaxmap.tools import load_verbs, read_excluded, read_included, timethisfunc, dsm5parse, readcd11simpleTabulation
 from bulkconstants import (BRAIN_FUNCTIONS, BRAIN_STRUCTURES, STATS_OUT_DIR,
                            MEDLINE_RESULTS_FILE)
 
@@ -56,7 +56,7 @@ class MedlineAnalyser(object):
     # python -m spacy download en_core_web_lg 750Mb
     nlp = spacy.load("en_core_web_lg")
     # custom set of verbs
-    verbs = load_verbs('data' + os.sep + '1000-verbs-set.txt')
+    verbs = load_verbs('data' + os.sep + '1000-verbs-set.txt') - read_excluded() | read_included()
     # brainstructures of mouse http://help.brain-map.org/display/api/Downloading+an+Ontology%27s+Structure+Graph
     BRAIN_STRUCTURES = set(BRAIN_STRUCTURES)
 
@@ -240,7 +240,7 @@ class MedlineAnalyser(object):
     
     def output_one_pmid_hit(self, hit):
         with open(STATS_OUT_DIR+f'pmid hits.txt' ,'a+') as fh:
-            fh.write(f'hit\n')
+            fh.write(f'{hit}\n')
 
     def output_stats(self):
         print('outputting stats . . .')

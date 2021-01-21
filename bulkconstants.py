@@ -13,3 +13,6 @@ BRAIN_STRUCTURES = [n.lower()
                     for n in load_brainstructures(structures_pickle_path)]
 BRAIN_FUNCTIONS = [n.lower() for n in load_behaviours(behaviours_path)]
 BRAIN_STRUCTURES.remove('root')
+
+# todo : move other lists here aswell, maybe create a bulkprep with all the prep/loading functions for these
+# - cd11, dsm5, verbs..

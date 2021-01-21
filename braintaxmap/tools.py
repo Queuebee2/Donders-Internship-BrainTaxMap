@@ -263,7 +263,7 @@ def _create_verblist():
         fh.writelines([f'{verb}\n' for verb in all_words])
 
 
-def load_verbs(filepath=DATA_DIR + '1000-verbs-set.txt'):
+def load_verbs(filepath=DATA_DIR + os.sep+'1000-verbs-set.txt'):
     with open(filepath, 'r') as fh:
         verbs = set()
         for line in fh:
