@@ -6,20 +6,20 @@ from typing_extensions import final
 
 # how to test using unittest:
 # cd project
-# python -m unittest tests.test_download_cd11
+# python -m unittest tests.test_download_icd11
 # use -b for supressing the prints from functions
 
-from braintaxmap.tools import download_andunzipcd11
+from braintaxmap.tools import download_andunzipicd11
 
 class TestTabulationDownloader(unittest.TestCase):
     def test_download(self):
         #setup
-        DATA_DIR = os.getcwd() + os.sep + 'data' 
-        temploc=os.sep.join([DATA_DIR,'cd11 archive.zip'])
-        finalloc=os.sep.join([DATA_DIR,'lists-other'])
-        final_filename=os.sep.join([DATA_DIR,'lists-other','simpleTabulation.xlsx'])
+        DATA_DIR = os.path.join(*[os.getcwd(),'data'])
+        temploc=os.path.join(*[DATA_DIR,'icd11 archive.zip'])
+        finalloc=os.path.join(*[DATA_DIR,'lists-other'])
+        final_filename=os.path.join(*[DATA_DIR,'lists-other','simpleTabulation.xlsx'])
     
-        download_andunzipcd11(temploc=temploc, finalloc=finalloc)
+        download_andunzipicd11(temploc=temploc, finalloc=finalloc)
         print('done download...')
         print('zipfile exists?',os.path.isfile(temploc))
         print('exlxfile exists?',os.path.isfile(final_filename))

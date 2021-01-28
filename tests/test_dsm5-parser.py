@@ -12,8 +12,8 @@ from braintaxmap.tools import dsm5parse
 class TestDSM5Parse(unittest.TestCase):
     def test_dsmparse(self):
         #setup
-        DATA_DIR = os.getcwd() + os.sep + 'data' 
-        path = os.sep.join([DATA_DIR,'lists-other','DSM-5.txt'])
+         DATA_DIR = os.path.join(*[os.getcwd(),'data'])
+        path = os.path.join(*[DATA_DIR,'lists-other','DSM-5.txt'])
 
         # execute
         result = dsm5parse(path)

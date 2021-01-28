@@ -12,8 +12,9 @@ from braintaxmap.tools import readlistfile, read_included, read_excluded
 class TestListReaders(unittest.TestCase):
     def test_listreader(self):
         #setup
-        DATA_DIR = os.getcwd() + os.sep + 'data' 
-        path = os.sep.join([DATA_DIR,'lists-to-exclude','excluded-custom-words.txt'])
+        
+        DATA_DIR = os.path.join(*[os.getcwd(),'data'])
+        path = os.path.join(*[DATA_DIR,'lists-to-exclude','excluded-custom-words.txt'])
 
         words = readlistfile(path)
         self.assertIsInstance(words, set)

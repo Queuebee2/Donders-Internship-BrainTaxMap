@@ -1,10 +1,13 @@
 
+import re
 from collections import defaultdict
+import sys
 import nltk
 import spacy
-import re
 import textacy
-from braintaxmap.tools import readcd11simpleTabulation, dsm5parse
+
+from braintaxmap.tools import dsm5parse, readicd11simpleTabulation
+
 """Anything that isnt used can be disabled by just placing an empty return at the start"""
 
 
@@ -44,19 +47,19 @@ def is_nounphrase(nounphrase, stats_dict):
     stats_dict['nounphrases'][nounphrase.text.lower()] += 1
 
 
-cd11_dict = readcd11simpleTabulation()
-def contains_cd11(sentence, sentence_doc, stats_dict):
+icd11_dict = readicd11simpleTabulation()
+def contains_icd11(sentence, sentence_doc, stats_dict):
     sentence=sentence.lower()
-    for k, s in cd11_dict.items():
+    for k, s in icd11_dict.items():
         if k.lower() in sentence:
             svo_triples = textacy.extract.subject_verb_object_triples(sentence_doc)
             svo_triples = list(svo_triples)
-            stats_dict['foundcd11'][f'{k};;; {sentence};;; SVOs: {svo_triples}'] += 1
+            stats_dict['foundicd11'][f'{k};;; {sentence};;; SVOs: {svo_triples}'] += 1
         for v in s:
             if v.lower() in sentence:
                 svo_triples = textacy.extract.subject_verb_object_triples(sentence_doc)
                 svo_triples = list(svo_triples)
-                stats_dict['foundcd11'][f'{v};;; {sentence};;; SVOs: {svo_triples}'] += 1
+                stats_dict['foundicd11'][f'{v};;; {sentence};;; SVOs: {svo_triples}'] += 1
 
 dsm5terms = dsm5parse()
 def contains_dsm5(sentence, sentence_doc, stats_dict):
@@ -104,41 +107,35 @@ def prev_method(sentence, doc, structures, verbs, functions, disorders, stats_di
             for hit in v:
                 stats_dict[f'{k} unused'][hit]+=1
 
-def new_method(pmid, sentence, doc, structures, verbs, functions, disorders, stats_dict):
-    hitstrings= []
+def new_method(pmid, sentence, doc, regex_dict, stats_dict, HIT_TUPLES, verbose=False):
+
     hits=defaultdict(list)
-
-    # run all regexes against the sentence. This takes a ridiculous amount of time.
-    for name, l in zip(['structures','verbs','functions','disorders'],
-                          [structures, verbs, functions, disorders]):
-        for word in l:
-            match = re.search(rf"{word}\b", sentence, re.IGNORECASE)
-            if match:
-                hits[name].append(match.group(0))
-
+    for regname, regexpattern in regex_dict.items():
+        re_hit = regexpattern.search(sentence)
+        if re_hit:
+            hits[regname].append(re_hit.group(0))
+    
     # check if at least a structure and verb an one of disorder/function is present
     if len(hits['structures']) > 0 and  len(hits['verbs']) > 0 and (
         len(hits['functions']) > 0 or len(hits['disorders']) > 0):
 
         # this creates all combinations of found items for this sentence
         # its because the SVO detector does not work. Hits should be manually reviewed
-        for s in hits['structures']:
-            for v in hits['verbs']:
-                for a, b in zip(hits['disorders'], hits['functions']):
-                    # hitstrings will be returned and immediately stored to a file
-                    # todo: just keep them in class? because they are very few.
-                    if a:
-                        hitstrings.append(f'{pmid};;; {s};;; {v};;; {a}')
-                    if b:
-                        hitstrings.append(f'{pmid};;; {s};;; {v};;; {b}')
+        for struct in hits['structures']:
+            for verb in hits['verbs']:
+                # hitstrings will be returned and immediately stored to a file
+                # todo: just keep them in class? because they are very few.
+                for disfunc_name in hits['disorders'] + hits['functions']:
+                    HIT_TUPLES.append((pmid,struct,verb,disfunc_name))
+                    if verbose: print('found tuple.. ', (pmid,struct,verb,disfunc_name))
+
         # keep track of items we found
-        for k, v in hits.items():
-            for hit in v:
+        for k, verb in hits.items():
+            for hit in verb:
                 stats_dict[f'{k} found'][hit]+=1
     else:   
         # keep track of items we found, but arent used
-        for k, v in hits.items():
-            for hit in v:
+        for k, verb in hits.items():
+            for hit in verb:
                 stats_dict[f'{k} unused'][hit]+=1
     
-    return hitstrings

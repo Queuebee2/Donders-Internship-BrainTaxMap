@@ -1,5 +1,4 @@
 
-from braintaxmap.data_prep import load_previous
 import gzip
 import os
 import sys
@@ -7,13 +6,13 @@ import time
 from pickle import load
 from urllib.error import HTTPError
 
-import nltk
 from Bio import Entrez, Medline
+from dotenv import find_dotenv, load_dotenv
 
 from braintaxmap.config import dev_email
 # structures and behaviour funcs
-from bulkconstants import (BRAIN_FUNCTIONS, BRAIN_STRUCTURES, STATS_OUT_DIR,
-                           MEDLINE_RESULTS_FILE)
+from bulkconstants import (API_KEY, BRAIN_FUNCTIONS, BRAIN_STRUCTURES,
+                           DATA_DIR, MEDLINE_RESULTS_FILE, STATS_OUT_DIR)
 from bulkprocess import read_pmids_stored
 
 print(
@@ -27,7 +26,6 @@ print(' OR '.join(
 # Entrez settings
 
 # private API KEY
-API_KEY = open(r"..\\NCBI-API-KEY.txt").read()[:-1]
 
 print('initial email:', Entrez.email, 'initial max tries:', Entrez.max_tries)
 Entrez.email = dev_email
@@ -40,7 +38,7 @@ retmax = 10**7
 EXTRA_QUERY_SLEEP_TIME = 2  # seconds
 CONTINUE_FROM_PREV = True
 
-queries = [
+QUERIES = [
     'barrel cortex',
     '(amygdala) AND (depression)',
     '(barrel cortex) AND (depression)',
@@ -50,23 +48,63 @@ queries = [
     '(Brain) and (disease) and (behaviour)'
 ] + BRAIN_STRUCTURES
 
+with open(os.path.join(*[DATA_DIR, 'pruned_structures_list.txt']), 'r') as fh:
+    for line in fh:
+        QUERIES.append(line.strip())
+
+
 def _save_last_pmid(pmid):
     with open('last-pmid.txt', 'w+') as fh:
         fh.write(f'{pmid}')
+
 
 def _get_last_pmid():
     with open('last-pmid.txt', 'r+') as fh:
         pmid = fh.read()
         return pmid
 
-def get_all_ids(queries):
-    
+
+def _load_list_from_file(filename):
+    result = list()
+    with open(filename, 'r+') as fh:
+        for line in fh:
+            result.append(line.strip())
+    return result
+
+
+def _store_list_in_file(lst, filename):
+    with open(filename, 'w+') as fh:
+        for item in lst:
+            fh.write(f'{item}\n')
+
+
+def _get_stored_pmids():
+    try:
+        return _load_list_from_file(os.path.join(*[DATA_DIR, 'unique-pmids-found.txt']))
+    except FileNotFoundError:
+        return []
+
+
+def _store_pmids(pmids):
+    _store_list_in_file(pmids, os.path.join(
+        *[DATA_DIR, 'unique-pmids-found.txt']))
+
+
+def get_all_ids(queries_list):
+
+    ids = _get_stored_pmids()
+    if len(ids) > 0:
+        print(f'successfully loaded {len(ids)} ids from storage')
+        return ids
+
+    queries = sorted(list(set(queries_list)))
+
     chunksize = 100
     ids = set()
     for qstart in range(0, len(queries), chunksize):
 
         print(
-            f'Looking for ids for queries {qstart} to {qstart+chunksize} . . ', end=' ')
+            f'Looking for ids for queries {qstart: 6} to {qstart+chunksize: 6} . . ', end=' ')
         chunk = queries[qstart:qstart+chunksize]
         query = ' OR '.join(
             [f'({query})' for query in chunk]).replace('\n', ' ')
@@ -84,8 +122,11 @@ def get_all_ids(queries):
         handle.close()
         ids_found = result['IdList']
         ids = ids | set(ids_found)
-        print(f'Found {len(ids_found)} ids')
+        print(f'Found {len(ids_found): 8} ids')
         time.sleep(EXTRA_QUERY_SLEEP_TIME)
+
+    _store_pmids(ids)
+    print(f'stored {len(ids)} ids to storage')
 
     return list(ids)
 
@@ -94,25 +135,27 @@ def get_all_ids(queries):
 tstart = time.perf_counter()
 
 # get ids
-print(f"Looking for {len(queries)} queries might take approx. {EXTRA_QUERY_SLEEP_TIME*len(queries) + len(queries)} seconds")
-ids = get_all_ids(queries)
+print(f"Looking for {len(QUERIES)} queries might take approx. {EXTRA_QUERY_SLEEP_TIME*len(QUERIES) + len(QUERIES)} seconds")
+ids = get_all_ids(QUERIES)
+print(f"Found {len(ids)} ids")
 
 prev_ids = read_pmids_stored()
-print(f"Ids currently already stored: {len(prev_ids)} of which {len(prev_ids.intersection(ids))} overlap")
+print(
+    f"Ids currently already stored: {len(prev_ids)} of which {len(prev_ids.intersection(ids))} overlap")
+
 # TODO, previously stored does not matter unless the records are
 # stored apart. All other IDs should be removed from the file or stored somewhere else ?
 
 ids = set(ids) - prev_ids
-print('quitting..')
-quit()
+print(f"There are {len(ids)} ids leftover after subtracting the stored ids")
 
 print('max size =', sys.maxsize)
 print('size of ids-set =', sys.getsizeof(ids))
-print(f'found {len(ids)} ids for {len(queries)} different queries')
+print(f'found {len(ids)} ids for {len(QUERIES)} different queries')
 
 # timing
 tend = time.perf_counter()
-duration = time.strftime('%M minutes %S seconds', time.gmtime(tend-tstart))
+duration = time.strftime('%Dd %Hh %Mm %Sa ', time.gmtime(tend-tstart))
 print(f'That took {duration}')
 tstart = time.perf_counter()  # timing next
 
@@ -123,7 +166,8 @@ failed_records = []
 batch_size = 5000
 print(f'Batch size is {batch_size}')
 TOTAL_IDS = len(ids)
-with gzip.open(MEDLINE_RESULTS_FILE, "wb") as gzipfh:
+ids = sorted(list(ids))
+with gzip.open(MEDLINE_RESULTS_FILE, "ab") as gzipfh:
 
     for start in range(0, len(ids)+1, batch_size):
 
@@ -164,13 +208,14 @@ with gzip.open(MEDLINE_RESULTS_FILE, "wb") as gzipfh:
         chunk_time_end = time.perf_counter()
         duration = time.strftime('%M minutes %S seconds', time.gmtime(
             chunk_time_end-chunk_time_start))
-        print(f'. . . took {duration}. {TOTAL_IDS-start} ids left to go!')
+        print(f'. . . took {duration}. {TOTAL_IDS-start: 8} ids left to go!')
 
         time.sleep(EXTRA_QUERY_SLEEP_TIME)
 
 
 # timing
 tend = time.perf_counter()
+duration = time.strftime('%Dd %Hh %Mm %Sa ', time.gmtime(tend-tstart))
 print(f'That took {duration} seconds for {TOTAL_IDS} records')
 
 print('done')

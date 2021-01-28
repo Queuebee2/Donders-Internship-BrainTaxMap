@@ -4,7 +4,7 @@
 from os import read
 import unittest
 import re
-from braintaxmap.tools import read_excluded, read_included, load_verbs, readcd11simpleTabulation
+from braintaxmap.tools import read_excluded, read_included, load_verbs, readicd11simpleTabulation
 from bulkconstants import BRAIN_STRUCTURES
 from sys import getsizeof
 import random
@@ -14,7 +14,7 @@ class TestCombinedRegex(unittest.TestCase):
     def test_combine_regexes1(self):
         # not really the way to use unittests I guess
         
-        disorder_hierarchy = readcd11simpleTabulation()
+        disorder_hierarchy = readicd11simpleTabulation()
         disorders = set()
         for k, v in disorder_hierarchy.items():
             disorders.add(k)

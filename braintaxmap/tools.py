@@ -11,16 +11,16 @@ import zipfile
 from collections import defaultdict
 
 FUZZING = True
-DATA_DIR = os.getcwd() + os.sep + 'data'  
+DATA_DIR = os.path.join(*[os.getcwd(),'data'])
 
 
 
-def download_andunzipcd11(
-    cd11link="https://icd.who.int/browse11/Downloads/Download?fileName=simpletabulation.zip",
-    temploc=os.sep.join([DATA_DIR,'cd11 archive.zip']),
-    finalloc=os.sep.join([DATA_DIR,'lists-other'])):
+def download_andunzipicd11(
+    icd11link="https://icd.who.int/browse11/Downloads/Download?fileName=simpletabulation.zip",
+    temploc=os.path.join(*[DATA_DIR,'icd11 archive.zip']),
+    finalloc=os.path.join(*[DATA_DIR,'lists-other'])):
     
-    r = requests.get(cd11link, stream=True)
+    r = requests.get(icd11link, stream=True)
 
     with open(temploc, 'wb') as fh:
         for chunk in r.iter_content(chunk_size=128):
@@ -30,20 +30,20 @@ def download_andunzipcd11(
         zf.extract('simpleTabulation.xlsx', path=finalloc)
     
 
-def readcd11simpleTabulation(
+def readicd11simpleTabulation(
     items_of_interest=[
         "Mental, behavioural or neurodevelopmental disorders",
         "Sleep-wake disorders"
         ],
-    path=DATA_DIR+os.sep+"lists-other\simpleTabulation.xlsx",
+    path=os.path.join(DATA_DIR,"lists-other\simpleTabulation.xlsx"),
     retry=False):
     try:
         df = pandas.read_excel(path)
     except FileNotFoundError as e:
         if retry:
             raise e
-        download_andunzipcd11()
-        return readcd11simpleTabulation(retry=True)
+        download_andunzipicd11()
+        return readicd11simpleTabulation(retry=True)
 
     read_state = 0
     current = None
@@ -97,13 +97,13 @@ def readlistfile(filepath, lower=True, verbose=False):
                 if verbose: print(item)
     return words
 
-def read_included(*args, p=os.sep.join([DATA_DIR,'lists-to-include','included-custom-words.txt']), **kwargs):
+def read_included(*args, p=os.path.join(*[DATA_DIR,'lists-to-include','included-custom-words.txt']), **kwargs):
     return readlistfile(p, *args,**kwargs)
 
-def read_excluded(*args,p=os.sep.join([DATA_DIR,'lists-to-exclude','excluded-custom-words.txt']),**kwargs):
+def read_excluded(*args,p=os.path.join(*[DATA_DIR,'lists-to-exclude','excluded-custom-words.txt']),**kwargs):
     return readlistfile(p,*args, **kwargs)
 
-def dsm5parse(filepath=os.sep.join([DATA_DIR,'lists-other','DSM-5.txt']),verbose=False):
+def dsm5parse(filepath=os.path.join(*[DATA_DIR,'lists-other','DSM-5.txt']),verbose=False):
     print("Parsing list of DSM-5 disorders")
     slashreg = re.compile(r'\S+/\S+')
 
@@ -236,7 +236,7 @@ class DataLoggerHelper():
 
 
 def _create_verblist():
-
+    print('reading verb lists')
     all_words = set()
     with open(DATA_DIR + 'verbs') as fh:
         c = 0
@@ -257,13 +257,24 @@ def _create_verblist():
                         word = word.split(' ')[0]
                     all_words.add(word)
 
-    print(len(all_words))
+    print('verbs:', len(all_words))
     print(c)
     with open(DATA_DIR + '1000-verbs-set.txt', 'w+') as fh:
         fh.writelines([f'{verb}\n' for verb in all_words])
 
 
-def load_verbs(filepath=DATA_DIR + os.sep+'1000-verbs-set.txt'):
+def count_hits(hitfilepath=os.path.join(*[DATA_DIR,'stats','pmid hits.txt']),):
+    with open(hitfilepath, 'r') as fh:
+        hits=set()
+        for line in fh:
+            pmid=int(line.split(';;;')[0])
+            hits.add(pmid)
+        
+        print(f'count_hits counted {len(hits)} unique pmids')
+
+
+
+def load_verbs(filepath=os.path.join(*[DATA_DIR,'1000-verbs-set.txt'])):
     with open(filepath, 'r') as fh:
         verbs = set()
         for line in fh:
@@ -352,3 +363,4 @@ def programrunner(PROGRAMS):
 
 if __name__ == '__main__':
     print(f'running from braintaxmap.tools.py as __main__')
+    count_hits()

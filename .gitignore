@@ -44,3 +44,5 @@ data/stats/
 *.zip
 
 data/lists-other/simpleTabulation.xlsx
+
+data/pruned_structures_list.txt

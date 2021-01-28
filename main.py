@@ -28,7 +28,7 @@ from braintaxmap.stat_tracker import StatTracker
 from braintaxmap.tools import DataLoggerHelper as data
 from braintaxmap.tools import fuzz, load_verbs
 
-ERROR_LOG_FILE = 'braintaxmap' + os.sep + 'logs' + os.sep + 'new_main.py.log'
+ERROR_LOG_FILE = os.path.join(*['braintaxmap' , 'logs' , 'new_main.py.log'])
 # create logger
 logger = logging.getLogger('braintaxmap.main')
 logger.setLevel(logging.DEBUG)

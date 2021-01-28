@@ -3,11 +3,11 @@ import os
 from querymachine import QueryMachine
 from tools import centr_print, tester, programrunner
 
-DATA_DIR = ".." + os.sep + 'data' + os.sep
-TSV_MNEMONICS_FILENAME = DATA_DIR + 'tab_delimited_medline_record_mnemonics.tsv'
-JSON_FILENAME = DATA_DIR + 'mouse-brain-atlas_1-structure-hirarchy_1.json'
-MESH_FILENAME = DATA_DIR + 'd2020 - MESH 1.bin'
-ERROR_LOG_FILE = DATA_DIR + 'article_insert_error_log.txt'  # todo make error output dir
+DATA_DIR = os.path.join(*[os.getcwd(),'data'])
+TSV_MNEMONICS_FILENAME = os.path.join(*[DATA_DIR , 'tab_delimited_medline_record_mnemonics.tsv'])
+JSON_FILENAME = os.path.join(*[DATA_DIR , 'mouse-brain-atlas_1-structure-hirarchy_1.json'])
+MESH_FILENAME = os.path.join(*[DATA_DIR , 'd2020 - MESH 1.bin'])
+ERROR_LOG_FILE = os.path.join(*[DATA_DIR, 'article_insert_error_log.txt'])  # todo make error output dir
 
 
 def squish_tsvs():

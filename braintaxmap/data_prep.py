@@ -11,10 +11,10 @@ from py2neo import Graph, Node, Relationship
 from braintaxmap.config import neo4j_db_creds, neo4j_URL
 from braintaxmap.tools import centr_print, fuzz, programrunner, tester
 
-DATA_DIR = ".." + os.sep + 'data' + os.sep
-IN_FILENAME = DATA_DIR + 'list_of_behaviour_hirarchy.txt'
-INPUT_JSON_FILENAME = DATA_DIR + 'mouse-brain-atlas_1-structure-hirarchy_1.json'
-OUTPUT_JSON_FILENAME = DATA_DIR + "extracted-json-nodes.pickle"
+DATA_DIR = os.path.join(os.getcwd(), 'data')
+IN_FILENAME = os.path.join(DATA_DIR, 'list_of_behaviour_hirarchy.txt') 
+INPUT_JSON_FILENAME = os.path.join(DATA_DIR, 'mouse-brain-atlas_1-structure-hirarchy_1.json')
+OUTPUT_JSON_FILENAME = os.path.join(DATA_DIR, "extracted-json-nodes.pickle")
 
 
 class DataPrepper():
@@ -245,7 +245,7 @@ def load_previous(filename=OUTPUT_JSON_FILENAME):
     """Load previously reversed json of mouse brain hirarchy file"""
     with open(filename, 'rb') as infile:
         unpacked_json = pickle.load(infile)
-        print('successfully loaded')
+        print('successfully loaded previous mouse brain hierarchy')
         return unpacked_json
 
 
