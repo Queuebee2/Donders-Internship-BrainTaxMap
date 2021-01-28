@@ -293,12 +293,12 @@ def fuzz(amt=False, fuzzing=FUZZING):
         else:
             sleep(amt)
 
-
-def timethisfunc(func):
+def timethisfunc_hms(func):
     """wrapper adapter from 
     https://realpython.com/lessons/timing-functions-decorators/
     and 
     https://medium.com/pythonhive/python-decorator-to-measure-the-execution-time-of-methods-fa04cb6bb36d
+    Tells the time it took in hours, minutes, seconds to run the function under this decorator 
     """
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
@@ -309,6 +309,23 @@ def timethisfunc(func):
         print(f"{func.__name__!r} ran for {duration}")
         return result
     return wrapper
+
+
+def timethisfunc_dhms(func):
+    """Tells the time it took in days, hours, minutes, seconds to run the function under this decorator 
+
+    """
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        ts = time.perf_counter()
+        result = func(*args, **kwargs)
+        te = time.perf_counter()
+        duration = time.strftime('%ddays %Hh%Mm%Ss', time.gmtime(te-ts)) 
+        print(f"{func.__name__!r} ran for {duration}")
+        return result
+    return wrapper
+
+
 
 
 def centr_print(title='', motif='- ', amt=60):

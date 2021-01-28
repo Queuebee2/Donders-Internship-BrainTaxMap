@@ -6,9 +6,10 @@ import time
 from pickle import load
 from urllib.error import HTTPError
 
-from Bio import Entrez, Medline
+from Bio import Entrez
 from dotenv import find_dotenv, load_dotenv
 
+from braintaxmap.tools import timethisfunc_dhms
 from braintaxmap.config import dev_email
 # structures and behaviour funcs
 from bulkconstants import (API_KEY, BRAIN_FUNCTIONS, BRAIN_STRUCTURES,

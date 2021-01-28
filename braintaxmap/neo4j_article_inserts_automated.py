@@ -15,9 +15,9 @@ from data_processing import getmnemdef
 from querymachine import QueryMachine
 from tools import fuzz
 
-DATA_DIR = ".." + os.sep + 'data' + os.sep
-SOUGHT_TERM_FILENAME = DATA_DIR + 'sought_keywords.pickle'
-ERROR_LOG_FILE = 'logs' + os.sep + 'article_insert_error_log.txt'  # todo make error output dir
+DATA_DIR = os.path.join(*[os.getcwd(),'data'])
+SOUGHT_TERM_FILENAME = DATA_DIR = os.path.join(*[DATA_DIR,'sought_keywords.pickle'])
+ERROR_LOG_FILE = DATA_DIR = os.path.join(*['logs','article_insert_error_log.txt']) 
 
 """ see readme
 this script looks for articles (not checking if they exist, yet) and inserts them into the database

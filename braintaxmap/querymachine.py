@@ -1,8 +1,9 @@
 
+from urllib.error import HTTPError
+
 from Bio import Entrez, Medline
 
 from braintaxmap.config import dev_email
-from urllib.error import HTTPError
 from braintaxmap.tools import fuzz
 
 print('initial email:',Entrez.email,'initial max tries:',Entrez.max_tries)

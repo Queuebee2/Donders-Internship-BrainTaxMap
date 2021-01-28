@@ -107,7 +107,7 @@ def prev_method(sentence, doc, structures, verbs, functions, disorders, stats_di
             for hit in v:
                 stats_dict[f'{k} unused'][hit]+=1
 
-def new_method(pmid, sentence, doc, regex_dict, stats_dict, HIT_TUPLES, verbose=False):
+def new_method(pmid, sentence, regex_dict, stats_dict, HIT_TUPLES, verbose=False):
 
     hits=defaultdict(list)
     for regname, regexpattern in regex_dict.items():
@@ -125,9 +125,12 @@ def new_method(pmid, sentence, doc, regex_dict, stats_dict, HIT_TUPLES, verbose=
             for verb in hits['verbs']:
                 # hitstrings will be returned and immediately stored to a file
                 # todo: just keep them in class? because they are very few.
-                for disfunc_name in hits['disorders'] + hits['functions']:
-                    HIT_TUPLES.append((pmid,struct,verb,disfunc_name))
-                    if verbose: print('found tuple.. ', (pmid,struct,verb,disfunc_name))
+                for disorder_name in hits['disorders']:
+                    HIT_TUPLES['disorders'].append((pmid,struct,verb,disorder_name))
+                    if verbose: print('found tuple.. ', (pmid,struct,verb,disorder_name))
+                for func_name in  hits['functions']:
+                    HIT_TUPLES['functions'].append((pmid,struct,verb,func_name))
+                    if verbose: print('found tuple.. ', (pmid,struct,verb,func_name))
 
         # keep track of items we found
         for k, verb in hits.items():
