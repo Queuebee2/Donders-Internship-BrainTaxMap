@@ -380,4 +380,4 @@ def programrunner(PROGRAMS):
 
 if __name__ == '__main__':
     print(f'running from braintaxmap.tools.py as __main__')
-    count_hits()
+    # count_hits()

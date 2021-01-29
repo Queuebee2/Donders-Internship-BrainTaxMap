@@ -1,31 +1,18 @@
 
-import collections
 import gzip
-import logging
 import os
-import pickle
 import re
 import shutil
 import sys
-import time
-import traceback
 from collections import Counter, defaultdict
-from urllib.error import HTTPError
 
-import dotenv
 import nltk
-import spacy
-import textacy
-from Bio import Entrez, Medline
+from Bio import Medline
 
 import bulkanalyser as ba
 import bulkfilters as bf
-from braintaxmap.config import dev_email
-from braintaxmap.tools import (dsm5parse, load_verbs, read_excluded,
-                               read_included, readicd11simpleTabulation,
-                               timethisfunc_hms, timethisfunc_dhms)
-from bulkconstants import (BRAIN_FUNCTIONS, BRAIN_STRUCTURES, DATA_DIR,
-                           MEDLINE_RESULTS_FILE, STATS_OUT_DIR)
+from braintaxmap.tools import timethisfunc_dhms
+from bulkconstants import DATA_DIR, MEDLINE_RESULTS_FILE, STATS_OUT_DIR
 
 
 def _medlineResultFhandle():
@@ -47,11 +34,12 @@ def read_pmids_stored():
 
 
 def _read_amt_stored():
+    print('Checking currently stored articles....', end='')
     records = stored_records()
     c = 0
     for r in records:
         c += 1
-
+    print(f' there are {c} articles')
     return c
 
 
@@ -59,34 +47,42 @@ class MedlineAnalyser(object):
     threshold = 1  # min amt of occurences for stats (unsused)
     verbosity = 4  # 4 is max, 0 should be off
     print_interval = 5000
+    print_interval_in_percents = True
+    print_interval_percent = 0.33
+    print_interval_percent_margin =0.05
+
+    def _setup_nlp(self):
+        # python -m spacy download en_core_web_lg 750Mb
+        self.nlp = None  # spacy.load("en_core_web_lg")
+        print('NLP disabled' if self.nlp is None else 'NLP enabled')
 
     def _setup_lists(self):
-
-        # python -m spacy download en_core_web_lg 750Mb
-        self.nlp = None # spacy.load("en_core_web_lg")
-        print('NLP disabled' if self.nlp is None else 'NLP enabled')
+        print('_setup_lists')
+        self.DISORDERS = set()
+        self.VERBS = set()
+        self.BRAIN_FUNCTIONS = set()
+        self.BRAIN_STRUCTURES = set()
         # custom set of verbs
 
-        self.verbs_excluded = read_excluded()
-        self.verbs_included = read_included()
-        self.verbs = load_verbs(os.path.join(
-            DATA_DIR, '1000-verbs-set.txt')) - self.verbs_excluded | self.verbs_included
-        # brainstructures of mouse http://help.brain-map.org/display/api/Downloading+an+Ontology%27s+Structure+Graph
-        self.BRAIN_STRUCTURES = set(BRAIN_STRUCTURES)
+        # self.verbs_excluded = read_excluded()
+        # self.verbs_included = read_included()
+        # self.verbs = load_verbs(os.path.join(
+        #     DATA_DIR, '1000-verbs-set.txt')) - self.verbs_excluded | self.verbs_included
+        # # brainstructures of mouse http://help.brain-map.org/display/api/Downloading+an+Ontology%27s+Structure+Graph
+        # self.BRAIN_STRUCTURES = set(BRAIN_STRUCTURES)
 
-        # https://brainmap.org/taxonomy/behaviors.html
-        # (to be expanded, also look for 'disorders')
-        self.BRAIN_FUNCTIONS = set(BRAIN_FUNCTIONS)
+        # # https://brainmap.org/taxonomy/behaviors.html
+        # # (to be expanded, also look for 'disorders')
+        # self.BRAIN_FUNCTIONS = set(BRAIN_FUNCTIONS)
 
-        # https://www.psychiatry.org/File%20Library/Psychiatrists/Practice/DSM/APA_DSM-5-Contents.pdf
-        self.DISORDERS_DSM5 = dsm5parse()
-        # icd11 https://icd.who.int/en
-        self.DISORDERS_ICD11 = readicd11simpleTabulation()
+        # # https://www.psychiatry.org/File%20Library/Psychiatrists/Practice/DSM/APA_DSM-5-Contents.pdf
+        # self.DISORDERS_DSM5 = dsm5parse()
+        # # icd11 https://icd.who.int/en
+        # self.DISORDERS_ICD11 = readicd11simpleTabulation()
 
         self.mesh_include_list = ['Rats', 'Rodent', 'Mice', 'Muridae']
         self.mesh_exclude_list = ['Humans']
         # 'Brain', 'Amygdala', 'Depression' etc
-        self.relevant_terms = [set(BRAIN_FUNCTIONS), set(BRAIN_STRUCTURES)]
 
     def __init__(self):
         self._startup()
@@ -100,7 +96,7 @@ class MedlineAnalyser(object):
         self.initial_stats = {
             "records_stored": _read_amt_stored(),
             "print interval": self.print_interval,
-            "verbosity level": self.verbosity,      
+            "verbosity level": self.verbosity,
             # "Medline_file_size":os.path.getsize(MEDLINE_RESULTS_FILE)
         }
 
@@ -110,16 +106,32 @@ class MedlineAnalyser(object):
             print(f'{k}:{v}')
         print(28*'-')
 
+    def _read_lists_from_files(self):
+        
+        for listobj, listname in [
+            (self.DISORDERS, 'disorders'),
+            (self.VERBS, 'verbs'),
+            (self.BRAIN_FUNCTIONS, 'functions'),
+            (self.BRAIN_FUNCTIONS, 'functional-hierarchy'),
+            (self.BRAIN_STRUCTURES, 'structures')
+        ]:
+            items = set()
+            filepath = os.path.join(DATA_DIR, 'lists', listname)
+            print(f'Reading..{filepath}')
+            with open(filepath, 'r', encoding="utf8") as fh:
+                for line in fh:
+                    items.add(line.strip().lower())
+            listobj.update(items)
+
     def _set_main_lists(self):
         self._setup_lists()
+        self._read_lists_from_files()
+
+        self.relevant_terms = [
+            set(self.BRAIN_FUNCTIONS), set(self.BRAIN_STRUCTURES)]
+
         self.HIT_TUPLES = defaultdict(list)
         self.HIT_TUPLES.update({k: list() for k in ['disorders', 'functions']})
-        self.DISORDERS = set()
-        self.DISORDERS.update(self.DISORDERS_DSM5)
-        for main_d, sub_d in self.DISORDERS_ICD11.items():
-            self.DISORDERS.update(sub_d)
-            self.DISORDERS.update({main_d})
-        print(f'Merged disorders into one set. Length: {len(self.DISORDERS)}')
 
     def _create_regex(self, name, list):
         items = sorted(list, key=len)
@@ -135,12 +147,13 @@ class MedlineAnalyser(object):
         self.REGEX_DICT = defaultdict(re.Pattern)
 
         self._create_regex('structures', self.BRAIN_STRUCTURES)
-        self._create_regex('verbs', self.verbs)
+        self._create_regex('verbs', self.VERBS)
         self._create_regex('functions', self.BRAIN_FUNCTIONS)
         self._create_regex('disorders', self.DISORDERS)
 
     def _startup(self):
         self._set_initial_stats()
+        self._setup_nlp()
         self._set_main_lists()
         self._set_regexes()
         self._refresh_output()
@@ -179,7 +192,10 @@ class MedlineAnalyser(object):
 
     @ property
     def print_allowed_by_interval(self):
+        if self.print_interval_in_percents:
+            return 0<= self.global_stats['records analysed'] %  self.print_interval_percent < self.print_interval_percent_margin
         return self.global_stats['records analysed'] % self.print_interval == 0
+        
 
     @ property
     def percentage_done(self):
@@ -193,6 +209,8 @@ class MedlineAnalyser(object):
             print(
                 f"PMID:{record['PMID']:>10} ({self.percentage_done:>5.2f}%) filtering..", end='')
         if self._ApplyFiltersOnRecord(record):
+            if self.print_allowed_by_interval:
+                print()
             return
 
         if self.verbosity > 3 and self.print_allowed_by_interval:
@@ -207,7 +225,7 @@ class MedlineAnalyser(object):
         record_filters = [
             bf.NoAbstract(record, 1),
             bf.HasRelevantMeshterms(
-                record, 1, self.mesh_include_list, self.mesh_exclude_list),
+                record, 0, self.mesh_include_list, self.mesh_exclude_list),
 
             # relevant abstract currently disabled in bulkfilters.py -> always returns True
             bf.RelevantAbstract(
@@ -284,27 +302,34 @@ class MedlineAnalyser(object):
             fh.write(f'{hit}\n')
 
     def _output_hitstrings(self):
-        
+        print("Writing stats for 'hits-strings' ")
         all_occurences = Counter()
+
         for key, tuples in self.HIT_TUPLES.items():
-            
+
             occurrences_small = Counter()
-            with open(os.path.join(STATS_OUT_DIR, f'all hits {key}.txt'), 'a+') as fh:
-                    for pmid, struct, verb, disfunc_name in tuples:
-                        fh.write(
-                            f'{pmid};;; {struct};;; {verb};;; {disfunc_name}\n')
-                        
-                        counter_key = (s.lower() for s in [struct, verb, disfunc_name])
-                        occurrences_small[counter_key]+=1
-                        all_occurences[counter_key]+=1
+            path=os.path.join(STATS_OUT_DIR, f'all hits {key}.txt')
+            print(f'Writing {len(tuples)} tuples about {key} to {path}')
+            with open(path, 'w+') as fh:
+                for pmid, struct, verb, disfunc_name in tuples:
+                    fh.write(
+                        f'{pmid};;; {struct};;; {verb};;; {disfunc_name}\n')
 
-            with open(os.path.join(STATS_OUT_DIR, f'hits {key}.txt'), 'a+') as fh:
-                for (s,v,f), count in occurrences_small.most_common():
-                    fh.write(f'{s}\t{v}\t{f}\t{count}')
+                    counter_key = (struct, verb, disfunc_name) # s.lower() in bulkanalyser.
+                    occurrences_small[counter_key] += 1
+                    all_occurences[counter_key] += 1
 
-        with open(os.path.join(STATS_OUT_DIR, f'hits all-counts.txt'), 'a+') as fh:
-            for (s,v,f), count in all_occurences.most_common():
-                fh.write(f'{s}\t{v}\t{f}\t{count}')
+            path=os.path.join(STATS_OUT_DIR, f'hits {key}.txt')
+            print(f'Writing some {sum(occurrences_small.values())} occurences to {path}')
+            with open(path, 'w+') as fh:
+                for (s, v, f), count in occurrences_small.most_common():
+                    fh.write(f'{s}\t{v}\t{f}\t{count}\n')
+        
+        path=os.path.join(STATS_OUT_DIR, f'hits all-counts.txt')
+        print(f'Writing all {sum(all_occurences.values())} occurences to {path}')
+        with open(path, 'w+') as fh:
+            for (s, v, f), count in all_occurences.most_common():
+                fh.write(f'{s}\t{v}\t{f}\t{count}\n')
 
     def output_stats(self):
         print('outputting stats . . .')
@@ -323,7 +348,7 @@ class MedlineAnalyser(object):
         total_excluded_string = f"## records excluded for this data: {total_excluded}"
         print(stats_title_string)
         print(total_records_string)
-        with open(os.path.join(STATS_OUT_DIR, f'Exclude reasons counts'), 'w+') as fh:
+        with open(os.path.join(STATS_OUT_DIR, f'Exclude reasons counts.txt'), 'w+') as fh:
             fh.write(f"{stats_title_string}\n\n")
             fh.write(f"{total_records_string}\n")
             fh.write(f"{total_excluded_string}\n\n")
@@ -331,7 +356,7 @@ class MedlineAnalyser(object):
             for reason, count in self.excluded_by_counts.items():
                 fh.write(f'{reason}, {count}\n')
 
-                with open(os.path.join(STATS_OUT_DIR, f'excluded by {reason} pmids-list'), 'w+') as fh2:
+                with open(os.path.join(STATS_OUT_DIR, f'excluded by {reason} pmids-list.txt'), 'w+') as fh2:
                     for pmid in self.excluded_by_pmids[reason]:
                         fh2.write(f'{pmid}\n')
 
@@ -344,15 +369,16 @@ class MedlineAnalyser(object):
     def prepare_refactor(self):
         """Since all lists are available here, output them all to files
         to be used after refactoring"""
+        print('Not the time to refactor things now, bye')
+        quit()
         self._prep_refactor_list('structures', self.BRAIN_STRUCTURES)
-        self._prep_refactor_list('verbs', self.verbs)
+        self._prep_refactor_list('verbs', self.VERBS)
         self._prep_refactor_list('functions', self.BRAIN_FUNCTIONS)
         self._prep_refactor_list('disorders', self.DISORDERS)
         self._prep_refactor_list('mesh_include', self.mesh_include_list)
         self._prep_refactor_list('mesh_exclude', self.mesh_exclude_list)
         self._prep_refactor_list('verbs_excluded', self.verbs_excluded)
         self._prep_refactor_list('verbs_included', self.verbs_included)
-
 
     def _output_histograms(self):
         for name, counter in self.histogram_dicts.items():
@@ -373,6 +399,4 @@ class MedlineAnalyser(object):
 if __name__ == '__main__':
     m = MedlineAnalyser()
 
-    m.prepare_refactor()
-    print('reminder: disabled run at bottom of file ')
-    # m.run()
+    m.run()
