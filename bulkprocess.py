@@ -173,6 +173,27 @@ class MedlineAnalyser(object):
         self.finished = True
         print('done')
 
+    def write_used_pmids_in_hindsight(self, amt):
+
+        records = stored_records()
+        logger.warn
+        logger.info("Writing stored pmids to one file")
+        logger.info("(THIS TAKES VERY LONG ~15mins WITH MILLIONS OF RECORDS IN GZIP)")
+        with open(os.path.join(DATA_DIR,'used-for-internship', 'used-pmids'), 'w+') as fh:
+            c=0
+            logger_step = (amt//100)
+            while c <= amt:
+                record = next(records)
+                fh.write(record['PMID'])
+                c+=1
+                if c % logger_step == 0:
+                    logger.info(f"wrote {c} out of {amt} pmids")
+                
+        logger.info("Done writing used pmids in hindsight")
+            
+
+
+
     def write_current_lists_in_use(self):
         logger.info("Saving current lists (post-pruning)")
         lists = [
@@ -426,5 +447,7 @@ if __name__ == '__main__':
     print("DISCLAIMER: THIS TOOL IS NOT (YET) DESGINED FOR CLI USAGE. RUN FROM IDE AND SET VALUES MANUALLY")
     m = MedlineAnalyser()
 
-    m.write_current_lists_in_use()
+    # m.write_current_lists_in_use() # save lists in use
+    m.write_used_pmids_in_hindsight(3550777)
+    
     # m.run()
