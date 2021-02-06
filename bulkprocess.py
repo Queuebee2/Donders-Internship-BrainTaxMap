@@ -1,5 +1,6 @@
 
 import gzip
+import logging
 import os
 import re
 import shutil
@@ -13,6 +14,13 @@ import bulkanalyser as ba
 import bulkfilters as bf
 from braintaxmap.tools import timethisfunc_dhms
 from bulkconstants import DATA_DIR, MEDLINE_RESULTS_FILE, STATS_OUT_DIR
+
+logging.basicConfig(level=logging.INFO,
+                    format="%(asctime)s: %(message)s",
+                    datefmt="%H:%M:%S")
+logger = logging.getLogger(__name__)
+
+
 
 
 def _medlineResultFhandle():
@@ -165,6 +173,22 @@ class MedlineAnalyser(object):
         self.finished = True
         print('done')
 
+    def write_current_lists_in_use(self):
+        logger.info("Saving current lists (post-pruning)")
+        lists = [
+            ('structures', self.BRAIN_STRUCTURES),
+            ('verbs', self.VERBS),
+            ('functions', self.BRAIN_FUNCTIONS),
+            ('disorders', self.DISORDERS)
+        ]
+        for lstname, lst in lists:
+            with open(os.path.join(DATA_DIR,'used-for-internship', lstname), 'w+') as fh:
+                c=0
+                for item in lst:
+                    fh.write(f'{item}\n')
+                    c+=1
+            logger.info(f"{lstname}: {c} items")
+
     @ timethisfunc_dhms
     def run(self):
         try:
@@ -242,7 +266,9 @@ class MedlineAnalyser(object):
             return False
 
     def _count_exclude_by(self, reasons, pmid=None):
-        """TODO: see if +=pmid is viable (memorywise)"""
+        """~TODO~: see if +=pmid is viable (memorywise)
+        update: it runs on 32Gb RAM system .__.
+        """
         for reason in reasons:
             self.excluded_by_counts[reason] += 1
             self.excluded_by_pmids[reason] += [pmid]
@@ -397,6 +423,8 @@ class MedlineAnalyser(object):
 
 
 if __name__ == '__main__':
+    print("DISCLAIMER: THIS TOOL IS NOT (YET) DESGINED FOR CLI USAGE. RUN FROM IDE AND SET VALUES MANUALLY")
     m = MedlineAnalyser()
 
-    m.run()
+    m.write_current_lists_in_use()
+    # m.run()
