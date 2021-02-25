@@ -1,0 +1,619 @@
+core	schizophrenia	598
+core	dementia	545
+dorsolateral	schizophrenia	321
+medial	schizophrenia	234
+thalamus	schizophrenia	192
+ventral	schizophrenia	187
+medial	dementia	114
+intermediate	schizophrenia	109
+striatum	schizophrenia	104
+cerebellum	schizophrenia	93
+dorsal	schizophrenia	92
+corpus callosum	schizophrenia	83
+intermediate	dementia	67
+cerebral cortex	dementia	67
+cerebral cortex	schizophrenia	58
+core	delirium	57
+core	autism spectrum disorder	51
+hypothalamus	narcolepsy	50
+nucleus accumbens	schizophrenia	50
+core	nicotine dependence	49
+hippocampal formation	schizophrenia	49
+nose	dementia	45
+substantia nigra	dementia	40
+core	depressive disorders	33
+thalamus	dementia	32
+ca1	dementia	28
+layer 3	schizophrenia	27
+core	panic disorder	26
+core	attention deficit hyperactivity disorder	26
+corpus callosum	dementia	26
+core	personality disorder	25
+midbrain	schizophrenia	23
+hippocampal formation	dementia	23
+core	frontotemporal dementia	22
+nose	schizophrenia	22
+core	anorexia nervosa	22
+ca1	schizophrenia	22
+core	alcohol dependence	21
+core	obsessive-compulsive disorder	21
+striatum	dementia	21
+ca2	schizophrenia	19
+core	mood disorders	19
+dentate gyrus	schizophrenia	18
+cerebellum	dementia	17
+lateral ventricle	schizophrenia	17
+brain stem	dementia	17
+ca3	schizophrenia	17
+cingulum bundle	schizophrenia	16
+thalamus	obsessive-compulsive disorder	15
+medial	obsessive-compulsive disorder	15
+third ventricle	schizophrenia	14
+ca2	dementia	14
+medial	mood disorders	13
+nose	delirium	13
+dorsomedial	schizophrenia	13
+medial	pica	13
+dorsal	dementia	12
+intermediate	alcohol dependence	12
+core	bulimia nervosa	12
+caudal	schizophrenia	12
+medial	frontotemporal dementia	11
+intermediate	delirium	11
+trunk	pica	11
+caudal	pica	11
+rostral	schizophrenia	11
+corpus callosum	intellectual disability	10
+core	neurodevelopmental disorders	10
+cranial nerves	pica	10
+core	nicotine withdrawal	10
+globus pallidus	schizophrenia	10
+nucleus accumbens	obsessive-compulsive disorder	9
+thalamus	mood disorders	9
+dorsal	panic disorder	9
+core	hypochondriasis	9
+layer 2	schizophrenia	9
+internal capsule	obsessive-compulsive disorder	9
+medulla	pica	9
+mouth	dementia	9
+cerebrum	dementia	9
+internal capsule	schizophrenia	9
+hypothalamus	dementia	8
+mouth	schizophrenia	8
+hippocampal region	schizophrenia	8
+hypothalamus	mood disorders	8
+fiber tracts	schizophrenia	8
+ventral	dementia	8
+pons	schizophrenia	8
+subiculum	schizophrenia	8
+medial	narcolepsy	8
+hypothalamus	anorexia nervosa	8
+substantia nigra	schizophrenia	8
+dorsal	mood disorders	8
+substantia innominata	dementia	8
+hypothalamus	schizophrenia	8
+hippocampal region	dementia	8
+core	pica	8
+subthalamic nucleus	impulse control disorders	7
+ventral	obsessive-compulsive disorder	7
+intermediate	mood disorders	7
+vagus nerve	mood disorders	7
+core	intellectual disability	7
+cerebral cortex	frontotemporal dementia	7
+thalamus	delirium	7
+cerebellar cortex	schizophrenia	7
+cerebellum	pica	7
+dorsolateral	mood disorders	7
+rostral	dementia	7
+dentate gyrus	dementia	7
+lower limb	dementia	7
+midbrain	dementia	7
+optic nerve	dementia	7
+cerebrum	schizophrenia	7
+intermediate	pica	7
+striatum	obsessive-compulsive disorder	7
+nose	depressive disorders	7
+core	narcolepsy	6
+core	social anxiety disorder	6
+substantia nigra	restless legs syndrome	6
+crossed	schizophrenia	6
+cortical subplate	schizophrenia	6
+splenium	schizophrenia	6
+intermediate	schizoaffective disorder	6
+intermediate	panic disorder	6
+brain stem	pica	6
+hypothalamus	cocaine withdrawal	6
+intermediate	frontotemporal dementia	6
+cerebellum	autism spectrum disorder	5
+frontal pole	schizophrenia	5
+corpus callosum	autism spectrum disorder	5
+mouth	autism spectrum disorder	5
+medial	alcohol dependence	5
+molecular layer	dementia	5
+core	catatonia	5
+striatum	mood disorders	5
+nucleus accumbens	alcohol dependence	5
+medial	panic disorder	5
+cerebellum	mood disorders	5
+ventral	nicotine withdrawal	5
+striatum	attention deficit hyperactivity disorder	5
+mouth	delirium	5
+corpus callosum	attention deficit hyperactivity disorder	5
+layers 2	schizophrenia	5
+fourth ventricle	pica	5
+core	restless legs syndrome	5
+intermediate	anorexia nervosa	5
+core	agoraphobia	5
+trunk	schizophrenia	5
+layers 3	schizophrenia	5
+core	binge eating disorder	5
+ventral	alcohol dependence	5
+core	adjustment disorder	5
+core	cannabis dependence	5
+cerebellar peduncles	schizophrenia	5
+molecular layer	schizophrenia	5
+dorsolateral	obsessive-compulsive disorder	5
+globus pallidus	dementia	5
+mouth	obstructive sleep apnoea	5
+cerebellum	neurodevelopmental disorders	4
+dorsal	attention deficit hyperactivity disorder	4
+midbrain	panic disorder	4
+hypothalamus	depressive disorders	4
+retina	schizophrenia	4
+periaqueductal gray	opioid withdrawal	4
+nose	narcolepsy	4
+upper limb	dementia	4
+striatum	catatonia	4
+nucleus accumbens	opioid dependence	4
+mediodorsal nucleus of the thalamus	schizophrenia	4
+ventral	mood disorders	4
+splenium	dementia	4
+striatum	alcohol withdrawal	4
+core	rapid cycling	4
+trunk	anorexia nervosa	4
+mouth	nocturnal enuresis	4
+ca2	alcohol withdrawal	4
+dorsomedial	panic disorder	4
+core	dissociative disorders	4
+crossed	pica	4
+nose	personality disorder	4
+corpus callosum	obsessive-compulsive disorder	4
+intermediate	narcolepsy	4
+shell	nicotine withdrawal	4
+dorsal	pica	4
+midbrain	narcolepsy	4
+pallidum	dementia	4
+apical	pica	4
+cerebellum	alcohol dependence	4
+visual areas	schizophrenia	4
+crossed	dementia	4
+core	alcohol intoxication	4
+nucleus accumbens	cocaine withdrawal	4
+claustrum	dementia	4
+ventral	impulse control disorders	3
+substantia nigra	rem sleep behaviour disorder	3
+stria terminalis	obsessive-compulsive disorder	3
+ventral	depressive disorders	3
+dorsal	neurodevelopmental disorders	3
+nucleus accumbens	attention deficit hyperactivity disorder	3
+central nucleus	nicotine withdrawal	3
+thalamus	frontotemporal dementia	3
+dorsal	panic attack	3
+cerebellar cortex	dementia	3
+nucleus accumbens	mood disorders	3
+nose	mood disorders	3
+dorsolateral	panic disorder	3
+cerebral cortex	autism spectrum disorder	3
+optic nerve	intellectual disability	3
+brain stem	narcolepsy	3
+cranial nerves	dementia	3
+glossopharyngeal nerve	pica	3
+lower limb	delirium	3
+nose	bulimia nervosa	3
+core	obstructive sleep apnoea	3
+hypothalamus	bulimia nervosa	3
+nucleus accumbens	nicotine withdrawal	3
+lateral ventricle	dementia	3
+layer 5	schizophrenia	3
+cerebellum	attention deficit hyperactivity disorder	3
+dentate gyrus	depressive disorders	3
+dorsolateral	dementia	3
+nose	obstructive sleep apnoea	3
+mouth	pica	3
+cerebral cortex	narcolepsy	3
+choroid plexus	dementia	3
+isocortex	dementia	3
+hypoglossal nerve	pica	3
+suprachiasmatic nucleus	mood disorders	3
+subthalamic nucleus	restless legs syndrome	3
+core	oppositional defiant disorder	3
+ventral	pica	3
+midbrain	opioid withdrawal	3
+hypothalamus	nicotine withdrawal	3
+retina	dementia	3
+dorsal	alcohol dependence	3
+core	alcohol withdrawal	3
+ventral	nicotine dependence	3
+hippocampal formation	neurodevelopmental disorders	3
+dorsolateral	alcohol dependence	3
+facial nerve	pica	3
+ventral	anorexia nervosa	3
+corticospinal tract	schizophrenia	3
+corpus callosum	gambling disorder	2
+core	conversion disorder	2
+core	impulse control disorders	2
+medial	alcohol intoxication	2
+striatum	frontotemporal dementia	2
+third ventricle	dementia	2
+dorsal	obsessive-compulsive disorder	2
+ventral	frontotemporal dementia	2
+core	generalised anxiety disorder	2
+thalamus	nicotine dependence	2
+hypothalamus	catatonia	2
+corpus callosum	frontotemporal dementia	2
+ca1	autism spectrum disorder	2
+dorsal	depressive disorders	2
+striatum	depressive disorders	2
+dorsal	autism spectrum disorder	2
+laterodorsal tegmental nucleus	rem sleep behaviour disorder	2
+striatum	gambling disorder	2
+inferior colliculus	panic attack	2
+globus pallidus	obsessive-compulsive disorder	2
+suprachiasmatic nucleus	dementia	2
+core	schizoaffective disorder	2
+mouth	restless legs syndrome	2
+medial	cocaine withdrawal	2
+lateral habenula	schizophrenia	2
+subthalamic nucleus	obsessive-compulsive disorder	2
+ca3	dementia	2
+midbrain	mood disorders	2
+external capsule	schizophrenia	2
+medial	depressive disorders	2
+optic nerve	autism spectrum disorder	2
+medial	neurodevelopmental disorders	2
+medial	nicotine withdrawal	2
+mouth	panic disorder	2
+periventricular region	dementia	2
+intermediate	attention deficit hyperactivity disorder	2
+cerebral cortex	mood disorders	2
+central part	schizophrenia	2
+brain stem	schizophrenia	2
+core	body dysmorphic disorder	2
+apical	schizophrenia	2
+hypothalamus	opioid withdrawal	2
+olfactory tubercle	schizophrenia	2
+nose	alcohol dependence	2
+mouth	enuresis	2
+dentate gyrus	mood disorders	2
+layer 6	schizophrenia	2
+medial	bulimia nervosa	2
+core	panic attack	2
+medial	autism spectrum disorder	2
+caudal	dementia	2
+mouth	nicotine withdrawal	2
+nose	factitious disorders	2
+mouth	sleep terrors	2
+medial	schizotypal disorder	2
+core	enuresis	2
+nucleus accumbens	nicotine dependence	2
+thalamus	alcohol dependence	2
+shell	pica	2
+cerebellar nuclei	pica	2
+cerebellum	delirium	2
+cerebellar cortex	alcohol intoxication	2
+rostral	pica	2
+optic nerve	obstructive sleep apnoea	2
+lower limb	restless legs syndrome	2
+trunk	narcolepsy	2
+cerebellum	alcohol withdrawal	2
+core	opioid dependence	2
+mouth	nicotine dependence	2
+central part	dementia	2
+intermediate	depressive disorders	2
+cerebellum	alcohol intoxication	2
+striatum	social anxiety disorder	2
+striatum	cocaine dependence	2
+shell	schizophrenia	2
+nucleus accumbens	cocaine dependence	2
+medial	restless legs syndrome	2
+posterior part	schizophrenia	2
+cerebral cortex	attention deficit hyperactivity disorder	2
+nose	restless legs syndrome	2
+hindbrain	intellectual disability	2
+dorsolateral	rapid cycling	2
+suprachiasmatic nucleus	schizophrenia	2
+intermediate	obsessive-compulsive disorder	2
+midbrain	nicotine withdrawal	2
+pallidum	schizophrenia	2
+dorsal	alcohol withdrawal	1
+thalamus	personality disorder	1
+interpeduncular nucleus	nicotine dependence	1
+nose	intellectual disability	1
+dorsolateral	catatonia	1
+intermediate	neurocognitive disorders	1
+ca3	autism spectrum disorder	1
+medial	impulse control disorders	1
+midbrain	attention deficit hyperactivity disorder	1
+hindbrain	alcohol dependence	1
+superior colliculus	attention deficit hyperactivity disorder	1
+medial	alcohol withdrawal	1
+dorsolateral	cocaine dependence	1
+corticospinal tract	dementia	1
+core	dissociative amnesia	1
+caudal	obsessive-compulsive disorder	1
+corpus callosum	developmental language disorder	1
+field ca1	dementia	1
+fiber tracts	mood disorders	1
+facial nerve	delirium	1
+dorsomedial	alcohol dependence	1
+thalamus	dissociative amnesia	1
+cerebral cortex	alcohol dependence	1
+pedunculopontine nucleus	dementia	1
+brain stem	intellectual disability	1
+perforant path	dementia	1
+dorsolateral	gambling disorder	1
+nose	kleptomania	1
+nose	catatonia	1
+fiber tracts	autism spectrum disorder	1
+pallidum	rem sleep behaviour disorder	1
+core	gambling disorder	1
+subgranular zone	dementia	1
+hypothalamus	attention deficit hyperactivity disorder	1
+stria terminalis	mood disorders	1
+ventral	hypochondriasis	1
+pons	rem sleep behaviour disorder	1
+parabrachial nucleus	pica	1
+subthalamic nucleus	mood disorders	1
+medial	intellectual disability	1
+subthalamic nucleus	delirium	1
+central nucleus	panic attack	1
+thalamus	depressive disorders	1
+ventral	trichotillomania	1
+cerebrum	delirium	1
+central nucleus	alcohol withdrawal	1
+shell	cocaine withdrawal	1
+hypothalamus	panic disorder	1
+brain stem	catatonia	1
+substantia nigra	alcohol withdrawal	1
+corticospinal tract	frontotemporal dementia	1
+mouth	neurodevelopmental disorders	1
+auditory areas	schizophrenia	1
+thalamus	enuresis	1
+pons	enuresis	1
+cerebral cortex	caffeine withdrawal	1
+subthalamic nucleus	rem sleep behaviour disorder	1
+ventral	alcohol withdrawal	1
+cerebellum	catatonia	1
+nucleus accumbens	narcolepsy	1
+dentate gyrus	frontotemporal dementia	1
+stria terminalis	nicotine withdrawal	1
+dorsomedial	panic attack	1
+dorsal	cocaine withdrawal	1
+dorsolateral	alcohol intoxication	1
+dorsomedial	narcolepsy	1
+intermediate	autism spectrum disorder	1
+cerebellum	frontotemporal dementia	1
+locus ceruleus	dementia	1
+stria terminalis	anorexia nervosa	1
+nose	dissociative disorders	1
+dorsal	frontotemporal dementia	1
+striatum	narcolepsy	1
+ca2	alcohol dependence	1
+hypothalamus	obsessive-compulsive disorder	1
+claustrum	panic attack	1
+anterior commissure	schizophrenia	1
+intermediate	cocaine withdrawal	1
+reticular part	dementia	1
+ventral	enuresis	1
+hypothalamus	alcohol intoxication	1
+hippocampal formation	alcohol withdrawal	1
+cerebral cortex	obsessive-compulsive disorder	1
+mouth	personality disorder	1
+brain stem	alcohol intoxication	1
+dorsolateral	rem sleep behaviour disorder	1
+perforant path	schizophrenia	1
+stratum oriens	dementia	1
+locus ceruleus	opioid withdrawal	1
+dorsolateral	neurodevelopmental disorders	1
+caudal	opioid withdrawal	1
+hindbrain	panic disorder	1
+flocculus	pica	1
+ca2	mood disorders	1
+medial	rapid cycling	1
+ca1	alcohol intoxication	1
+dentate gyrus	alcohol withdrawal	1
+medial	cocaine dependence	1
+cerebellum	obsessive-compulsive disorder	1
+striatum	delirium	1
+ventral	cocaine withdrawal	1
+mouth	alcohol intoxication	1
+cerebellum	rapid cycling	1
+upper limb	factitious disorders	1
+brain stem	enuresis	1
+supraoptic nucleus	opioid withdrawal	1
+stratum oriens	schizophrenia	1
+ca2	opioid withdrawal	1
+posterior part	pica	1
+mammillary body	dementia	1
+caudoputamen	delirium	1
+presubiculum	dementia	1
+third ventricle	narcolepsy	1
+cerebral aqueduct	dementia	1
+laterodorsal tegmental nucleus	narcolepsy	1
+anterior part	dementia	1
+dorsolateral	narcolepsy	1
+intermediate	dysthymic disorder	1
+dorsal	narcolepsy	1
+retina	enuresis	1
+medial	intermittent explosive disorder	1
+subiculum	dementia	1
+nose	sleep-related breathing disorders	1
+edinger-westphal nucleus	alcohol intoxication	1
+olfactory areas	schizophrenia	1
+hippocampal region	panic disorder	1
+retina	pica	1
+mouth	sleep-related breathing disorders	1
+nucleus accumbens	depressive disorders	1
+layers 1	schizophrenia	1
+midbrain	obsessive-compulsive disorder	1
+ventral	delirium	1
+vagus nerve	depressive disorders	1
+locus ceruleus	panic disorder	1
+ca2	anorexia nervosa	1
+entorhinal area	dementia	1
+ca2	panic disorder	1
+core	nocturnal enuresis	1
+outer plexiform layer	dementia	1
+cerebral cortex	periodic limb movement disorder	1
+caudoputamen	dementia	1
+caudal	rapid cycling	1
+striatum	specific phobia	1
+tuberal nucleus	dementia	1
+striatum	alcohol intoxication	1
+pallidum	pica	1
+brain stem	anorexia nervosa	1
+hippocampal formation	depressive disorders	1
+intermediate	opioid dependence	1
+subthalamic nucleus	dementia	1
+hemispheric regions	schizophrenia	1
+intermediate	personality disorder	1
+rostral	narcolepsy	1
+midbrain	nicotine dependence	1
+medial	enuresis	1
+medial	dissociative amnesia	1
+core	post traumatic stress disorder	1
+apical	bulimia nervosa	1
+cerebral cortex	alcohol intoxication	1
+lateral part	opioid withdrawal	1
+dentate nucleus	schizophrenia	1
+glomerular layer	schizophrenia	1
+nose	anorexia nervosa	1
+stratum radiatum	schizophrenia	1
+dentate gyrus	nicotine withdrawal	1
+intermediate	oppositional defiant disorder	1
+lower limb	schizophrenia	1
+rostral	frontotemporal dementia	1
+globus pallidus	restless legs syndrome	1
+external capsule	dementia	1
+hindbrain	pica	1
+shell	dissociative disorders	1
+mouth	mood disorders	1
+medial	nicotine dependence	1
+nose	body dysmorphic disorder	1
+thalamus	panic disorder	1
+nose	frontotemporal dementia	1
+substantia nigra	frontotemporal dementia	1
+intermediate	adjustment disorder	1
+mouth	bulimia nervosa	1
+shell	frontotemporal dementia	1
+striatum	alcohol dependence	1
+nose	attention deficit hyperactivity disorder	1
+middle cerebellar peduncle	schizophrenia	1
+choroid plexus	pica	1
+dorsomedial	dementia	1
+inferior colliculus	alcohol withdrawal	1
+ca1	pica	1
+nose	dissociative identity disorder	1
+core	cocaine intoxication	1
+intermediate	nicotine withdrawal	1
+ca3	opioid dependence	1
+midbrain	panic attack	1
+stria terminalis	opioid withdrawal	1
+intermediate	binge eating disorder	1
+medial	agoraphobia	1
+ca2	opioid dependence	1
+intermediate	cocaine dependence	1
+cingulum bundle	obsessive-compulsive disorder	1
+vagus nerve	attention deficit hyperactivity disorder	1
+rostral	cocaine dependence	1
+nose	neurocognitive disorders	1
+mouth	generalised anxiety disorder	1
+dorsolateral	pica	1
+hypothalamus	alcohol dependence	1
+retina	intellectual disability	1
+nose	alcohol withdrawal	1
+primary visual area	schizophrenia	1
+globus pallidus	kleptomania	1
+corpus callosum	catatonia	1
+medial	catatonia	1
+primary somatosensory area	schizophrenia	1
+hypoglossal nucleus	dementia	1
+flocculus	dementia	1
+rostral	chronic insomnia	1
+ca2	cocaine withdrawal	1
+intermediate	nicotine dependence	1
+core	dissociative identity disorder	1
+nucleus accumbens	alcohol withdrawal	1
+anterior part	schizophrenia	1
+intermediate	enuresis	1
+medial	delirium	1
+retina	rapid cycling	1
+periaqueductal gray	panic disorder	1
+trunk	dementia	1
+facial nerve	dementia	1
+trunk	schizoaffective disorder	1
+stratum lucidum	schizophrenia	1
+crossed	anorexia nervosa	1
+facial nerve	schizophrenia	1
+ca2	autism spectrum disorder	1
+red nucleus	restless legs syndrome	1
+dorsal	nicotine dependence	1
+apical	agoraphobia	1
+core	cocaine withdrawal	1
+pyramidal layer	schizophrenia	1
+ca2	alcohol intoxication	1
+thalamus	restless legs syndrome	1
+dorsal	alcohol intoxication	1
+central nucleus	opioid dependence	1
+intermediate	social anxiety disorder	1
+nose	pica	1
+thalamus	anorexia nervosa	1
+pons	narcolepsy	1
+striatum	trichotillomania	1
+layer 1	schizophrenia	1
+dorsolateral	restless legs syndrome	1
+subiculum	frontotemporal dementia	1
+crossed	agoraphobia	1
+ca1	frontotemporal dementia	1
+dorsomedial	anorexia nervosa	1
+intermediate	cannabis dependence	1
+rostral	obstructive sleep apnoea	1
+magnocellular part	schizophrenia	1
+vagus nerve	rapid cycling	1
+pyramidal decussation	pica	1
+lower limb	narcolepsy	1
+ventral	cocaine dependence	1
+dorsal	opioid dependence	1
+interpeduncular nucleus	nicotine withdrawal	1
+anterior area	agoraphobia	1
+ca1	cocaine withdrawal	1
+choroid plexus	schizophrenia	1
+ventral	restless legs syndrome	1
+anterior cingulate area	schizophrenia	1
+posterior part	autism spectrum disorder	1
+commissural part	schizophrenia	1
+thalamus	narcolepsy	1
+intermediate	amnestic disorder	1
+ca3	attention deficit hyperactivity disorder	1
+medial	panic attack	1
+dorsolateral	depressive disorders	1
+nucleus of the solitary tract	schizophrenia	1
+internal capsule	dementia	1
+facial nerve	intellectual disability	1
+cerebral cortex	neurodevelopmental disorders	1
+corpus callosum	mood disorders	1
+striatum	impulse control disorders	1
+striatum	pica	1
+rostral	neurodevelopmental disorders	1
+thalamus	attention deficit hyperactivity disorder	1
+pons	restless legs syndrome	1
+subthalamic nucleus	depressive disorders	1
+suprachiasmatic nucleus	depressive disorders	1
+ventral	narcolepsy	1
+pons	dementia	1
+intermediate	intellectual disability	1
+mouth	intellectual disability	1
+mouth	depressive disorders	1
+substantia nigra	narcolepsy	1
+claustrum	schizophrenia	1
+core	prolonged grief disorder	1

@@ -1,0 +1,284 @@
+#--dementia--
+dementia	core	545
+dementia	medial	114
+dementia	intermediate	67
+dementia	cerebral cortex	67
+dementia	nose	45
+dementia	substantia nigra	40
+dementia	thalamus	32
+dementia	ca1	28
+dementia	corpus callosum	26
+dementia	hippocampal formation	23
+#--schizophrenia--
+schizophrenia	core	598
+schizophrenia	dorsolateral	321
+schizophrenia	medial	234
+schizophrenia	thalamus	192
+schizophrenia	ventral	187
+schizophrenia	intermediate	109
+schizophrenia	striatum	104
+schizophrenia	cerebellum	93
+schizophrenia	dorsal	92
+schizophrenia	corpus callosum	83
+#--obsessive-compulsive disorder--
+obsessive-compulsive disorder	core	21
+obsessive-compulsive disorder	thalamus	15
+obsessive-compulsive disorder	medial	15
+obsessive-compulsive disorder	nucleus accumbens	9
+obsessive-compulsive disorder	internal capsule	9
+obsessive-compulsive disorder	ventral	7
+obsessive-compulsive disorder	striatum	7
+obsessive-compulsive disorder	dorsolateral	5
+obsessive-compulsive disorder	corpus callosum	4
+obsessive-compulsive disorder	stria terminalis	3
+#--narcolepsy--
+narcolepsy	hypothalamus	50
+narcolepsy	medial	8
+narcolepsy	core	6
+narcolepsy	nose	4
+narcolepsy	intermediate	4
+narcolepsy	midbrain	4
+narcolepsy	brain stem	3
+narcolepsy	cerebral cortex	3
+narcolepsy	trunk	2
+#--mood disorders--
+mood disorders	core	19
+mood disorders	medial	13
+mood disorders	thalamus	9
+mood disorders	hypothalamus	8
+mood disorders	dorsal	8
+mood disorders	intermediate	7
+mood disorders	vagus nerve	7
+mood disorders	dorsolateral	7
+mood disorders	striatum	5
+mood disorders	cerebellum	5
+#--alcohol withdrawal--
+alcohol withdrawal	striatum	4
+alcohol withdrawal	ca2	4
+alcohol withdrawal	core	3
+alcohol withdrawal	cerebellum	2
+#--intellectual disability--
+intellectual disability	corpus callosum	10
+intellectual disability	core	7
+intellectual disability	optic nerve	3
+intellectual disability	hindbrain	2
+#--impulse control disorders--
+impulse control disorders	subthalamic nucleus	7
+impulse control disorders	ventral	3
+impulse control disorders	core	2
+#--autism spectrum disorder--
+autism spectrum disorder	core	51
+autism spectrum disorder	cerebellum	5
+autism spectrum disorder	corpus callosum	5
+autism spectrum disorder	mouth	5
+autism spectrum disorder	cerebral cortex	3
+autism spectrum disorder	ca1	2
+autism spectrum disorder	dorsal	2
+autism spectrum disorder	optic nerve	2
+autism spectrum disorder	medial	2
+#--gambling disorder--
+gambling disorder	corpus callosum	2
+gambling disorder	striatum	2
+#--frontotemporal dementia--
+frontotemporal dementia	core	22
+frontotemporal dementia	medial	11
+frontotemporal dementia	cerebral cortex	7
+frontotemporal dementia	intermediate	6
+frontotemporal dementia	thalamus	3
+frontotemporal dementia	striatum	2
+frontotemporal dementia	ventral	2
+frontotemporal dementia	corpus callosum	2
+#--personality disorder--
+personality disorder	core	25
+personality disorder	nose	4
+#--conversion disorder--
+conversion disorder	core	2
+#--panic disorder--
+panic disorder	core	26
+panic disorder	dorsal	9
+panic disorder	intermediate	6
+panic disorder	medial	5
+panic disorder	midbrain	4
+panic disorder	dorsomedial	4
+panic disorder	dorsolateral	3
+panic disorder	mouth	2
+#--nicotine dependence--
+nicotine dependence	core	49
+nicotine dependence	ventral	3
+nicotine dependence	thalamus	2
+nicotine dependence	nucleus accumbens	2
+nicotine dependence	mouth	2
+#--alcohol dependence--
+alcohol dependence	core	21
+alcohol dependence	intermediate	12
+alcohol dependence	medial	5
+alcohol dependence	nucleus accumbens	5
+alcohol dependence	ventral	5
+alcohol dependence	cerebellum	4
+alcohol dependence	dorsal	3
+alcohol dependence	dorsolateral	3
+alcohol dependence	nose	2
+alcohol dependence	thalamus	2
+#--catatonia--
+catatonia	core	5
+catatonia	striatum	4
+catatonia	hypothalamus	2
+#--alcohol intoxication--
+alcohol intoxication	core	4
+alcohol intoxication	medial	2
+alcohol intoxication	cerebellar cortex	2
+alcohol intoxication	cerebellum	2
+#--neurocognitive disorders--
+#--delirium--
+delirium	core	57
+delirium	nose	13
+delirium	intermediate	11
+delirium	thalamus	7
+delirium	mouth	5
+delirium	lower limb	3
+delirium	cerebellum	2
+#--neurodevelopmental disorders--
+neurodevelopmental disorders	core	10
+neurodevelopmental disorders	cerebellum	4
+neurodevelopmental disorders	dorsal	3
+neurodevelopmental disorders	hippocampal formation	3
+neurodevelopmental disorders	medial	2
+#--rem sleep behaviour disorder--
+rem sleep behaviour disorder	substantia nigra	3
+rem sleep behaviour disorder	laterodorsal tegmental nucleus	2
+#--anorexia nervosa--
+anorexia nervosa	core	22
+anorexia nervosa	hypothalamus	8
+anorexia nervosa	intermediate	5
+anorexia nervosa	trunk	4
+anorexia nervosa	ventral	3
+#--attention deficit hyperactivity disorder--
+attention deficit hyperactivity disorder	core	26
+attention deficit hyperactivity disorder	striatum	5
+attention deficit hyperactivity disorder	corpus callosum	5
+attention deficit hyperactivity disorder	dorsal	4
+attention deficit hyperactivity disorder	nucleus accumbens	3
+attention deficit hyperactivity disorder	cerebellum	3
+attention deficit hyperactivity disorder	intermediate	2
+attention deficit hyperactivity disorder	cerebral cortex	2
+#--depressive disorders--
+depressive disorders	core	33
+depressive disorders	nose	7
+depressive disorders	hypothalamus	4
+depressive disorders	ventral	3
+depressive disorders	dentate gyrus	3
+depressive disorders	dorsal	2
+depressive disorders	striatum	2
+depressive disorders	medial	2
+depressive disorders	intermediate	2
+#--cocaine dependence--
+cocaine dependence	striatum	2
+cocaine dependence	nucleus accumbens	2
+#--generalised anxiety disorder--
+generalised anxiety disorder	core	2
+#--dissociative amnesia--
+#--social anxiety disorder--
+social anxiety disorder	core	6
+social anxiety disorder	striatum	2
+#--developmental language disorder--
+#--pica--
+pica	medial	13
+pica	trunk	11
+pica	caudal	11
+pica	cranial nerves	10
+pica	medulla	9
+pica	core	8
+pica	cerebellum	7
+pica	intermediate	7
+pica	brain stem	6
+pica	fourth ventricle	5
+#--hypochondriasis--
+hypochondriasis	core	9
+#--kleptomania--
+#--opioid withdrawal--
+opioid withdrawal	periaqueductal gray	4
+opioid withdrawal	midbrain	3
+opioid withdrawal	hypothalamus	2
+#--restless legs syndrome--
+restless legs syndrome	substantia nigra	6
+restless legs syndrome	core	5
+restless legs syndrome	subthalamic nucleus	3
+restless legs syndrome	mouth	2
+restless legs syndrome	lower limb	2
+restless legs syndrome	medial	2
+restless legs syndrome	nose	2
+#--nicotine withdrawal--
+nicotine withdrawal	core	10
+nicotine withdrawal	ventral	5
+nicotine withdrawal	shell	4
+nicotine withdrawal	central nucleus	3
+nicotine withdrawal	nucleus accumbens	3
+nicotine withdrawal	hypothalamus	3
+nicotine withdrawal	medial	2
+nicotine withdrawal	mouth	2
+nicotine withdrawal	midbrain	2
+#--panic attack--
+panic attack	dorsal	3
+panic attack	inferior colliculus	2
+panic attack	core	2
+#--trichotillomania--
+#--cocaine withdrawal--
+cocaine withdrawal	hypothalamus	6
+cocaine withdrawal	nucleus accumbens	4
+cocaine withdrawal	medial	2
+#--schizoaffective disorder--
+schizoaffective disorder	intermediate	6
+schizoaffective disorder	core	2
+#--opioid dependence--
+opioid dependence	nucleus accumbens	4
+opioid dependence	core	2
+#--enuresis--
+enuresis	mouth	2
+enuresis	core	2
+#--caffeine withdrawal--
+#--dissociative disorders--
+dissociative disorders	core	4
+#--rapid cycling--
+rapid cycling	core	4
+rapid cycling	dorsolateral	2
+#--nocturnal enuresis--
+nocturnal enuresis	mouth	4
+#--agoraphobia--
+agoraphobia	core	5
+#--bulimia nervosa--
+bulimia nervosa	core	12
+bulimia nervosa	nose	3
+bulimia nervosa	hypothalamus	3
+bulimia nervosa	medial	2
+#--body dysmorphic disorder--
+body dysmorphic disorder	core	2
+#--binge eating disorder--
+binge eating disorder	core	5
+#--obstructive sleep apnoea--
+obstructive sleep apnoea	mouth	5
+obstructive sleep apnoea	core	3
+obstructive sleep apnoea	nose	3
+obstructive sleep apnoea	optic nerve	2
+#--factitious disorders--
+factitious disorders	nose	2
+#--adjustment disorder--
+adjustment disorder	core	5
+#--dysthymic disorder--
+#--intermittent explosive disorder--
+#--sleep-related breathing disorders--
+#--cannabis dependence--
+cannabis dependence	core	5
+#--sleep terrors--
+sleep terrors	mouth	2
+#--schizotypal disorder--
+schizotypal disorder	medial	2
+#--periodic limb movement disorder--
+#--specific phobia--
+#--post traumatic stress disorder--
+#--oppositional defiant disorder--
+oppositional defiant disorder	core	3
+#--dissociative identity disorder--
+#--cocaine intoxication--
+#--chronic insomnia--
+#--amnestic disorder--
+#--prolonged grief disorder--

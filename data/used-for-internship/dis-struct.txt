@@ -1,0 +1,619 @@
+schizophrenia	core	598
+dementia	core	545
+schizophrenia	dorsolateral	321
+schizophrenia	medial	234
+schizophrenia	thalamus	192
+schizophrenia	ventral	187
+dementia	medial	114
+schizophrenia	intermediate	109
+schizophrenia	striatum	104
+schizophrenia	cerebellum	93
+schizophrenia	dorsal	92
+schizophrenia	corpus callosum	83
+dementia	intermediate	67
+dementia	cerebral cortex	67
+schizophrenia	cerebral cortex	58
+delirium	core	57
+autism spectrum disorder	core	51
+narcolepsy	hypothalamus	50
+schizophrenia	nucleus accumbens	50
+nicotine dependence	core	49
+schizophrenia	hippocampal formation	49
+dementia	nose	45
+dementia	substantia nigra	40
+depressive disorders	core	33
+dementia	thalamus	32
+dementia	ca1	28
+schizophrenia	layer 3	27
+panic disorder	core	26
+attention deficit hyperactivity disorder	core	26
+dementia	corpus callosum	26
+personality disorder	core	25
+schizophrenia	midbrain	23
+dementia	hippocampal formation	23
+frontotemporal dementia	core	22
+schizophrenia	nose	22
+anorexia nervosa	core	22
+schizophrenia	ca1	22
+alcohol dependence	core	21
+obsessive-compulsive disorder	core	21
+dementia	striatum	21
+schizophrenia	ca2	19
+mood disorders	core	19
+schizophrenia	dentate gyrus	18
+dementia	cerebellum	17
+schizophrenia	lateral ventricle	17
+dementia	brain stem	17
+schizophrenia	ca3	17
+schizophrenia	cingulum bundle	16
+obsessive-compulsive disorder	thalamus	15
+obsessive-compulsive disorder	medial	15
+schizophrenia	third ventricle	14
+dementia	ca2	14
+mood disorders	medial	13
+delirium	nose	13
+schizophrenia	dorsomedial	13
+pica	medial	13
+dementia	dorsal	12
+alcohol dependence	intermediate	12
+bulimia nervosa	core	12
+schizophrenia	caudal	12
+frontotemporal dementia	medial	11
+delirium	intermediate	11
+pica	trunk	11
+pica	caudal	11
+schizophrenia	rostral	11
+intellectual disability	corpus callosum	10
+neurodevelopmental disorders	core	10
+pica	cranial nerves	10
+nicotine withdrawal	core	10
+schizophrenia	globus pallidus	10
+obsessive-compulsive disorder	nucleus accumbens	9
+mood disorders	thalamus	9
+panic disorder	dorsal	9
+hypochondriasis	core	9
+schizophrenia	layer 2	9
+obsessive-compulsive disorder	internal capsule	9
+pica	medulla	9
+dementia	mouth	9
+dementia	cerebrum	9
+schizophrenia	internal capsule	9
+dementia	hypothalamus	8
+schizophrenia	mouth	8
+schizophrenia	hippocampal region	8
+mood disorders	hypothalamus	8
+schizophrenia	fiber tracts	8
+dementia	ventral	8
+schizophrenia	pons	8
+schizophrenia	subiculum	8
+narcolepsy	medial	8
+anorexia nervosa	hypothalamus	8
+schizophrenia	substantia nigra	8
+mood disorders	dorsal	8
+dementia	substantia innominata	8
+schizophrenia	hypothalamus	8
+dementia	hippocampal region	8
+pica	core	8
+impulse control disorders	subthalamic nucleus	7
+obsessive-compulsive disorder	ventral	7
+mood disorders	intermediate	7
+mood disorders	vagus nerve	7
+intellectual disability	core	7
+frontotemporal dementia	cerebral cortex	7
+delirium	thalamus	7
+schizophrenia	cerebellar cortex	7
+pica	cerebellum	7
+mood disorders	dorsolateral	7
+dementia	rostral	7
+dementia	dentate gyrus	7
+dementia	lower limb	7
+dementia	midbrain	7
+dementia	optic nerve	7
+schizophrenia	cerebrum	7
+pica	intermediate	7
+obsessive-compulsive disorder	striatum	7
+depressive disorders	nose	7
+narcolepsy	core	6
+social anxiety disorder	core	6
+restless legs syndrome	substantia nigra	6
+schizophrenia	crossed	6
+schizophrenia	cortical subplate	6
+schizophrenia	splenium	6
+schizoaffective disorder	intermediate	6
+panic disorder	intermediate	6
+pica	brain stem	6
+cocaine withdrawal	hypothalamus	6
+frontotemporal dementia	intermediate	6
+autism spectrum disorder	cerebellum	5
+schizophrenia	frontal pole	5
+autism spectrum disorder	corpus callosum	5
+autism spectrum disorder	mouth	5
+alcohol dependence	medial	5
+dementia	molecular layer	5
+catatonia	core	5
+mood disorders	striatum	5
+alcohol dependence	nucleus accumbens	5
+panic disorder	medial	5
+mood disorders	cerebellum	5
+nicotine withdrawal	ventral	5
+attention deficit hyperactivity disorder	striatum	5
+delirium	mouth	5
+attention deficit hyperactivity disorder	corpus callosum	5
+schizophrenia	layers 2	5
+pica	fourth ventricle	5
+restless legs syndrome	core	5
+anorexia nervosa	intermediate	5
+agoraphobia	core	5
+schizophrenia	trunk	5
+schizophrenia	layers 3	5
+binge eating disorder	core	5
+alcohol dependence	ventral	5
+adjustment disorder	core	5
+cannabis dependence	core	5
+schizophrenia	cerebellar peduncles	5
+schizophrenia	molecular layer	5
+obsessive-compulsive disorder	dorsolateral	5
+dementia	globus pallidus	5
+obstructive sleep apnoea	mouth	5
+neurodevelopmental disorders	cerebellum	4
+attention deficit hyperactivity disorder	dorsal	4
+panic disorder	midbrain	4
+depressive disorders	hypothalamus	4
+schizophrenia	retina	4
+opioid withdrawal	periaqueductal gray	4
+narcolepsy	nose	4
+dementia	upper limb	4
+catatonia	striatum	4
+opioid dependence	nucleus accumbens	4
+schizophrenia	mediodorsal nucleus of the thalamus	4
+mood disorders	ventral	4
+dementia	splenium	4
+alcohol withdrawal	striatum	4
+rapid cycling	core	4
+anorexia nervosa	trunk	4
+nocturnal enuresis	mouth	4
+alcohol withdrawal	ca2	4
+panic disorder	dorsomedial	4
+dissociative disorders	core	4
+pica	crossed	4
+personality disorder	nose	4
+obsessive-compulsive disorder	corpus callosum	4
+narcolepsy	intermediate	4
+nicotine withdrawal	shell	4
+pica	dorsal	4
+narcolepsy	midbrain	4
+dementia	pallidum	4
+pica	apical	4
+alcohol dependence	cerebellum	4
+schizophrenia	visual areas	4
+dementia	crossed	4
+alcohol intoxication	core	4
+cocaine withdrawal	nucleus accumbens	4
+dementia	claustrum	4
+impulse control disorders	ventral	3
+rem sleep behaviour disorder	substantia nigra	3
+obsessive-compulsive disorder	stria terminalis	3
+depressive disorders	ventral	3
+neurodevelopmental disorders	dorsal	3
+attention deficit hyperactivity disorder	nucleus accumbens	3
+nicotine withdrawal	central nucleus	3
+frontotemporal dementia	thalamus	3
+panic attack	dorsal	3
+dementia	cerebellar cortex	3
+mood disorders	nucleus accumbens	3
+mood disorders	nose	3
+panic disorder	dorsolateral	3
+autism spectrum disorder	cerebral cortex	3
+intellectual disability	optic nerve	3
+narcolepsy	brain stem	3
+dementia	cranial nerves	3
+pica	glossopharyngeal nerve	3
+delirium	lower limb	3
+bulimia nervosa	nose	3
+obstructive sleep apnoea	core	3
+bulimia nervosa	hypothalamus	3
+nicotine withdrawal	nucleus accumbens	3
+dementia	lateral ventricle	3
+schizophrenia	layer 5	3
+attention deficit hyperactivity disorder	cerebellum	3
+depressive disorders	dentate gyrus	3
+dementia	dorsolateral	3
+obstructive sleep apnoea	nose	3
+pica	mouth	3
+narcolepsy	cerebral cortex	3
+dementia	choroid plexus	3
+dementia	isocortex	3
+pica	hypoglossal nerve	3
+mood disorders	suprachiasmatic nucleus	3
+restless legs syndrome	subthalamic nucleus	3
+oppositional defiant disorder	core	3
+pica	ventral	3
+opioid withdrawal	midbrain	3
+nicotine withdrawal	hypothalamus	3
+dementia	retina	3
+alcohol dependence	dorsal	3
+alcohol withdrawal	core	3
+nicotine dependence	ventral	3
+neurodevelopmental disorders	hippocampal formation	3
+alcohol dependence	dorsolateral	3
+pica	facial nerve	3
+anorexia nervosa	ventral	3
+schizophrenia	corticospinal tract	3
+gambling disorder	corpus callosum	2
+conversion disorder	core	2
+impulse control disorders	core	2
+alcohol intoxication	medial	2
+frontotemporal dementia	striatum	2
+dementia	third ventricle	2
+obsessive-compulsive disorder	dorsal	2
+frontotemporal dementia	ventral	2
+generalised anxiety disorder	core	2
+nicotine dependence	thalamus	2
+catatonia	hypothalamus	2
+frontotemporal dementia	corpus callosum	2
+autism spectrum disorder	ca1	2
+depressive disorders	dorsal	2
+depressive disorders	striatum	2
+autism spectrum disorder	dorsal	2
+rem sleep behaviour disorder	laterodorsal tegmental nucleus	2
+gambling disorder	striatum	2
+panic attack	inferior colliculus	2
+obsessive-compulsive disorder	globus pallidus	2
+dementia	suprachiasmatic nucleus	2
+schizoaffective disorder	core	2
+restless legs syndrome	mouth	2
+cocaine withdrawal	medial	2
+schizophrenia	lateral habenula	2
+obsessive-compulsive disorder	subthalamic nucleus	2
+dementia	ca3	2
+mood disorders	midbrain	2
+schizophrenia	external capsule	2
+depressive disorders	medial	2
+autism spectrum disorder	optic nerve	2
+neurodevelopmental disorders	medial	2
+nicotine withdrawal	medial	2
+panic disorder	mouth	2
+dementia	periventricular region	2
+attention deficit hyperactivity disorder	intermediate	2
+mood disorders	cerebral cortex	2
+schizophrenia	central part	2
+schizophrenia	brain stem	2
+body dysmorphic disorder	core	2
+schizophrenia	apical	2
+opioid withdrawal	hypothalamus	2
+schizophrenia	olfactory tubercle	2
+alcohol dependence	nose	2
+enuresis	mouth	2
+mood disorders	dentate gyrus	2
+schizophrenia	layer 6	2
+bulimia nervosa	medial	2
+panic attack	core	2
+autism spectrum disorder	medial	2
+dementia	caudal	2
+nicotine withdrawal	mouth	2
+factitious disorders	nose	2
+sleep terrors	mouth	2
+schizotypal disorder	medial	2
+enuresis	core	2
+nicotine dependence	nucleus accumbens	2
+alcohol dependence	thalamus	2
+pica	shell	2
+pica	cerebellar nuclei	2
+delirium	cerebellum	2
+alcohol intoxication	cerebellar cortex	2
+pica	rostral	2
+obstructive sleep apnoea	optic nerve	2
+restless legs syndrome	lower limb	2
+narcolepsy	trunk	2
+alcohol withdrawal	cerebellum	2
+opioid dependence	core	2
+nicotine dependence	mouth	2
+dementia	central part	2
+depressive disorders	intermediate	2
+alcohol intoxication	cerebellum	2
+social anxiety disorder	striatum	2
+cocaine dependence	striatum	2
+schizophrenia	shell	2
+cocaine dependence	nucleus accumbens	2
+restless legs syndrome	medial	2
+schizophrenia	posterior part	2
+attention deficit hyperactivity disorder	cerebral cortex	2
+restless legs syndrome	nose	2
+intellectual disability	hindbrain	2
+rapid cycling	dorsolateral	2
+schizophrenia	suprachiasmatic nucleus	2
+obsessive-compulsive disorder	intermediate	2
+nicotine withdrawal	midbrain	2
+schizophrenia	pallidum	2
+alcohol withdrawal	dorsal	1
+personality disorder	thalamus	1
+nicotine dependence	interpeduncular nucleus	1
+intellectual disability	nose	1
+catatonia	dorsolateral	1
+neurocognitive disorders	intermediate	1
+autism spectrum disorder	ca3	1
+impulse control disorders	medial	1
+attention deficit hyperactivity disorder	midbrain	1
+alcohol dependence	hindbrain	1
+attention deficit hyperactivity disorder	superior colliculus	1
+alcohol withdrawal	medial	1
+cocaine dependence	dorsolateral	1
+dementia	corticospinal tract	1
+dissociative amnesia	core	1
+obsessive-compulsive disorder	caudal	1
+developmental language disorder	corpus callosum	1
+dementia	field ca1	1
+mood disorders	fiber tracts	1
+delirium	facial nerve	1
+alcohol dependence	dorsomedial	1
+dissociative amnesia	thalamus	1
+alcohol dependence	cerebral cortex	1
+dementia	pedunculopontine nucleus	1
+intellectual disability	brain stem	1
+dementia	perforant path	1
+gambling disorder	dorsolateral	1
+kleptomania	nose	1
+catatonia	nose	1
+autism spectrum disorder	fiber tracts	1
+rem sleep behaviour disorder	pallidum	1
+gambling disorder	core	1
+dementia	subgranular zone	1
+attention deficit hyperactivity disorder	hypothalamus	1
+mood disorders	stria terminalis	1
+hypochondriasis	ventral	1
+rem sleep behaviour disorder	pons	1
+pica	parabrachial nucleus	1
+mood disorders	subthalamic nucleus	1
+intellectual disability	medial	1
+delirium	subthalamic nucleus	1
+panic attack	central nucleus	1
+depressive disorders	thalamus	1
+trichotillomania	ventral	1
+delirium	cerebrum	1
+alcohol withdrawal	central nucleus	1
+cocaine withdrawal	shell	1
+panic disorder	hypothalamus	1
+catatonia	brain stem	1
+alcohol withdrawal	substantia nigra	1
+frontotemporal dementia	corticospinal tract	1
+neurodevelopmental disorders	mouth	1
+schizophrenia	auditory areas	1
+enuresis	thalamus	1
+enuresis	pons	1
+caffeine withdrawal	cerebral cortex	1
+rem sleep behaviour disorder	subthalamic nucleus	1
+alcohol withdrawal	ventral	1
+catatonia	cerebellum	1
+narcolepsy	nucleus accumbens	1
+frontotemporal dementia	dentate gyrus	1
+nicotine withdrawal	stria terminalis	1
+panic attack	dorsomedial	1
+cocaine withdrawal	dorsal	1
+alcohol intoxication	dorsolateral	1
+narcolepsy	dorsomedial	1
+autism spectrum disorder	intermediate	1
+frontotemporal dementia	cerebellum	1
+dementia	locus ceruleus	1
+anorexia nervosa	stria terminalis	1
+dissociative disorders	nose	1
+frontotemporal dementia	dorsal	1
+narcolepsy	striatum	1
+alcohol dependence	ca2	1
+obsessive-compulsive disorder	hypothalamus	1
+panic attack	claustrum	1
+schizophrenia	anterior commissure	1
+cocaine withdrawal	intermediate	1
+dementia	reticular part	1
+enuresis	ventral	1
+alcohol intoxication	hypothalamus	1
+alcohol withdrawal	hippocampal formation	1
+obsessive-compulsive disorder	cerebral cortex	1
+personality disorder	mouth	1
+alcohol intoxication	brain stem	1
+rem sleep behaviour disorder	dorsolateral	1
+schizophrenia	perforant path	1
+dementia	stratum oriens	1
+opioid withdrawal	locus ceruleus	1
+neurodevelopmental disorders	dorsolateral	1
+opioid withdrawal	caudal	1
+panic disorder	hindbrain	1
+pica	flocculus	1
+mood disorders	ca2	1
+rapid cycling	medial	1
+alcohol intoxication	ca1	1
+alcohol withdrawal	dentate gyrus	1
+cocaine dependence	medial	1
+obsessive-compulsive disorder	cerebellum	1
+delirium	striatum	1
+cocaine withdrawal	ventral	1
+alcohol intoxication	mouth	1
+rapid cycling	cerebellum	1
+factitious disorders	upper limb	1
+enuresis	brain stem	1
+opioid withdrawal	supraoptic nucleus	1
+schizophrenia	stratum oriens	1
+opioid withdrawal	ca2	1
+pica	posterior part	1
+dementia	mammillary body	1
+delirium	caudoputamen	1
+dementia	presubiculum	1
+narcolepsy	third ventricle	1
+dementia	cerebral aqueduct	1
+narcolepsy	laterodorsal tegmental nucleus	1
+dementia	anterior part	1
+narcolepsy	dorsolateral	1
+dysthymic disorder	intermediate	1
+narcolepsy	dorsal	1
+enuresis	retina	1
+intermittent explosive disorder	medial	1
+dementia	subiculum	1
+sleep-related breathing disorders	nose	1
+alcohol intoxication	edinger-westphal nucleus	1
+schizophrenia	olfactory areas	1
+panic disorder	hippocampal region	1
+pica	retina	1
+sleep-related breathing disorders	mouth	1
+depressive disorders	nucleus accumbens	1
+schizophrenia	layers 1	1
+obsessive-compulsive disorder	midbrain	1
+delirium	ventral	1
+depressive disorders	vagus nerve	1
+panic disorder	locus ceruleus	1
+anorexia nervosa	ca2	1
+dementia	entorhinal area	1
+panic disorder	ca2	1
+nocturnal enuresis	core	1
+dementia	outer plexiform layer	1
+periodic limb movement disorder	cerebral cortex	1
+dementia	caudoputamen	1
+rapid cycling	caudal	1
+specific phobia	striatum	1
+dementia	tuberal nucleus	1
+alcohol intoxication	striatum	1
+pica	pallidum	1
+anorexia nervosa	brain stem	1
+depressive disorders	hippocampal formation	1
+opioid dependence	intermediate	1
+dementia	subthalamic nucleus	1
+schizophrenia	hemispheric regions	1
+personality disorder	intermediate	1
+narcolepsy	rostral	1
+nicotine dependence	midbrain	1
+enuresis	medial	1
+dissociative amnesia	medial	1
+post traumatic stress disorder	core	1
+bulimia nervosa	apical	1
+alcohol intoxication	cerebral cortex	1
+opioid withdrawal	lateral part	1
+schizophrenia	dentate nucleus	1
+schizophrenia	glomerular layer	1
+anorexia nervosa	nose	1
+schizophrenia	stratum radiatum	1
+nicotine withdrawal	dentate gyrus	1
+oppositional defiant disorder	intermediate	1
+schizophrenia	lower limb	1
+frontotemporal dementia	rostral	1
+restless legs syndrome	globus pallidus	1
+dementia	external capsule	1
+pica	hindbrain	1
+dissociative disorders	shell	1
+mood disorders	mouth	1
+nicotine dependence	medial	1
+body dysmorphic disorder	nose	1
+panic disorder	thalamus	1
+frontotemporal dementia	nose	1
+frontotemporal dementia	substantia nigra	1
+adjustment disorder	intermediate	1
+bulimia nervosa	mouth	1
+frontotemporal dementia	shell	1
+alcohol dependence	striatum	1
+attention deficit hyperactivity disorder	nose	1
+schizophrenia	middle cerebellar peduncle	1
+pica	choroid plexus	1
+dementia	dorsomedial	1
+alcohol withdrawal	inferior colliculus	1
+pica	ca1	1
+dissociative identity disorder	nose	1
+cocaine intoxication	core	1
+nicotine withdrawal	intermediate	1
+opioid dependence	ca3	1
+panic attack	midbrain	1
+opioid withdrawal	stria terminalis	1
+binge eating disorder	intermediate	1
+agoraphobia	medial	1
+opioid dependence	ca2	1
+cocaine dependence	intermediate	1
+obsessive-compulsive disorder	cingulum bundle	1
+attention deficit hyperactivity disorder	vagus nerve	1
+cocaine dependence	rostral	1
+neurocognitive disorders	nose	1
+generalised anxiety disorder	mouth	1
+pica	dorsolateral	1
+alcohol dependence	hypothalamus	1
+intellectual disability	retina	1
+alcohol withdrawal	nose	1
+schizophrenia	primary visual area	1
+kleptomania	globus pallidus	1
+catatonia	corpus callosum	1
+catatonia	medial	1
+schizophrenia	primary somatosensory area	1
+dementia	hypoglossal nucleus	1
+dementia	flocculus	1
+chronic insomnia	rostral	1
+cocaine withdrawal	ca2	1
+nicotine dependence	intermediate	1
+dissociative identity disorder	core	1
+alcohol withdrawal	nucleus accumbens	1
+schizophrenia	anterior part	1
+enuresis	intermediate	1
+delirium	medial	1
+rapid cycling	retina	1
+panic disorder	periaqueductal gray	1
+dementia	trunk	1
+dementia	facial nerve	1
+schizoaffective disorder	trunk	1
+schizophrenia	stratum lucidum	1
+anorexia nervosa	crossed	1
+schizophrenia	facial nerve	1
+autism spectrum disorder	ca2	1
+restless legs syndrome	red nucleus	1
+nicotine dependence	dorsal	1
+agoraphobia	apical	1
+cocaine withdrawal	core	1
+schizophrenia	pyramidal layer	1
+alcohol intoxication	ca2	1
+restless legs syndrome	thalamus	1
+alcohol intoxication	dorsal	1
+opioid dependence	central nucleus	1
+social anxiety disorder	intermediate	1
+pica	nose	1
+anorexia nervosa	thalamus	1
+narcolepsy	pons	1
+trichotillomania	striatum	1
+schizophrenia	layer 1	1
+restless legs syndrome	dorsolateral	1
+frontotemporal dementia	subiculum	1
+agoraphobia	crossed	1
+frontotemporal dementia	ca1	1
+anorexia nervosa	dorsomedial	1
+cannabis dependence	intermediate	1
+obstructive sleep apnoea	rostral	1
+schizophrenia	magnocellular part	1
+rapid cycling	vagus nerve	1
+pica	pyramidal decussation	1
+narcolepsy	lower limb	1
+cocaine dependence	ventral	1
+opioid dependence	dorsal	1
+nicotine withdrawal	interpeduncular nucleus	1
+agoraphobia	anterior area	1
+cocaine withdrawal	ca1	1
+schizophrenia	choroid plexus	1
+restless legs syndrome	ventral	1
+schizophrenia	anterior cingulate area	1
+autism spectrum disorder	posterior part	1
+schizophrenia	commissural part	1
+narcolepsy	thalamus	1
+amnestic disorder	intermediate	1
+attention deficit hyperactivity disorder	ca3	1
+panic attack	medial	1
+depressive disorders	dorsolateral	1
+schizophrenia	nucleus of the solitary tract	1
+dementia	internal capsule	1
+intellectual disability	facial nerve	1
+neurodevelopmental disorders	cerebral cortex	1
+mood disorders	corpus callosum	1
+impulse control disorders	striatum	1
+pica	striatum	1
+neurodevelopmental disorders	rostral	1
+attention deficit hyperactivity disorder	thalamus	1
+restless legs syndrome	pons	1
+depressive disorders	subthalamic nucleus	1
+depressive disorders	suprachiasmatic nucleus	1
+narcolepsy	ventral	1
+dementia	pons	1
+intellectual disability	intermediate	1
+intellectual disability	mouth	1
+depressive disorders	mouth	1
+narcolepsy	substantia nigra	1
+schizophrenia	claustrum	1
+prolonged grief disorder	core	1

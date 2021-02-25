@@ -39,15 +39,7 @@ retmax = 10**7
 EXTRA_QUERY_SLEEP_TIME = 2  # seconds
 CONTINUE_FROM_PREV = True
 
-QUERIES = [
-    'barrel cortex',
-    '(amygdala) AND (depression)',
-    '(barrel cortex) AND (depression)',
-    '(uncertainty) and (brain) and (behaviour)',
-    '(language) and (brain)',
-    '(EEG) and (behaviour)',
-    '(Brain) and (disease) and (behaviour)'
-] + BRAIN_STRUCTURES
+QUERIES = BRAIN_STRUCTURES
 
 with open(os.path.join(*[DATA_DIR, 'pruned_structures_list.txt']), 'r') as fh:
     for line in fh:

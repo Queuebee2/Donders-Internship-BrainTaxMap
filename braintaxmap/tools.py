@@ -10,10 +10,16 @@ import requests
 import zipfile
 from collections import defaultdict
 
+ICD_11_MAJOR_TOPIC_OF_INTEREST=[
+        "Mental, behavioural or neurodevelopmental disorders",
+        "Sleep-wake disorders"
+        ]
+
 FUZZING = True
 DATA_DIR = os.path.join(*[os.getcwd(),'data'])
 
-
+import logging
+logger = logging.getLogger(__name__+'.tools')
 
 def download_andunzipicd11(
     icd11link="https://icd.who.int/browse11/Downloads/Download?fileName=simpletabulation.zip",
@@ -28,13 +34,19 @@ def download_andunzipicd11(
     
     with zipfile.ZipFile(temploc, 'r') as zf:
         zf.extract('simpleTabulation.xlsx', path=finalloc)
-    
+
+
+def read_icd11_flat():
+    icd11 = readicd11simpleTabulation()
+    flat=set()
+    for major_topic, words in icd11.items():
+        flat.update(words)
+        
+    return {w.lower() for w in flat}
+
 
 def readicd11simpleTabulation(
-    items_of_interest=[
-        "Mental, behavioural or neurodevelopmental disorders",
-        "Sleep-wake disorders"
-        ],
+    major_topics_of_interest=ICD_11_MAJOR_TOPIC_OF_INTEREST,
     path=os.path.join(DATA_DIR,"lists-other\simpleTabulation.xlsx"),
     retry=False):
     try:
@@ -42,7 +54,9 @@ def readicd11simpleTabulation(
     except FileNotFoundError as e:
         if retry:
             raise e
+        logger.info('No icd11 simple tabulation found-- trying to donwload')
         download_andunzipicd11()
+
         return readicd11simpleTabulation(retry=True)
 
     read_state = 0
@@ -61,7 +75,7 @@ def readicd11simpleTabulation(
         else:
             if current:
                  print(f"final item from' {current} at row {i-1}")
-            if line in items_of_interest:         
+            if line in major_topics_of_interest:         
                 print(f"in icd-11 tabulation xslsx: At row {i}, found '{line}' ")
                 read_state=1
                 current = line
@@ -73,7 +87,43 @@ def readicd11simpleTabulation(
 
     return termsFound
            
+def read_icd11_lvls(
+    major_topics_of_interest=ICD_11_MAJOR_TOPIC_OF_INTEREST,
+    path=os.path.join(DATA_DIR,"lists-other\simpleTabulation.xlsx"),
+    retry=False):
 
+    df = pandas.read_excel(path)
+
+    read_state = 0
+    current = None
+    current_Main = None
+    termsFound = defaultdict()
+    
+    for i, l in enumerate(df['Title']):
+        line = l.strip()
+
+        if l.startswith('-') or l.startswith(' ') and read_state:
+            # strip nonalphanumeric characters from start of line
+            if current is not None:
+                level=1
+                while len(line) > 0 and not line[0].isalnum():
+                    line = line[2:]
+                    level+=1
+                termsFound[level].add(line)
+        else:
+            if current:
+                 print(f"final item from' {current} at row {i-1}")
+            if line in major_topics_of_interest:         
+                print(f"in icd-11 tabulation xslsx: At row {i}, found '{line}' ")
+                read_state=1
+                current = line
+ 
+            else:
+
+                read_state=0
+                current = None
+
+    return termsFound
 
 
 def readlistfile(filepath, lower=True, verbose=False):
@@ -108,8 +158,8 @@ def dsm5parse(filepath=os.path.join(*[DATA_DIR,'lists-other','DSM-5.txt']),verbo
     slashreg = re.compile(r'\S+/\S+')
 
     disorder_list = set()
-    def handle(line):
-
+    def handle(l):
+        line = l.lower()
         if "/" in line:
             items = line.split("/")
             special = slashreg.findall(line)[0]

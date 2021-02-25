@@ -1,10 +1,10 @@
 
 # check whether adding/subtracting verbs from the original list of verbs makes any difference.
-# python -m unittest tests.test_combined_lists 
+# python -m unittest tests.test_combining_regexes
 from os import read
 import unittest
 import re
-from braintaxmap.tools import read_excluded, read_included, load_verbs, readicd11simpleTabulation
+from braintaxmap.tools import read_excluded, read_included, load_verbs, read_icd11_lvl1
 from bulkconstants import BRAIN_STRUCTURES
 from sys import getsizeof
 import random
@@ -14,7 +14,7 @@ class TestCombinedRegex(unittest.TestCase):
     def test_combine_regexes1(self):
         # not really the way to use unittests I guess
         
-        disorder_hierarchy = readicd11simpleTabulation()
+        disorder_hierarchy = read_icd11_lvl1()
         disorders = set()
         for k, v in disorder_hierarchy.items():
             disorders.add(k)
@@ -25,7 +25,10 @@ class TestCombinedRegex(unittest.TestCase):
         
         struct_re = re.compile("|".join([rf'{word}\b' for word in BRAIN_STRUCTURES]), re.IGNORECASE)
         disorder_re = re.compile("|".join([rf'{word}\b' for word in disorders]), re.IGNORECASE)
-        verbs_re = re.compile("|".join([rf'{word}\b' for word in verbs]), re.IGNORECASE)
+        print(len(verbs))
+        vstring = "|".join([rf'{word}\b' for word in verbs])
+        verbs_re = re.compile(vstring, re.IGNORECASE)
+
        
         test_sentences = [
             f'{random.choice(list(BRAIN_STRUCTURES))} {random.choice(list(verbs))} {random.choice(list(disorders))}' for i in range(10)

@@ -10,7 +10,13 @@ load_dotenv(find_dotenv())
 
 API_KEY = os.getenv('NCBI_API_KEY')
 
-
+DISORDER_RESULT_FILENAMES = [
+        #'stats_disorders found.txt',
+        'all hits disorders.txt',
+         #'hits all-counts.txt',
+        #'stats_disorders unused.txt',
+        #'hits disorders.txt',
+        ]
 DISORDERS = set()
 VERBS = set()
 BRAIN_FUNCTIONS = set()

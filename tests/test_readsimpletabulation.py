@@ -7,7 +7,7 @@ import unittest
 # python -m unittest tests.test_readsimpletabulation 
 # use -b for supressing the prints from functions
 
-from braintaxmap.tools import readicd11simpleTabulation
+from braintaxmap.tools import read_icd11_lvl1
 
 class TestTabulationReadFunction(unittest.TestCase):
     def test_readxlsxfunction(self):
@@ -15,7 +15,7 @@ class TestTabulationReadFunction(unittest.TestCase):
         DATA_DIR = os.path.join(*[os.getcwd(),'data'])
         path = os.path.join(*[DATA_DIR,'lists-other','simpleTabulation.xlsx'])
 
-        terms_found_dict = readicd11simpleTabulation(path=path)
+        terms_found_dict = read_icd11_lvl1(path=path)
         self.assertIsInstance(terms_found_dict, dict)
 
        

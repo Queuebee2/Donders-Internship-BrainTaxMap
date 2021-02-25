@@ -1,0 +1,1821 @@
+schizophrenia	been	120
+schizophrenia	studies	120
+schizophrenia	ground	113
+schizophrenia	suggest	85
+schizophrenia	present	69
+schizophrenia	showed	49
+schizophrenia	found	45
+schizophrenia	used	45
+schizophrenia	compared	44
+autism spectrum disorder	order	39
+schizophrenia	using	39
+dementia	had	39
+schizophrenia	had	38
+schizophrenia	working	37
+schizophrenia	related	37
+dementia	related	37
+dementia	state	33
+schizophrenia	observed	31
+schizophrenia	order	31
+schizophrenia	reduced	30
+schizophrenia	ring	29
+schizophrenia	changes	28
+schizophrenia	increased	28
+dementia	showed	27
+dementia	scale	26
+dementia	compared	26
+dementia	type	26
+schizophrenia	led	26
+dementia	ground	26
+schizophrenia	measured	25
+schizophrenia	reported	25
+schizophrenia	indicate	25
+schizophrenia	considered	24
+schizophrenia	decreased	24
+mood disorders	orders	24
+schizophrenia	impaired	23
+dementia	used	23
+dementia	led	22
+dementia	mean	21
+schizophrenia	review	21
+schizophrenia	support	21
+schizophrenia	type	20
+dementia	using	20
+schizophrenia	matter	20
+schizophrenia	control	20
+schizophrenia	binding	20
+schizophrenia	controls	19
+schizophrenia	rent	19
+dementia	present	19
+schizophrenia	search	19
+schizophrenia	provide	19
+dementia	studies	19
+schizophrenia	set	19
+schizophrenia	suggests	19
+dementia	determine	19
+schizophrenia	thought	18
+schizophrenia	cause	18
+dementia	been	17
+schizophrenia	determine	17
+dementia	found	16
+schizophrenia	contrast	16
+schizophrenia	show	16
+obsessive-compulsive disorder	order	16
+schizophrenia	formed	16
+schizophrenia	including	15
+dementia	cut	15
+dementia	report	14
+dementia	measured	14
+schizophrenia	implicated	14
+attention deficit hyperactivity disorder	order	14
+schizophrenia	orders	14
+schizophrenia	measures	14
+schizophrenia	try	14
+dementia	rent	14
+schizophrenia	studied	14
+schizophrenia	proposed	13
+schizophrenia	finding	13
+schizophrenia	lies	12
+dementia	included	12
+schizophrenia	sample	12
+schizophrenia	explore	12
+schizophrenia	work	12
+dementia	matter	12
+panic disorder	order	12
+dementia	studied	12
+schizophrenia	suggested	12
+dementia	cause	11
+schizophrenia	stem	11
+schizophrenia	scale	11
+dementia	stem	11
+schizophrenia	contribute	10
+schizophrenia	use	10
+dementia	rains	10
+depressive disorders	orders	10
+dementia	set	10
+schizophrenia	matched	9
+dementia	changes	9
+dementia	observed	9
+schizophrenia	cross	9
+schizophrenia	conclude	9
+dementia	come	9
+schizophrenia	include	9
+personality disorder	order	9
+dementia	classified	9
+dementia	suggest	9
+schizophrenia	detected	9
+schizophrenia	mean	9
+schizophrenia	identify	8
+obsessive-compulsive disorder	studies	8
+dementia	change	8
+schizophrenia	propose	8
+dementia	controls	8
+dementia	formed	8
+schizophrenia	types	8
+obsessive-compulsive disorder	ground	8
+dementia	determined	8
+schizophrenia	tested	8
+dementia	increased	8
+dementia	test	8
+dementia	indicate	8
+schizophrenia	appears	8
+dementia	control	8
+dementia	identify	7
+schizophrenia	treated	7
+dementia	ring	7
+autism spectrum disorder	ground	7
+schizophrenia	produces	7
+schizophrenia	implicate	7
+dementia	measures	7
+schizophrenia	displayed	7
+dementia	use	7
+dementia	including	7
+schizophrenia	decrease	7
+schizophrenia	identified	7
+dementia	orders	7
+schizophrenia	appear	7
+narcolepsy	ground	7
+schizophrenia	understanding	7
+schizophrenia	expressed	7
+dementia	reduced	7
+schizophrenia	plays	7
+dementia	contrast	7
+schizophrenia	shed	7
+schizophrenia	test	7
+schizophrenia	shape	7
+schizophrenia	reflect	7
+dementia	nursing	7
+narcolepsy	had	7
+schizophrenia	received	6
+schizophrenia	come	6
+neurodevelopmental disorders	orders	6
+dementia	order	6
+delirium	showed	6
+dementia	include	6
+frontotemporal dementia	ground	6
+schizophrenia	indicated	6
+schizophrenia	obtained	6
+dementia	try	6
+schizophrenia	taken	6
+schizophrenia	described	6
+schizophrenia	rest	6
+schizophrenia	rains	6
+schizophrenia	known	6
+schizophrenia	increase	6
+dementia	proposed	6
+schizophrenia	copy	6
+schizophrenia	developed	6
+schizophrenia	view	6
+schizophrenia	do	6
+pica	found	6
+pica	led	6
+schizophrenia	state	6
+schizophrenia	determined	6
+nicotine dependence	mean	6
+dementia	point	6
+schizophrenia	produce	6
+schizophrenia	containing	6
+dementia	made	5
+mood disorders	ground	5
+dementia	search	5
+schizophrenia	stems	5
+schizophrenia	presents	5
+schizophrenia	reports	5
+schizophrenia	stress	5
+dementia	suggested	5
+mood disorders	been	5
+schizophrenia	seems	5
+schizophrenia	met	5
+dementia	sample	5
+dementia	mixed	5
+dementia	view	5
+schizophrenia	discussed	5
+schizophrenia	play	5
+depressive disorders	used	5
+schizophrenia	selected	5
+schizophrenia	induced	5
+schizophrenia	ask	5
+schizophrenia	done	5
+schizophrenia	provides	5
+dementia	appeared	5
+schizophrenia	supports	5
+dementia	seen	5
+delirium	had	5
+schizophrenia	compare	5
+obsessive-compulsive disorder	been	4
+schizophrenia	develop	4
+dementia	develop	4
+schizophrenia	act	4
+schizophrenia	point	4
+schizophrenia	damage	4
+obsessive-compulsive disorder	related	4
+rem sleep behaviour disorder	sleep	4
+schizophrenia	sight	4
+impulse control disorders	control	4
+nicotine dependence	found	4
+dementia	known	4
+schizophrenia	eat	4
+dementia	matched	4
+narcolepsy	caused	4
+dementia	adjusted	4
+dementia	controlling	4
+dementia	damage	4
+dementia	living	4
+schizophrenia	add	4
+dementia	work	4
+schizophrenia	remains	4
+schizophrenia	get	4
+dementia	shed	4
+delirium	using	4
+dementia	selected	4
+schizophrenia	describe	4
+schizophrenia	derived	4
+schizophrenia	seen	4
+panic attack	been	4
+dementia	following	4
+schizophrenia	searched	4
+schizophrenia	report	4
+panic disorder	ground	4
+dementia	act	4
+mood disorders	studies	4
+schizophrenia	relates	4
+dementia	increase	4
+nicotine dependence	test	4
+dementia	does	4
+schizophrenia	measure	4
+schizophrenia	samples	4
+schizophrenia	acts	4
+attention deficit hyperactivity disorder	used	4
+schizophrenia	recognized	4
+schizophrenia	relate	4
+dementia	indicated	4
+schizophrenia	concluded	4
+pica	related	4
+pica	had	4
+bulimia nervosa	rent	4
+dementia	modified	4
+obsessive-compulsive disorder	provide	4
+schizophrenia	sought	4
+dementia	setting	4
+dementia	did	4
+alcohol dependence	had	4
+schizophrenia	did	4
+dementia	met	4
+schizophrenia	signal	4
+bulimia nervosa	had	4
+dementia	points	4
+pica	present	4
+binge eating disorder	eating	4
+delirium	included	4
+cocaine withdrawal	present	4
+anorexia nervosa	ground	4
+restless legs syndrome	ground	4
+dementia	identified	4
+attention deficit hyperactivity disorder	ground	4
+dementia	being	4
+schizophrenia	increasing	4
+pica	report	4
+intellectual disability	had	3
+schizophrenia	induce	3
+schizophrenia	presented	3
+schizophrenia	extend	3
+dementia	stress	3
+narcolepsy	containing	3
+schizophrenia	lie	3
+dementia	shows	3
+schizophrenia	improved	3
+dementia	comes	3
+schizophrenia	growing	3
+autism spectrum disorder	determine	3
+obsessive-compulsive disorder	led	3
+nicotine dependence	related	3
+autism spectrum disorder	studies	3
+dementia	support	3
+schizophrenia	lead	3
+alcohol dependence	found	3
+dementia	divided	3
+depressive disorders	suggest	3
+schizophrenia	spread	3
+narcolepsy	sleep	3
+frontotemporal dementia	work	3
+dementia	considered	3
+nicotine withdrawal	studies	3
+obsessive-compulsive disorder	present	3
+dementia	causes	3
+dementia	described	3
+restless legs syndrome	studies	3
+dementia	decreased	3
+schizophrenia	lying	3
+dementia	learning	3
+dementia	developed	3
+schizophrenia	controlled	3
+dementia	induced	3
+schizophrenia	seem	3
+schizophrenia	differed	3
+schizophrenia	values	3
+autism spectrum disorder	present	3
+frontotemporal dementia	changes	3
+dementia	binding	3
+dementia	calculated	3
+mood disorders	including	3
+schizophrenia	light	3
+schizophrenia	does	3
+schizophrenia	scales	3
+delirium	including	3
+mood disorders	suggest	3
+schizophrenia	having	3
+schizophrenia	direct	3
+dementia	signal	3
+dementia	adjusting	3
+panic disorder	had	3
+bulimia nervosa	eating	3
+alcohol dependence	view	3
+schizophrenia	diminished	3
+schizophrenia	understand	3
+schizophrenia	being	3
+dementia	show	3
+delirium	used	3
+dementia	compare	3
+schizophrenia	developing	3
+dementia	detected	3
+dementia	reports	3
+dementia	conducted	3
+pica	plied	3
+dementia	consisted	3
+dementia	having	3
+obsessive-compulsive disorder	report	3
+anorexia nervosa	studies	3
+pica	stem	3
+schizophrenia	course	3
+narcolepsy	reduced	3
+dementia	went	3
+schizophrenia	promising	3
+mood disorders	driving	3
+schizophrenia	decreases	3
+schizophrenia	measuring	3
+dementia	appear	3
+anorexia nervosa	been	3
+schizophrenia	gain	3
+schizophrenia	value	3
+dementia	values	3
+dementia	cross	3
+nicotine dependence	quit	3
+dementia	free	3
+dementia	increasing	3
+schizophrenia	suffering	3
+schizophrenia	face	3
+delirium	test	3
+schizophrenia	driving	2
+mood disorders	following	2
+intellectual disability	delay	2
+intellectual disability	including	2
+schizophrenia	approach	2
+obsessive-compulsive disorder	showed	2
+anorexia nervosa	eating	2
+mood disorders	identified	2
+intellectual disability	report	2
+depressive disorders	control	2
+dementia	reflects	2
+obsessive-compulsive disorder	reports	2
+schizophrenia	connects	2
+panic disorder	reviews	2
+schizophrenia	optimized	2
+mood disorders	rent	2
+dementia	suggesting	2
+catatonia	been	2
+dementia	resting	2
+delirium	ache	2
+pica	studied	2
+alcohol dependence	shown	2
+impulse control disorders	been	2
+neurodevelopmental disorders	been	2
+schizophrenia	reviewed	2
+mood disorders	work	2
+delirium	changes	2
+schizophrenia	expressing	2
+opioid withdrawal	try	2
+schizophrenia	allow	2
+dementia	relates	2
+dementia	presented	2
+schizophrenia	converge	2
+frontotemporal dementia	present	2
+mood disorders	order	2
+dementia	follow	2
+mood disorders	stress	2
+dementia	sleep	2
+schizophrenia	existing	2
+delirium	points	2
+schizophrenia	speed	2
+pica	rent	2
+schizophrenia	mind	2
+schizophrenia	studying	2
+dementia	admitted	2
+narcolepsy	present	2
+frontotemporal dementia	sight	2
+schizophrenia	transfer	2
+depressive disorders	studies	2
+dementia	acts	2
+schizophrenia	enter	2
+schizophrenia	dance	2
+schizophrenia	forms	2
+obsessive-compulsive disorder	suggest	2
+dementia	regarded	2
+schizophrenia	remain	2
+alcohol dependence	been	2
+dementia	sit	2
+cocaine withdrawal	increased	2
+schizoaffective disorder	reported	2
+dementia	uses	2
+frontotemporal dementia	type	2
+schizophrenia	shared	2
+cocaine withdrawal	known	2
+intellectual disability	order	2
+schizophrenia	follows	2
+depressive disorders	support	2
+dementia	tested	2
+delirium	compared	2
+catatonia	induced	2
+schizophrenia	shown	2
+schizophrenia	occurring	2
+panic disorder	attacks	2
+schizophrenia	acting	2
+schizophrenia	drive	2
+dementia	need	2
+mood disorders	play	2
+panic disorder	increased	2
+schizophrenia	classified	2
+intellectual disability	include	2
+delirium	present	2
+schizophrenia	includes	2
+schizophrenia	implicating	2
+schizophrenia	resting	2
+frontotemporal dementia	order	2
+narcolepsy	using	2
+social anxiety disorder	order	2
+nicotine withdrawal	decreased	2
+dementia	measure	2
+alcohol dependence	induced	2
+schizophrenia	leading	2
+dementia	studying	2
+schizophrenia	viewed	2
+schizophrenia	stimulated	2
+obsessive-compulsive disorder	rent	2
+attention deficit hyperactivity disorder	present	2
+schizophrenia	tend	2
+schizophrenia	following	2
+dementia	conducting	2
+schizophrenia	improve	2
+schizophrenia	believed	2
+delirium	dry	2
+dementia	measuring	2
+schizophrenia	made	2
+schizophrenia	signals	2
+pica	verified	2
+nicotine dependence	using	2
+alcohol dependence	used	2
+nocturnal enuresis	sleep	2
+schizophrenia	water	2
+schizophrenia	discuss	2
+schizophrenia	corresponding	2
+obsessive-compulsive disorder	observed	2
+dementia	reviewed	2
+opioid withdrawal	present	2
+schizophrenia	free	2
+dementia	produces	2
+opioid withdrawal	increased	2
+panic disorder	changes	2
+schizophrenia	regarded	2
+schizophrenia	reviews	2
+hypochondriasis	compared	2
+pica	reported	2
+narcolepsy	get	2
+pica	changes	2
+dementia	occurring	2
+narcolepsy	been	2
+narcolepsy	cause	2
+schizophrenia	imply	2
+schizophrenia	suggesting	2
+dementia	describe	2
+pica	direct	2
+dementia	approach	2
+rapid cycling	cycling	2
+schizophrenia	collected	2
+dementia	applying	2
+factitious disorders	orders	2
+attention deficit hyperactivity disorder	had	2
+schizophrenia	nap	2
+opioid withdrawal	induced	2
+narcolepsy	studies	2
+pica	collected	2
+schizophrenia	wins	2
+mood disorders	indicate	2
+dementia	testing	2
+narcolepsy	support	2
+pica	arising	2
+sleep-related breathing disorders	sleep	2
+dementia	giving	2
+schizophrenia	acquired	2
+dementia	varied	2
+schizophrenia	arise	2
+depressive disorders	implicated	2
+schizophrenia	crossed	2
+dementia	contribute	2
+obstructive sleep apnoea	present	2
+pica	test	2
+anorexia nervosa	suggest	2
+schizophrenia	suffered	2
+delirium	increased	2
+narcolepsy	act	2
+alcohol dependence	suggest	2
+schizophrenia	separate	2
+obsessive-compulsive disorder	indicate	2
+schizophrenia	scans	2
+alcohol dependence	led	2
+schizophrenia	became	2
+panic disorder	studies	2
+dementia	review	2
+attention deficit hyperactivity disorder	test	2
+schizophrenia	carried	2
+pica	course	2
+pica	arises	2
+dementia	feeding	2
+schizophrenia	corrected	2
+anorexia nervosa	stem	2
+delirium	stem	2
+bulimia nervosa	search	2
+schizophrenia	wanted	2
+schizophrenia	lay	2
+schizophrenia	explained	2
+frontotemporal dementia	been	2
+dementia	impaired	2
+narcolepsy	showed	2
+schizophrenia	describes	2
+narcolepsy	stem	2
+oppositional defiant disorder	order	2
+restless legs syndrome	report	2
+restless legs syndrome	studied	2
+schizophrenia	change	2
+schizophrenia	completed	2
+schizophrenia	scan	2
+dementia	infected	2
+nicotine dependence	uses	2
+schizophrenia	tended	2
+schizophrenia	find	2
+enuresis	sleep	2
+schizophrenia	adjusted	2
+schizophrenia	indicates	2
+delirium	observed	2
+dementia	conclude	2
+personality disorder	found	2
+dementia	forms	2
+adjustment disorder	order	2
+depressive disorders	conducted	2
+restless legs syndrome	been	2
+opioid withdrawal	suggest	2
+schizoaffective disorder	order	2
+alcohol intoxication	rent	2
+depressive disorders	developed	2
+dementia	added	2
+panic disorder	matter	2
+schizophrenia	accompanied	2
+pica	measured	2
+depressive disorders	suggests	2
+schizophrenia	addressed	2
+pica	observed	2
+pica	mean	2
+alcohol dependence	present	2
+alcohol withdrawal	type	2
+schizophrenia	need	2
+panic disorder	hold	2
+schizophrenia	own	2
+narcolepsy	suggest	2
+frontotemporal dementia	presents	2
+narcolepsy	show	2
+dementia	nurses	2
+dementia	appears	2
+schizophrenia	pointed	2
+nicotine dependence	scale	2
+dementia	remained	2
+dementia	stay	2
+dementia	plays	2
+pica	describe	2
+opioid dependence	stem	2
+pica	ring	2
+pica	formed	2
+dementia	explore	2
+dementia	ache	2
+schizophrenia	win	2
+dementia	provide	2
+dementia	meeting	2
+schizophrenia	resemble	2
+narcolepsy	rent	2
+attention deficit hyperactivity disorder	studies	2
+obsessive-compulsive disorder	try	2
+nicotine dependence	led	2
+nicotine dependence	measures	2
+schizophrenia	producing	2
+delirium	found	2
+narcolepsy	formed	2
+narcolepsy	test	2
+schizophrenia	tests	2
+pica	signal	2
+dementia	caused	2
+schizophrenia	faces	2
+frontotemporal dementia	led	2
+dementia	place	2
+intellectual disability	identified	2
+schizophrenia	apply	2
+narcolepsy	indicate	1
+alcohol withdrawal	tends	1
+impulse control disorders	course	1
+impulse control disorders	ring	1
+autism spectrum disorder	suggest	1
+gambling disorder	order	1
+gambling disorder	reduced	1
+frontotemporal dementia	controlling	1
+dementia	spreading	1
+personality disorder	grade	1
+frontotemporal dementia	directed	1
+conversion disorder	related	1
+panic disorder	present	1
+nicotine dependence	review	1
+impulse control disorders	had	1
+alcohol dependence	set	1
+catatonia	own	1
+schizophrenia	connecting	1
+schizophrenia	chose	1
+alcohol intoxication	increased	1
+frontotemporal dementia	show	1
+dementia	occurs	1
+neurocognitive disorders	counts	1
+delirium	change	1
+neurodevelopmental disorders	review	1
+rem sleep behaviour disorder	been	1
+frontotemporal dementia	propose	1
+autism spectrum disorder	repeat	1
+impulse control disorders	studies	1
+frontotemporal dementia	orders	1
+dementia	growing	1
+attention deficit hyperactivity disorder	orders	1
+mood disorders	lying	1
+alcohol dependence	test	1
+alcohol dependence	met	1
+attention deficit hyperactivity disorder	changes	1
+alcohol dependence	phone	1
+attention deficit hyperactivity disorder	describes	1
+alcohol withdrawal	observed	1
+mood disorders	try	1
+intellectual disability	sleep	1
+dementia	produce	1
+cocaine dependence	report	1
+frontotemporal dementia	changing	1
+generalised anxiety disorder	identify	1
+panic disorder	impaired	1
+panic disorder	considering	1
+frontotemporal dementia	suggests	1
+dissociative amnesia	mean	1
+attention deficit hyperactivity disorder	behaving	1
+neurodevelopmental disorders	lies	1
+obsessive-compulsive disorder	approved	1
+obsessive-compulsive disorder	passing	1
+schizophrenia	seeking	1
+social anxiety disorder	samples	1
+schizophrenia	contributing	1
+delirium	play	1
+delirium	sleep	1
+developmental language disorder	using	1
+frontotemporal dementia	repeat	1
+depressive disorders	understanding	1
+neurodevelopmental disorders	support	1
+dementia	competing	1
+frontotemporal dementia	contribute	1
+autism spectrum disorder	recognized	1
+schizophrenia	deleted	1
+autism spectrum disorder	finding	1
+schizophrenia	hearing	1
+schizophrenia	connected	1
+dementia	begins	1
+intellectual disability	type	1
+mood disorders	rise	1
+autism spectrum disorder	test	1
+delirium	followed	1
+dementia	become	1
+dementia	scans	1
+mood disorders	cause	1
+delirium	use	1
+schizophrenia	implicates	1
+schizophrenia	span	1
+dissociative amnesia	being	1
+obsessive-compulsive disorder	scale	1
+schizophrenia	covered	1
+mood disorders	sought	1
+frontotemporal dementia	used	1
+dementia	progressing	1
+schizophrenia	avoid	1
+dementia	viewing	1
+intellectual disability	stem	1
+hypochondriasis	suggests	1
+schizophrenia	divided	1
+alcohol dependence	studies	1
+dementia	goes	1
+autism spectrum disorder	brings	1
+autism spectrum disorder	appears	1
+frontotemporal dementia	presenting	1
+nicotine dependence	used	1
+gambling disorder	conducted	1
+schizophrenia	improves	1
+dementia	drawing	1
+kleptomania	stated	1
+depressive disorders	stress	1
+catatonia	order	1
+frontotemporal dementia	copy	1
+dementia	detect	1
+frontotemporal dementia	differed	1
+panic disorder	determined	1
+autism spectrum disorder	used	1
+attention deficit hyperactivity disorder	recognized	1
+schizophrenia	question	1
+obsessive-compulsive disorder	forms	1
+nicotine dependence	measured	1
+schizophrenia	participated	1
+attention deficit hyperactivity disorder	guided	1
+dementia	reflecting	1
+catatonia	produced	1
+gambling disorder	ground	1
+obsessive-compulsive disorder	search	1
+restless legs syndrome	value	1
+depressive disorders	need	1
+schizophrenia	explored	1
+nicotine withdrawal	signalling	1
+schizophrenia	frame	1
+dementia	agree	1
+autism spectrum disorder	use	1
+rem sleep behaviour disorder	suggest	1
+rem sleep behaviour disorder	present	1
+obsessive-compulsive disorder	applied	1
+gambling disorder	change	1
+intellectual disability	ground	1
+dementia	expressed	1
+frontotemporal dementia	impaired	1
+schizophrenia	compelling	1
+narcolepsy	contributed	1
+hypochondriasis	contrast	1
+schizophrenia	mixed	1
+dementia	indicates	1
+mood disorders	use	1
+rem sleep behaviour disorder	compared	1
+autism spectrum disorder	rent	1
+alcohol dependence	increasing	1
+obsessive-compulsive disorder	show	1
+dementia	attracted	1
+dementia	reflect	1
+mood disorders	used	1
+mood disorders	expressed	1
+obsessive-compulsive disorder	face	1
+rem sleep behaviour disorder	include	1
+schizophrenia	supported	1
+mood disorders	promising	1
+gambling disorder	type	1
+mood disorders	integrates	1
+autism spectrum disorder	find	1
+intellectual disability	follow	1
+delirium	marked	1
+panic attack	suggest	1
+mood disorders	compared	1
+autism spectrum disorder	scale	1
+dementia	suffering	1
+trichotillomania	stand	1
+pica	challenged	1
+impulse control disorders	improving	1
+obsessive-compulsive disorder	signal	1
+neurodevelopmental disorders	propose	1
+delirium	related	1
+schizophrenia	showing	1
+delirium	cure	1
+dementia	last	1
+alcohol withdrawal	ring	1
+social anxiety disorder	studies	1
+frontotemporal dementia	matter	1
+anorexia nervosa	called	1
+dementia	occurred	1
+anorexia nervosa	rent	1
+autism spectrum disorder	review	1
+catatonia	increased	1
+dementia	build	1
+neurodevelopmental disorders	try	1
+dementia	forming	1
+schizophrenia	respect	1
+frontotemporal dementia	accompanied	1
+alcohol dependence	expanded	1
+alcohol withdrawal	reduces	1
+schizophrenia	provided	1
+autism spectrum disorder	face	1
+autism spectrum disorder	ring	1
+neurodevelopmental disorders	act	1
+catatonia	showed	1
+opioid dependence	detect	1
+frontotemporal dementia	change	1
+enuresis	cause	1
+enuresis	type	1
+caffeine withdrawal	caused	1
+autism spectrum disorder	using	1
+mood disorders	developing	1
+dementia	hold	1
+dementia	offer	1
+alcohol withdrawal	directed	1
+catatonia	had	1
+schizophrenia	store	1
+frontotemporal dementia	learning	1
+delirium	grades	1
+frontotemporal dementia	bearing	1
+obsessive-compulsive disorder	understanding	1
+mood disorders	led	1
+schizophrenia	died	1
+nicotine withdrawal	diminishes	1
+panic disorder	control	1
+neurodevelopmental disorders	rising	1
+intellectual disability	cause	1
+dementia	classifying	1
+schizophrenia	correcting	1
+schizophrenia	inputs	1
+dementia	sets	1
+cocaine withdrawal	work	1
+mood disorders	lights	1
+intellectual disability	displayed	1
+schizophrenia	preserved	1
+alcohol intoxication	search	1
+panic attack	indicate	1
+delirium	developing	1
+alcohol dependence	divided	1
+mood disorders	showed	1
+intellectual disability	includes	1
+narcolepsy	presented	1
+pica	extended	1
+autism spectrum disorder	cause	1
+neurodevelopmental disorders	suggesting	1
+autism spectrum disorder	been	1
+autism spectrum disorder	conduct	1
+mood disorders	rest	1
+narcolepsy	ache	1
+autism spectrum disorder	copy	1
+schizophrenia	belong	1
+frontotemporal dementia	converging	1
+alcohol dependence	search	1
+frontotemporal dementia	had	1
+schizophrenia	explain	1
+schizophrenia	rely	1
+dementia	changed	1
+attention deficit hyperactivity disorder	ask	1
+depressive disorders	reviews	1
+nicotine withdrawal	scale	1
+anorexia nervosa	changes	1
+dissociative disorders	improve	1
+autism spectrum disorder	reported	1
+frontotemporal dementia	compared	1
+alcohol withdrawal	drinking	1
+panic disorder	related	1
+delirium	conducted	1
+delirium	come	1
+narcolepsy	stimulating	1
+autism spectrum disorder	treat	1
+dementia	delay	1
+schizophrenia	originating	1
+obsessive-compulsive disorder	ache	1
+schizophrenia	driven	1
+attention deficit hyperactivity disorder	stimulated	1
+schizophrenia	express	1
+autism spectrum disorder	causes	1
+depressive disorders	relates	1
+dementia	provided	1
+rapid cycling	organized	1
+dementia	help	1
+panic attack	ground	1
+dementia	followed	1
+panic disorder	lies	1
+nicotine withdrawal	show	1
+nicotine withdrawal	indicate	1
+schizophrenia	failed	1
+dementia	samples	1
+dementia	called	1
+pica	attack	1
+schizophrenia	help	1
+dementia	done	1
+mood disorders	relate	1
+schizophrenia	survey	1
+cocaine withdrawal	ring	1
+dementia	existing	1
+schizophrenia	repeats	1
+dementia	held	1
+dementia	forced	1
+schizophrenia	marks	1
+frontotemporal dementia	measures	1
+schizophrenia	introduced	1
+anorexia nervosa	reduced	1
+attention deficit hyperactivity disorder	use	1
+enuresis	report	1
+dementia	noted	1
+dementia	taking	1
+schizophrenia	sampling	1
+catatonia	contributed	1
+alcohol intoxication	changes	1
+alcohol withdrawal	causes	1
+dementia	count	1
+obsessive-compulsive disorder	implicate	1
+pica	remained	1
+obsessive-compulsive disorder	implicated	1
+dementia	reported	1
+dementia	reduce	1
+pica	approach	1
+restless legs syndrome	determine	1
+alcohol intoxication	studied	1
+nicotine withdrawal	producing	1
+schizophrenia	applies	1
+anorexia nervosa	determine	1
+agoraphobia	had	1
+schizoaffective disorder	proposed	1
+frontotemporal dementia	reported	1
+delirium	control	1
+dementia	distributed	1
+dementia	course	1
+body dysmorphic disorder	related	1
+dementia	value	1
+personality disorder	manage	1
+alcohol withdrawal	measured	1
+alcohol withdrawal	beginning	1
+dementia	believe	1
+panic disorder	escape	1
+anorexia nervosa	identified	1
+alcohol dependence	ground	1
+pica	producing	1
+opioid withdrawal	increases	1
+nicotine dependence	had	1
+mood disorders	increase	1
+dementia	treated	1
+binge eating disorder	compares	1
+dissociative disorders	selected	1
+neurodevelopmental disorders	stem	1
+alcohol dependence	making	1
+pica	induced	1
+personality disorder	correspond	1
+schizophrenia	needed	1
+schizophrenia	sort	1
+delirium	determined	1
+dementia	entered	1
+pica	support	1
+obsessive-compulsive disorder	measured	1
+enuresis	ring	1
+obstructive sleep apnoea	referred	1
+nicotine dependence	indicated	1
+nicotine dependence	forming	1
+rapid cycling	rest	1
+personality disorder	types	1
+panic disorder	beat	1
+nicotine dependence	come	1
+frontotemporal dementia	described	1
+schizophrenia	accompanying	1
+alcohol intoxication	showed	1
+alcohol withdrawal	following	1
+cocaine dependence	using	1
+bulimia nervosa	mean	1
+dementia	bearing	1
+bulimia nervosa	free	1
+dementia	stand	1
+agoraphobia	cut	1
+cocaine withdrawal	training	1
+schizophrenia	depend	1
+schizophrenia	asking	1
+pica	reflecting	1
+depressive disorders	detecting	1
+nicotine dependence	points	1
+mood disorders	damage	1
+schizophrenia	disturbed	1
+narcolepsy	report	1
+nicotine withdrawal	observed	1
+delirium	state	1
+anorexia nervosa	gain	1
+schizophrenia	tends	1
+attention deficit hyperactivity disorder	matter	1
+alcohol intoxication	ring	1
+mood disorders	approach	1
+personality disorder	increase	1
+alcohol dependence	viewed	1
+mood disorders	includes	1
+dementia	corresponds	1
+delirium	reduced	1
+delirium	cause	1
+dementia	trained	1
+dementia	dwelling	1
+nicotine withdrawal	search	1
+delirium	respect	1
+dementia	light	1
+schizophrenia	conducted	1
+dementia	cutting	1
+pica	type	1
+narcolepsy	producing	1
+dementia	share	1
+dementia	making	1
+depressive disorders	supports	1
+obsessive-compulsive disorder	using	1
+obsessive-compulsive disorder	increase	1
+depressive disorders	modified	1
+schizophrenia	recognizing	1
+mood disorders	explore	1
+dementia	relating	1
+enuresis	indicated	1
+nicotine dependence	dance	1
+opioid withdrawal	increase	1
+impulse control disorders	search	1
+pica	complete	1
+delirium	indicate	1
+mood disorders	implicated	1
+anorexia nervosa	had	1
+narcolepsy	compared	1
+dementia	own	1
+pica	fixed	1
+pica	included	1
+dementia	move	1
+narcolepsy	reported	1
+pica	rids	1
+dementia	allows	1
+panic attack	test	1
+hypochondriasis	waves	1
+dementia	parts	1
+mood disorders	rains	1
+mood disorders	reduced	1
+alcohol withdrawal	increased	1
+alcohol withdrawal	indicate	1
+dementia	accompanying	1
+dementia	add	1
+dementia	controlled	1
+panic disorder	suggested	1
+pica	work	1
+alcohol dependence	cut	1
+adjustment disorder	adjusting	1
+schizophrenia	sent	1
+dementia	understand	1
+dementia	shape	1
+mood disorders	binding	1
+narcolepsy	converged	1
+dysthymic disorder	stress	1
+narcolepsy	related	1
+enuresis	included	1
+intermittent explosive disorder	measured	1
+personality disorder	used	1
+dementia	occupied	1
+depressive disorders	step	1
+anorexia nervosa	continues	1
+attention deficit hyperactivity disorder	explored	1
+personality disorder	constructs	1
+personality disorder	identified	1
+hypochondriasis	had	1
+alcohol dependence	cause	1
+nicotine withdrawal	use	1
+alcohol intoxication	shown	1
+pica	use	1
+schizophrenia	moved	1
+panic disorder	stems	1
+panic disorder	provide	1
+depressive disorders	been	1
+dementia	explained	1
+mood disorders	appear	1
+attention deficit hyperactivity disorder	win	1
+obsessive-compulsive disorder	connects	1
+schizophrenia	resolving	1
+factitious disorders	called	1
+pica	depending	1
+dementia	continued	1
+mood disorders	support	1
+schizophrenia	excluded	1
+pica	showed	1
+cannabis dependence	regarding	1
+schizophrenia	display	1
+dementia	stems	1
+depressive disorders	compared	1
+sleep terrors	received	1
+schizotypal disorder	led	1
+dementia	constitute	1
+narcolepsy	led	1
+cocaine withdrawal	being	1
+enuresis	found	1
+obstructive sleep apnoea	presents	1
+narcolepsy	understanding	1
+obsessive-compulsive disorder	describe	1
+nicotine withdrawal	contrast	1
+obsessive-compulsive disorder	considered	1
+narcolepsy	find	1
+panic disorder	extended	1
+anorexia nervosa	nursing	1
+dementia	eyes	1
+anorexia nervosa	determined	1
+dementia	obtaining	1
+nicotine dependence	rising	1
+delirium	ring	1
+mood disorders	get	1
+personality disorder	cause	1
+nicotine withdrawal	following	1
+alcohol dependence	type	1
+cocaine withdrawal	stem	1
+alcohol dependence	propose	1
+schizophrenia	allows	1
+panic disorder	decrease	1
+nicotine dependence	point	1
+dementia	relate	1
+conversion disorder	rest	1
+personality disorder	studies	1
+dementia	gaining	1
+dementia	regard	1
+schizophrenia	construct	1
+pica	recognized	1
+alcohol dependence	went	1
+panic disorder	been	1
+schizophrenia	waves	1
+attention deficit hyperactivity disorder	suggest	1
+pica	treated	1
+depressive disorders	studied	1
+dementia	types	1
+rapid cycling	seems	1
+pica	discusses	1
+anorexia nervosa	take	1
+schizophrenia	shows	1
+dementia	excluding	1
+dementia	reflected	1
+dementia	marked	1
+bulimia nervosa	suggest	1
+nocturnal enuresis	consists	1
+schizophrenia	extended	1
+nicotine dependence	want	1
+cocaine withdrawal	point	1
+dementia	decrease	1
+dementia	hearing	1
+delirium	achieving	1
+pica	classified	1
+generalised anxiety disorder	following	1
+dementia	carried	1
+attention deficit hyperactivity disorder	considered	1
+periodic limb movement disorder	conclude	1
+dementia	expanded	1
+schizophrenia	drop	1
+nicotine dependence	yielded	1
+schizophrenia	converging	1
+schizophrenia	bear	1
+schizophrenia	controlling	1
+narcolepsy	causes	1
+alcohol dependence	compared	1
+personality disorder	rent	1
+delirium	measures	1
+dementia	damaged	1
+schizophrenia	illustrate	1
+rapid cycling	stated	1
+specific phobia	does	1
+bulimia nervosa	test	1
+schizophrenia	count	1
+hypochondriasis	indicate	1
+schizophrenia	reducing	1
+pica	changed	1
+schizophrenia	reached	1
+narcolepsy	provide	1
+obsessive-compulsive disorder	measures	1
+dementia	rely	1
+alcohol intoxication	did	1
+pica	caused	1
+mood disorders	building	1
+dementia	dropped	1
+delirium	sample	1
+delirium	mean	1
+dementia	works	1
+narcolepsy	receive	1
+dementia	accompanied	1
+dementia	treating	1
+opioid dependence	used	1
+hypochondriasis	setting	1
+panic disorder	produced	1
+delirium	identified	1
+schizophrenia	accompany	1
+dementia	closed	1
+dementia	obtained	1
+dementia	moving	1
+panic disorder	mean	1
+dementia	scan	1
+dementia	allow	1
+dementia	note	1
+dementia	question	1
+dementia	passed	1
+neurodevelopmental disorders	suggest	1
+frontotemporal dementia	set	1
+nicotine dependence	been	1
+frontotemporal dementia	light	1
+enuresis	treated	1
+nicotine withdrawal	present	1
+dissociative amnesia	led	1
+pica	cause	1
+dementia	concluded	1
+post traumatic stress disorder	did	1
+bulimia nervosa	identified	1
+pica	plies	1
+nicotine dependence	filled	1
+alcohol intoxication	detected	1
+schizophrenia	understood	1
+schizophrenia	varying	1
+obsessive-compulsive disorder	met	1
+narcolepsy	wake	1
+dementia	counts	1
+alcohol dependence	proposed	1
+nicotine withdrawal	maintained	1
+nicotine withdrawal	suggest	1
+alcohol intoxication	occupied	1
+schizophrenia	inherited	1
+dementia	rest	1
+opioid withdrawal	ring	1
+schizophrenia	owing	1
+alcohol dependence	show	1
+anorexia nervosa	test	1
+obstructive sleep apnoea	ground	1
+anorexia nervosa	varying	1
+schizophrenia	distributed	1
+binge eating disorder	indicate	1
+depressive disorders	search	1
+depressive disorders	found	1
+anorexia nervosa	obtained	1
+anorexia nervosa	studied	1
+agoraphobia	present	1
+schizophrenia	beginning	1
+dementia	includes	1
+schizotypal disorder	order	1
+dementia	leave	1
+depressive disorders	using	1
+anorexia nervosa	received	1
+frontotemporal dementia	belong	1
+pica	playing	1
+dementia	recognized	1
+dementia	shown	1
+pica	suggest	1
+pica	beginning	1
+obstructive sleep apnoea	compare	1
+schizophrenia	compares	1
+alcohol dependence	provides	1
+narcolepsy	determine	1
+oppositional defiant disorder	own	1
+pica	described	1
+dementia	created	1
+dementia	face	1
+pica	ground	1
+pica	calculated	1
+dissociative disorders	change	1
+alcohol dependence	use	1
+anorexia nervosa	control	1
+nicotine dependence	comparing	1
+nicotine dependence	compare	1
+nicotine dependence	considered	1
+depressive disorders	occur	1
+dissociative disorders	identify	1
+obstructive sleep apnoea	breathing	1
+obstructive sleep apnoea	treating	1
+delirium	controlling	1
+dementia	finding	1
+delirium	disturbed	1
+alcohol dependence	light	1
+mood disorders	present	1
+restless legs syndrome	controlled	1
+depressive disorders	remains	1
+alcohol dependence	measured	1
+dementia	display	1
+pica	regard	1
+dementia	complete	1
+schizophrenia	fail	1
+dementia	spin	1
+schizophrenia	learning	1
+schizophrenia	open	1
+body dysmorphic disorder	order	1
+dementia	chat	1
+schizophrenia	constitute	1
+schizophrenia	constituting	1
+frontotemporal dementia	samples	1
+panic disorder	suggest	1
+nicotine withdrawal	take	1
+schizophrenia	matching	1
+bulimia nervosa	using	1
+frontotemporal dementia	describe	1
+schizophrenia	means	1
+alcohol dependence	decrease	1
+attention deficit hyperactivity disorder	causes	1
+obsessive-compulsive disorder	measure	1
+social anxiety disorder	scale	1
+obsessive-compulsive disorder	work	1
+dementia	constructed	1
+depressive disorders	exists	1
+panic disorder	orders	1
+dementia	marks	1
+pica	challenging	1
+narcolepsy	signals	1
+anorexia nervosa	works	1
+pica	supply	1
+alcohol withdrawal	report	1
+dementia	crossed	1
+personality disorder	view	1
+depressive disorders	come	1
+pica	identified	1
+obsessive-compulsive disorder	presents	1
+panic disorder	shed	1
+frontotemporal dementia	following	1
+pica	presented	1
+pica	repeated	1
+schizophrenia	searching	1
+schizoaffective disorder	point	1
+panic disorder	indicated	1
+alcohol dependence	approach	1
+schizophrenia	progress	1
+schizophrenia	surge	1
+personality disorder	use	1
+bulimia nervosa	contribute	1
+mood disorders	known	1
+dementia	spread	1
+cocaine withdrawal	thought	1
+schizophrenia	applied	1
+personality disorder	growing	1
+alcohol dependence	scale	1
+dementia	charge	1
+panic disorder	types	1
+alcohol withdrawal	present	1
+opioid withdrawal	studies	1
+alcohol withdrawal	works	1
+catatonia	produce	1
+catatonia	decrease	1
+pica	displays	1
+dementia	address	1
+dementia	recall	1
+delirium	going	1
+schizophrenia	shares	1
+schizophrenia	faced	1
+depressive disorders	review	1
+personality disorder	ground	1
+obsessive-compulsive disorder	taken	1
+catatonia	suffered	1
+schizophrenia	hold	1
+nicotine dependence	obtained	1
+opioid dependence	controls	1
+attention deficit hyperactivity disorder	been	1
+delirium	resolving	1
+dissociative identity disorder	failed	1
+dementia	biting	1
+obsessive-compulsive disorder	used	1
+obsessive-compulsive disorder	found	1
+alcohol intoxication	controlling	1
+depressive disorders	considering	1
+nicotine dependence	need	1
+schizophrenia	binds	1
+autism spectrum disorder	cross	1
+schizophrenia	carry	1
+dementia	discussing	1
+cocaine intoxication	related	1
+dementia	mark	1
+mood disorders	contrast	1
+schizophrenia	chosen	1
+nicotine withdrawal	suggests	1
+opioid dependence	conclude	1
+obstructive sleep apnoea	help	1
+pica	indicate	1
+alcohol dependence	prove	1
+obsessive-compulsive disorder	described	1
+panic disorder	develop	1
+dementia	step	1
+dementia	shortened	1
+narcolepsy	contains	1
+anorexia nervosa	types	1
+schizophrenia	build	1
+agoraphobia	found	1
+frontotemporal dementia	suggest	1
+dementia	curve	1
+dementia	discuss	1
+obsessive-compulsive disorder	plays	1
+schizophrenia	uses	1
+opioid dependence	taken	1
+alcohol dependence	point	1
+schizophrenia	keeping	1
+cocaine dependence	order	1
+restless legs syndrome	improved	1
+dementia	excluded	1
+alcohol dependence	having	1
+depressive disorders	present	1
+anorexia nervosa	describe	1
+dementia	presenting	1
+nicotine withdrawal	accompanied	1
+alcohol dependence	applied	1
+narcolepsy	last	1
+dementia	lights	1
+mood disorders	had	1
+nicotine dependence	relating	1
+obsessive-compulsive disorder	test	1
+attention deficit hyperactivity disorder	report	1
+cocaine dependence	showed	1
+opioid dependence	developed	1
+sleep terrors	showed	1
+schizophrenia	changed	1
+dementia	retched	1
+neurodevelopmental disorders	studies	1
+neurodevelopmental disorders	work	1
+opioid dependence	rent	1
+opioid dependence	extended	1
+neurocognitive disorders	related	1
+schizophrenia	stimulate	1
+nocturnal enuresis	ring	1
+nocturnal enuresis	owing	1
+anorexia nervosa	shows	1
+generalised anxiety disorder	order	1
+narcolepsy	did	1
+pica	includes	1
+pica	act	1
+alcohol intoxication	thought	1
+alcohol intoxication	followed	1
+social anxiety disorder	been	1
+panic disorder	controlled	1
+narcolepsy	produced	1
+schizoaffective disorder	includes	1
+neurodevelopmental disorders	observed	1
+alcohol dependence	matching	1
+opioid withdrawal	changes	1
+alcohol dependence	try	1
+panic disorder	indicates	1
+cocaine withdrawal	increases	1
+dementia	explain	1
+alcohol withdrawal	carried	1
+obstructive sleep apnoea	opening	1
+schizophrenia	submitted	1
+panic disorder	modified	1
+schizophrenia	repeated	1
+agoraphobia	question	1
+kleptomania	concluded	1
+catatonia	report	1
+depressive disorders	known	1
+schizophrenia	reflects	1
+delirium	correct	1
+cocaine dependence	marked	1
+delirium	indicating	1
+delirium	see	1
+delirium	adjusting	1
+mood disorders	formed	1
+alcohol intoxication	fed	1
+dementia	expected	1
+hypochondriasis	led	1
+mood disorders	using	1
+dementia	induce	1
+dementia	copy	1
+dementia	climbing	1
+nicotine withdrawal	determine	1
+dementia	implicated	1
+chronic insomnia	sleep	1
+obstructive sleep apnoea	testing	1
+delirium	support	1
+depressive disorders	develop	1
+nicotine dependence	binding	1
+delirium	taking	1
+schizophrenia	comes	1
+schizophrenia	maintains	1
+frontotemporal dementia	proved	1
+dementia	impair	1
+cocaine withdrawal	growing	1
+restless legs syndrome	cause	1
+schizophrenia	followed	1
+schizophrenia	living	1
+schizophrenia	proposing	1
+attention deficit hyperactivity disorder	tests	1
+nicotine withdrawal	explore	1
+nicotine withdrawal	induced	1
+dissociative identity disorder	reviews	1
+obsessive-compulsive disorder	follow	1
+narcolepsy	decreases	1
+delirium	develop	1
+schizophrenia	increases	1
+frontotemporal dementia	provides	1
+adjustment disorder	increasing	1
+personality disorder	having	1
+alcohol dependence	showed	1
+schizophrenia	achieving	1
+dementia	contributing	1
+anorexia nervosa	develop	1
+dementia	showing	1
+bulimia nervosa	values	1
+alcohol withdrawal	known	1
+schizophrenia	press	1
+anorexia nervosa	suggests	1
+nicotine withdrawal	showed	1
+schizophrenia	argue	1
+alcohol intoxication	report	1
+nicotine dependence	cross	1
+nicotine withdrawal	had	1
+pica	managed	1
+rapid cycling	values	1
+schizophrenia	challenge	1
+schizophrenia	begins	1
+schizophrenia	trust	1
+mood disorders	impaired	1
+mood disorders	related	1
+hypochondriasis	showed	1
+social anxiety disorder	propose	1
+delirium	turn	1
+schizophrenia	biting	1
+pica	passed	1
+obstructive sleep apnoea	come	1
+schizophrenia	consists	1
+narcolepsy	scale	1
+attention deficit hyperactivity disorder	gain	1
+narcolepsy	known	1
+enuresis	rent	1
+mood disorders	reviewed	1
+attention deficit hyperactivity disorder	reflect	1
+delirium	reports	1
+delirium	tended	1
+obsessive-compulsive disorder	conducted	1
+neurodevelopmental disorders	tests	1
+dementia	fulfilling	1
+bulimia nervosa	show	1
+mood disorders	sample	1
+rapid cycling	show	1
+mood disorders	meeting	1
+attention deficit hyperactivity disorder	impaired	1
+dementia	improved	1
+pica	noticed	1
+schizoaffective disorder	ground	1
+panic disorder	understanding	1
+schizophrenia	rising	1
+anorexia nervosa	building	1
+dementia	follows	1
+panic disorder	stress	1
+schizoaffective disorder	report	1
+obsessive-compulsive disorder	placed	1
+obsessive-compulsive disorder	lead	1
+pica	arise	1
+dementia	speed	1
+personality disorder	known	1
+adjustment disorder	had	1
+depressive disorders	take	1
+dementia	applied	1
+alcohol dependence	promise	1
+obsessive-compulsive disorder	matter	1
+pica	produced	1
+pica	arose	1
+pica	understanding	1
+anorexia nervosa	initiates	1
+anorexia nervosa	crossed	1
+dementia	beginning	1
+neurodevelopmental disorders	ground	1
+frontotemporal dementia	ache	1
+adjustment disorder	mean	1
+schizophrenia	building	1
+cocaine dependence	found	1
+schizophrenia	call	1
+pica	pass	1
+mood disorders	measures	1
+dementia	dye	1
+attention deficit hyperactivity disorder	forms	1
+schizophrenia	pressing	1
+personality disorder	proposed	1
+nicotine dependence	types	1
+catatonia	includes	1
+delirium	existing	1
+dementia	regarding	1
+pica	compared	1
+narcolepsy	explore	1
+dementia	lying	1
+dementia	wave	1
+schizophrenia	marked	1
+schizophrenia	arose	1
+dementia	discussed	1
+schizophrenia	step	1
+agoraphobia	ring	1
+dementia	concludes	1
+depressive disorders	scale	1
+depressive disorders	had	1
+cocaine withdrawal	stems	1
+anorexia nervosa	review	1
+dementia	shaped	1
+attention deficit hyperactivity disorder	found	1
+nicotine withdrawal	taking	1
+obsessive-compulsive disorder	states	1
+schizophrenia	extending	1
+neurodevelopmental disorders	reports	1
+schizophrenia	giving	1
+dementia	close	1
+depressive disorders	meeting	1
+cannabis dependence	conducted	1
+cannabis dependence	identified	1
+cannabis dependence	support	1
+alcohol intoxication	play	1
+schizophrenia	indicating	1
+anorexia nervosa	classified	1
+depressive disorders	identify	1
+panic disorder	expected	1
+restless legs syndrome	had	1
+alcohol intoxication	decreased	1
+narcolepsy	stems	1
+personality disorder	impaired	1
+dementia	find	1
+narcolepsy	indicates	1
+dementia	delayed	1
+opioid dependence	stems	1
+social anxiety disorder	present	1
+pica	conclude	1
+nicotine dependence	search	1
+pica	vary	1
+obsessive-compulsive disorder	dance	1
+dementia	supported	1
+restless legs syndrome	face	1
+alcohol dependence	considered	1
+schizophrenia	identifying	1
+nicotine dependence	use	1
+delirium	accompanied	1
+dementia	compares	1
+dementia	owing	1
+schizophrenia	participate	1
+anorexia nervosa	reported	1
+narcolepsy	measured	1
+pica	samples	1
+depressive disorders	cut	1
+trichotillomania	showed	1
+intellectual disability	developed	1
+depressive disorders	presents	1
+impulse control disorders	caused	1
+attention deficit hyperactivity disorder	sought	1
+restless legs syndrome	set	1
+frontotemporal dementia	included	1
+delirium	depend	1
+schizophrenia	receive	1
+schizophrenia	impairs	1
+restless legs syndrome	present	1
+schizophrenia	follow	1
+agoraphobia	review	1
+obsessive-compulsive disorder	rains	1
+schizophrenia	detect	1
+dementia	stretch	1
+dementia	takes	1
+intellectual disability	related	1
+frontotemporal dementia	use	1
+rapid cycling	present	1
+schizophrenia	consist	1
+mood disorders	changes	1
+alcohol withdrawal	studied	1
+cannabis dependence	types	1
+obstructive sleep apnoea	ring	1
+delirium	went	1
+schizophrenia	sets	1
+schizophrenia	going	1
+dissociative disorders	been	1
+dissociative disorders	orders	1
+nicotine dependence	thought	1
+panic attack	cause	1
+dementia	sought	1
+panic attack	regards	1
+delirium	remains	1
+schizophrenia	take	1
+rapid cycling	describe	1
+pica	considered	1
+delirium	constructed	1
+delirium	studied	1
+agoraphobia	related	1
+cocaine dependence	do	1
+cocaine dependence	suggesting	1
+social anxiety disorder	ground	1
+nicotine withdrawal	started	1
+schizophrenia	integrates	1
+anorexia nervosa	impaired	1
+dementia	discovered	1
+mood disorders	found	1
+personality disorder	writing	1
+nicotine dependence	become	1
+dementia	take	1
+nicotine withdrawal	studied	1
+pica	placed	1
+obsessive-compulsive disorder	including	1
+nicotine dependence	control	1
+schizophrenia	sharing	1
+agoraphobia	changes	1
+alcohol withdrawal	measure	1
+schizophrenia	manage	1
+restless legs syndrome	observed	1
+schizophrenia	counted	1
+body dysmorphic disorder	considered	1
+delirium	cross	1
+pica	originates	1
+delirium	been	1
+mood disorders	presenting	1
+obsessive-compulsive disorder	following	1
+cannabis dependence	provide	1
+schizophrenia	put	1
+dementia	enter	1
+alcohol dependence	living	1
+delirium	need	1
+schizophrenia	included	1
+alcohol dependence	drinking	1
+amnestic disorder	order	1
+dementia	shares	1
+attention deficit hyperactivity disorder	learning	1
+dementia	cure	1
+attention deficit hyperactivity disorder	increased	1
+personality disorder	sample	1
+rapid cycling	become	1
+delirium	attending	1
+frontotemporal dementia	cause	1
+alcohol dependence	suggests	1
+schizophrenia	rise	1
+panic disorder	showed	1
+panic attack	note	1
+catatonia	varies	1
+pica	do	1
+pica	studies	1
+delirium	working	1
+cocaine dependence	known	1
+dementia	wake	1
+schizophrenia	captures	1
+schizophrenia	hope	1
+nicotine dependence	reduced	1
+narcolepsy	remains	1
+delirium	classified	1
+delirium	prevented	1
+alcohol dependence	carried	1
+narcolepsy	samples	1
+nicotine withdrawal	lend	1
+obsessive-compulsive disorder	take	1
+narcolepsy	stand	1
+obstructive sleep apnoea	view	1
+dementia	accompanies	1
+mood disorders	show	1
+dementia	argue	1
+nicotine withdrawal	binding	1
+schizophrenia	looked	1
+schizophrenia	input	1
+delirium	applied	1
+nicotine withdrawal	store	1
+schizophrenia	told	1
+nicotine dependence	curves	1
+pica	been	1
+schizophrenia	charge	1
+attention deficit hyperactivity disorder	received	1
+intellectual disability	show	1
+dementia	detecting	1
+neurodevelopmental disorders	correct	1
+nicotine dependence	completed	1
+dementia	educated	1
+autism spectrum disorder	observed	1
+panic attack	matter	1
+mood disorders	suggests	1
+panic disorder	increases	1
+impulse control disorders	suggests	1
+nicotine withdrawal	been	1
+nicotine withdrawal	increased	1
+nicotine withdrawal	identified	1
+nicotine withdrawal	test	1
+restless legs syndrome	mean	1
+autism spectrum disorder	extending	1
+autism spectrum disorder	acts	1
+obsessive-compulsive disorder	treated	1
+alcohol dependence	indicating	1
+alcohol dependence	related	1
+anorexia nervosa	appear	1
+neurodevelopmental disorders	identified	1
+alcohol dependence	craving	1
+dementia	gain	1
+dementia	provides	1
+panic disorder	take	1
+alcohol withdrawal	using	1
+dementia	leads	1
+narcolepsy	sleeping	1
+panic disorder	scale	1
+alcohol dependence	decreased	1
+alcohol withdrawal	implicate	1
+oppositional defiant disorder	increased	1
+delirium	surveys	1
+restless legs syndrome	control	1
+alcohol intoxication	stay	1
+dementia	fulfilled	1
+frontotemporal dementia	showed	1
+delirium	ground	1
+depressive disorders	use	1
+restless legs syndrome	support	1
+schizophrenia	standing	1
+nicotine withdrawal	ground	1
+dementia	improve	1
+delirium	count	1
+narcolepsy	ring	1
+nicotine dependence	measure	1
+intellectual disability	types	1
+intellectual disability	been	1
+intellectual disability	fancy	1
+cocaine withdrawal	give	1
+depressive disorders	act	1
+narcolepsy	occur	1
+narcolepsy	decreased	1
+mood disorders	does	1
+dementia	differing	1
+narcolepsy	matched	1
+mood disorders	sleep	1
+schizophrenia	cycle	1
+depressive disorders	report	1
+pica	checked	1
+restless legs syndrome	sleep	1
+narcolepsy	order	1
+mood disorders	asked	1
+restless legs syndrome	scale	1
+dementia	constitutes	1
+dementia	fall	1
+anorexia nervosa	taken	1
+pica	follow	1
+prolonged grief disorder	order	1
