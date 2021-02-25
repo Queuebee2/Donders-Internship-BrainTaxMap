@@ -1,3 +1,7 @@
-# BrainTaxMap
-Internship project to try and map the behavioural/functional taxonomy of the brain by textmining scientific literature for relationships between known brainstructures and possible functions.
+# Current branch: Internship end state
+This is the final state of the repository at the end of my internship. 
+
+
+
+
 
