@@ -45,3 +45,5 @@ data/stats/
 data/lists-other/simpleTabulation.xlsx
 
 data/pruned_structures_list.txt
+data/output/
+data/backups/
