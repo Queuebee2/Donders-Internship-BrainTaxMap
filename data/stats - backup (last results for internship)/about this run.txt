@@ -1,4 +1,0 @@
-same 120k articles as before
-## records analysed for this data: 124940
-
-ran for 02h24m06s
