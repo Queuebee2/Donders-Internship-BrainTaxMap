@@ -2,7 +2,48 @@
 .vscode/
 .idea/
 venv/
-data/
 braintaxmap/config.py
 *tempCodeRunnerFile.py
 __pycache__/
+braintaxmap/logs/
+
+
+## speaks for itself
+TODO.md
+
+## specific pickles
+data/unpacked_brain_atlas_reversed.pickle
+data/extracted-json-nodes.pickle
+data/sought_keywords.pickle
+
+## custom eutils files
+ids-found.txt
+retrieved_ids.txt
+xml-found.xml
+
+## files with samples from experiments
+sample-SVO-distribution.txt
+intermediate-all-stats.txt
+stats_NOUNPHRASES.txt
+stats_SVOs.txt
+stats_VERBS (nltk tokenized).txt
+stats_VERBS (spacy token.pos_).txt
+stats_VERBS (spacy tokenized).txt
+Medline-results.dat
+Medline-results.gzip
+data/stats/query used.txt
+the-query.txt
+
+# .environment variables 
+.env
+
+*.gzip
+
+data/stats/
+
+
+data/lists-other/simpleTabulation.xlsx
+
+data/pruned_structures_list.txt
+data/output/
+data/backups/

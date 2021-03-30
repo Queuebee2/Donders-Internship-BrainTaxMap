@@ -1,98 +1,112 @@
-Donders-Internship-BrainTaxMap
+# Current branch: `cleanup-internship`
+Moving on and rework!  
 
-# Project description  
-Map the behavioural taxonomy of the brain
-  
-# Current features  
-- parse JSON structural hirachry (`root:[{child:[{child}]]`)  
-- parse dotnotation `Cognition.Language.Orthography` -> 3 levels of 'functional hierarchy'  
-- search pubmed  
-    - currently only select [PMC](https://www.ncbi.nlm.nih.gov/pmc/) articles  
-    - amount of results can be set  
-    - searched keywords are stored to prevent re-searching, can be reset 
-    - one issue where database connection closes, dirty solution used at this moment
-- store data in [Neo4j](https://neo4j.com)  
-    - visualisations in neo4j bloom and access to 'playground'  
-    - current stats:  
-        - 45k nodes 
-        - 75k relationships  
+headers with 'goal' are not yet (fully) implemented.
 
-# required
-- login details to a `Neo4j` database, we currently use version `4.1.2`
-# Notes on `Neo4j`, `graphs`, `py2neo`, `gephi`
-work in progress
+## Different modules to do different things
 
-### NEO4J Browser commands
-- Find all nodes of one type:   
- `MATCH (n:brainstructure) RETURN n`
-- Find ALL nodes  
- `Match (n)-[r]->(m) Return n,r,m`
-- See Scheme  
-`:scheme`
-- See constraints  
-`CALL db.constraints`
-- Find relations between specific nodes  
-`Match (n:nodelabel)--(m:othernodelabel) return n,m`
-- Find specific relations  
-`MATCH (n1)-[r:SPECIFIC_RELATION]->(n2) RETURN r, n1, n2`
-- Replace relations between specific nodes  
+### `__init__`
+Not sure how to use properly
+- uses `python-dotenv` to load `DEV_EMAIL` and `NCBI_API_KEY` from `.env`
+
+((almost)independently, hopefully)
+### Analysis
+Analyse articles
+- article reader
+- pool of analysis workers
+- collect results
+- write results to `data/output/...`
+
+### Biosearch
+Take lists of keywords and filters to search pubmed and retrieve articles.
+Current demo:
+```python
+from taxmap import biosearch
+keywords = ['list', 'of', 'keywords']
+mesh_good = ['I', "really", "want", "all", "these", "mesh", "terms"]
+mesh_bad = ["no thanks", "to these", "mesh terms"]
+
+unique_ids = biosearch.find_ids(keywords, mesh_good, mesh_bad)
 ```
-MATCH (n1:label)-[old:OLD_RELATION]->(n2:label) 
-MERGE (n1)-[new:NEW_RELATION]->(n2)
-DELETE old
+`biosearch.find_ids` makes use of `biosearch._buildquery()`
+
+#### finding relevant articles
+- create filter
+- determine length of query, make sure its not too long including filter. Maybe make number of keywords per batch smaller based on characters used for filters.
+- send batches of queries + filters to ncbi `Entrez.esearch`, retrieve article ids
+- collect only unique article ids
+- store ids under `/data/current/ids.txt`
+
+#### download
+in batches of `N` (default 5000), send the found article ids via `Entrez.efetch` and download articles (abstracts, medline format) and write to file (.gzip(!?))
+- store articles under `/data/current/abstracts.gzip`
+
+
+### Visualisers
+take output data from `data/output/..` and create graphs
+- write graphs to `data/output/graphs`
+
+
+# BrainTaxMap
+The project goal is to map the behavioural taxonomy of the brain by systematically searching and analysing biomedical texts.
+
+# Usage
+(in the making)
+
+## goal install
+`pip install taxmap`  
+
+## setup 
+- Copy and rename `.env.example` -> `.env` and set corresponding values. Most important is `DEV_EMAIL`. `NCBI_API_KEY` is useful to speed up downloads.
+
+## goal demo
+
+### main demo
+```python
+import taxmap
+
+keywords = taxmap.tools.from_file(keywords_path)
+mesh_terms = ['Rodent']
+# get ids for lists
+ids = taxmap.biosearch.find_ids(keywords, mesh_terms)
+# download all relevant articles
+taxmap.biosearch.download_abstracts(ids)
+
+# setup and run analyser
+analyser = taxmap.analysis.MedlineAnalyser(custom_params)
+analyser.run()
+
+# < trim results, process more>
+
+# create graphs
+taxmap.visualiser.treemaps...() 
+
 ```
-- [more here](https://www.remwebdevelopment.com/blog/sql/some-basic-and-useful-cypher-queries-for-neo4j-201.html)
 
-
-
-### RESOURCES  
-- [batched updates](https://medium.com/neo4j/5-tips-tricks-for-fast-batched-updates-of-graph-structures-with-neo4j-and-cypher-73c7f693c8cc)
-- [hosting  through azure](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=neo4j&page=1)
-- [Medline Records Object Attributes](https://biopython.org/docs/1.75/api/Bio.Medline.html)
-    
-#### TODO  
-- bhttps://www.biostars.org/p/89478/ extract citations from PMC articles for art->[CITED]->art relationship  
-- look in to Chord dependency diagram or Hierarchical Edge Bundling or [force layout](https://github.com/d3/d3-force)
-- Retrieving the max amount of articles immediately, or rather a top #N articles. 
-- Consider downloading all pmc articles
-- Move database somewhere else?
-- look into [graph tool](https://graph-tool.skewed.de/)
-    - Hierarchical Stochastic Blockmodel Inference
-    - Maximum Flow
-- query for finding (abstract) attributes of articles related to sometihng
-- query for finding relations between different labels connected by article
-- figure out methods similairty score calc, barrelfield, barrel cortetx-- same thing (semantics)
-  in our list we have barrel field, but people will search for barrel cortex
-  similarity score is about keywords . When words SEEM similar, collapse them (but, then, still make it checkable..)
-- add out/in/log/error dirs under /data/ and adjust scripts accordingly
-- add more in-between-run saving/backups/checks
-- write actual (unit) tests
-
-### CONNECT GEPHI    (?)
-    https://neo4j.com/labs/apoc/4.1/export/gephi/
-
-### Bio.Medline.Record issue
-Should we keep the mnemonics as attribute description in the database or translate them all to their corresponding interpretations, for example `MH` means `MeSH Terms`, which one do we use?
-
-
-### (Neo4j) pitfalls
-- don't use nodeId, dont store nodeId externally!
-
-### notes for later (for creating package)
-maybe watch [this](https://youtu.be/GIF3LaRqgXo?t=525)
-- learn how to use pytest for testing
-##### a setup.py file
-probably  just use pycharm to make this
-```python 
-from setuptools import setup
-
-setup(
-    name='packagename',
-    version='0.0.1',
-    description='description of package',
-    py_modules=['module1.py1', 'module2.py'],
-    package_dir={'':'braintaxmap'}
-)
+### saving/backing-up search results
+Running multiple searches? Results from every search can be easily backed up for later. This will contain all files in `data/output/records`.
+You can provide a custom directory name for recognition, otherwise, the directory name will be formatted like this: `f"{len(keywords_used)}_kw_{len(ids)}_ids_backup"` and can be found in `data/backups/records/`
+```python
+from taxmap.tools import backup_search
+backup_search()
 ```
-- `python setup.py bdist_wheel`
-- `pip install -e .`  in dir with package (`setup.py` file)
+# For the future
+
+# To discuss
+- [ ] what should local database be whilst retrieving articles?
+    - textfile (large)
+    - **(current)** zipped textfile (smaller, max ~40GB for abstracts I think, when downloading whole PubMed which should be avoided)
+    - directly into a database ('harder' to set up, makes package less usable)
+- [ ] format data for creating treemaps
+    - should not contain empty cells -> all empty cells could be 'unidentified'
+    - example of skipping cells containing certain string: 
+        ```python
+        # pandas dataframe
+        df = df[~df.stack().str.contains('unidentified').any(level=0)]
+        ```
+    - todo: how to apply for multiple strings? see https://plotly.com/python/filter/
+- [ ] defaults: How do we go about choosing what needs to have a default setting? having many defaults might make tool use easier, also make it harder to adapt tool
+- [ ] move these discussions to actual GitHub? 
+- [ ] really use `term[Title/Abstract]` to only look in abstracts?
+- [ ] `Entrez.read(Entrez.esearch())["idList"]` is a list of [`Bio.Entrez.Parser.StringElement`](https://github.com/biopython/biopython/blob/9e65eebcea1b4d0a497a8f7ebf51c3c1d53cd6e3/Bio/Entrez/Parser.py#L118)
+- [ ] nice naming and path for backing up
